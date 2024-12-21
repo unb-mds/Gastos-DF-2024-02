@@ -47,7 +47,6 @@ A arquitetura monolítica é um modelo tradicional de desenvolvimento de softwar
 O projeto segue uma estrutura clara para organizar os módulos e garantir a manutenção:
 
 ### Arquivos principais:
-- **bolsafamilia.py**: Responsável pela coleta e manipulação de dados relacionados ao programa Bolsa Família.
 - **despesas.py**: Centraliza os dados relacionados a despesas gerais do Distrito Federal.
 - **notafiscal.py**: Gerencia as informações sobre notas fiscais eletrônicas.
 - **licitacoes.py**: Processa e organiza dados de licitações públicas.
