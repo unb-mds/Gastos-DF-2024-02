@@ -695,41 +695,62 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#model-view-controller-mvc" class="md-nav__link">
+  <a href="#arquitetura-monolitica" class="md-nav__link">
     <span class="md-ellipsis">
-      Model-View-Controller (MVC)
+      Arquitetura Monolítica
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Model-View-Controller (MVC)">
+    <nav class="md-nav" aria-label="Arquitetura Monolítica">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#model" class="md-nav__link">
+  <a href="#vantagens-da-arquitetura-monolitica" class="md-nav__link">
     <span class="md-ellipsis">
-      Model
+      Vantagens da Arquitetura Monolítica
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#view" class="md-nav__link">
+  <a href="#desafios" class="md-nav__link">
     <span class="md-ellipsis">
-      View
+      Desafios
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#controller" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organizacao-dos-arquivos" class="md-nav__link">
     <span class="md-ellipsis">
-      Controller
+      Organização dos Arquivos
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Organização dos Arquivos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivos-principais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivos principais:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquivos principais:">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#outros-componentes" class="md-nav__link">
@@ -2124,41 +2145,62 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#model-view-controller-mvc" class="md-nav__link">
+  <a href="#arquitetura-monolitica" class="md-nav__link">
     <span class="md-ellipsis">
-      Model-View-Controller (MVC)
+      Arquitetura Monolítica
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Model-View-Controller (MVC)">
+    <nav class="md-nav" aria-label="Arquitetura Monolítica">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#model" class="md-nav__link">
+  <a href="#vantagens-da-arquitetura-monolitica" class="md-nav__link">
     <span class="md-ellipsis">
-      Model
+      Vantagens da Arquitetura Monolítica
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#view" class="md-nav__link">
+  <a href="#desafios" class="md-nav__link">
     <span class="md-ellipsis">
-      View
+      Desafios
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#controller" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organizacao-dos-arquivos" class="md-nav__link">
     <span class="md-ellipsis">
-      Controller
+      Organização dos Arquivos
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Organização dos Arquivos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivos-principais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivos principais:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquivos principais:">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#outros-componentes" class="md-nav__link">
@@ -2249,7 +2291,7 @@
 
 
 <h1 id="arquitetura-do-projeto"><strong>Arquitetura do Projeto</strong></h1>
-<p><img alt="Diagrama de Arquitetura" src="../../assets/DiagramaArquitetura.png" /></p>
+<p><img alt="Diagrama de Arquitetura" src="../../assets/DiagramaArquitetura.jpeg" /></p>
 <h2 id="introducao"><strong>Introdução</strong></h2>
 <h3 id="proposito">Propósito</h3>
 <p>O propósito deste projeto é descrever a arquitetura de software do projeto <strong>Gastos-DF-2024-02</strong>, uma iniciativa que visa promover a transparência na gestão dos gastos públicos no Distrito Federal.</p>
@@ -2259,7 +2301,6 @@
 <ul>
 <li><strong>API</strong>: Application Programming Interface (Interface de Programação de Aplicações).</li>
 <li><strong>PTGF</strong>: Portal da Transparência do Governo Federal.</li>
-<li><strong>MVC</strong>: Model-View-Controller (Modelo-Visão-Controlador).</li>
 </ul>
 <h2 id="tecnologias-escolhidas"><strong>Tecnologias Escolhidas</strong></h2>
 <table>
@@ -2293,16 +2334,33 @@
 </tbody>
 </table>
 <h2 id="visao-dos-componentes"><strong>Visão dos Componentes</strong></h2>
-<h3 id="model-view-controller-mvc"><strong>Model-View-Controller (MVC)</strong></h3>
-<p>O projeto será desenvolvido utilizando a arquitetura <strong>MVC</strong> (Model-View-Controller). A separação em camadas facilita a manutenção, escalabilidade e a organização do código.</p>
-<h4 id="model"><strong>Model</strong></h4>
-<p>A camada <strong>Model</strong> é responsável por gerenciar os dados do sistema e implementar as regras de negócios. Ela faz a comunicação com a base de dados e com fontes externas, como APIs, para garantir que os dados corretos sejam processados e disponibilizados.</p>
-<h4 id="view"><strong>View</strong></h4>
-<p>A camada <strong>View</strong> é responsável pela apresentação dos dados ao usuário final. A interface gráfica será construída utilizando <strong>HTML</strong> e <strong>CSS</strong>, garantindo que o usuário tenha uma experiência visual agradável e acessível.</p>
-<h4 id="controller"><strong>Controller</strong></h4>
-<p>O <strong>Controller</strong> atua como intermediário entre a <strong>Model</strong> e a <strong>View</strong>. Ele recebe as ações do usuário, processa essas ações de acordo com as regras de negócios e atualiza a <strong>View</strong> com os resultados. O <strong>Controller</strong> também faz a mediação entre o <strong>front-end</strong> e o <strong>back-end</strong>, garantindo que os dados corretos sejam exibidos.</p>
+<h3 id="arquitetura-monolitica">Arquitetura Monolítica</h3>
+<p>A arquitetura monolítica é um modelo tradicional de desenvolvimento de software que consiste em uma única unidade de código que executa todas as funções do sistema. Nesta arquitetura, todos os componentes estão interconectados dentro de um mesmo pacote ou aplicação. Isso significa que os módulos responsáveis pelo front-end, back-end e pela manipulação de dados interagem diretamente entre si sem camadas adicionais ou separação de responsabilidades em diferentes serviços.</p>
+<h4 id="vantagens-da-arquitetura-monolitica">Vantagens da Arquitetura Monolítica</h4>
+<ul>
+<li><strong>Facilidade de Desenvolvimento Inicial</strong>: Como todos os componentes estão em um só lugar, é mais simples configurar e implementar.</li>
+<li><strong>Performance</strong>: A comunicação interna entre módulos é mais rápida, pois ocorre dentro do mesmo processo.</li>
+<li><strong>Deploy Simplificado</strong>: Apenas um pacote ou aplicação precisa ser implantado.</li>
+</ul>
+<h4 id="desafios">Desafios</h4>
+<ul>
+<li><strong>Escalabilidade</strong>: É mais difícil escalar componentes específicos do sistema sem replicar toda a aplicação.</li>
+<li><strong>Manutenção</strong>: Com o crescimento do projeto, o código pode se tornar complexo e mais propenso a erros.</li>
+<li><strong>Acoplamento</strong>: Alterar um componente pode impactar outros, exigindo uma bateria maior de testes.</li>
+</ul>
+<h2 id="organizacao-dos-arquivos">Organização dos Arquivos</h2>
+<p>O projeto segue uma estrutura clara para organizar os módulos e garantir a manutenção:</p>
+<h3 id="arquivos-principais">Arquivos principais:</h3>
+<ul>
+<li><strong>despesas.py</strong>: Centraliza os dados relacionados a despesas gerais do Distrito Federal.</li>
+<li><strong>notafiscal.py</strong>: Gerencia as informações sobre notas fiscais eletrônicas.</li>
+<li><strong>licitacoes.py</strong>: Processa e organiza dados de licitações públicas.</li>
+</ul>
 <h4 id="outros-componentes"><strong>Outros Componentes</strong></h4>
-<p>Além das camadas principais do modelo <strong>MVC</strong>, o projeto inclui componentes adicionais, como arquivos de configuração para o <strong>Flask</strong> e <strong>Python</strong>, variáveis de ambiente, chaves de <strong>API</strong> e bibliotecas externas para manipulação e visualização dos dados.</p>
+<ul>
+<li><strong>Arquivos JSON</strong>: Utilizados para armazenamento temporário de dados obtidos da API.</li>
+<li><strong>Configurações do Flask</strong>: Incluem rotas e inicialização do servidor.</li>
+</ul>
 <h3 id="front-end"><strong>Front-end</strong></h3>
 <p>O <strong>front-end</strong> será desenvolvido utilizando HTML e CSS para estruturar e estilizar a interface do usuário. A interface será otimizada para facilitar a navegação e a compreensão dos dados relacionados aos gastos públicos, garantindo uma experiência visual agradável e acessível.</p>
 <h3 id="back-end"><strong>Back-end</strong></h3>
@@ -2335,6 +2393,13 @@
 <td>Criação do documento de arquitetura do projeto</td>
 <td><a href="https://github.com/Nibaacriba">Gabriel Barbaceli</a></td>
 <td><a href="https://github.com/johnaopedro">João Pedro</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>0.1.1</code></td>
+<td style="text-align: center;">19/12/2024</td>
+<td>Atualização do documento de arquitetura do projeto</td>
+<td><a href="https://github.com/ArtyMend07">Artur Mendonça</a> <a href="https://github.com/BrzGab">Gabriel Lopes</a></td>
+<td><a href="https://github.com/Nibaacriba">Gabriel Barbaceli</a> <a href="https://github.com/JuliaGabP">Julia Gabriela</a></td>
 </tr>
 </tbody>
 </table>
