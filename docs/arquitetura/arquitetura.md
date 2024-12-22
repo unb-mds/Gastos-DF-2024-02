@@ -1,6 +1,6 @@
 # **Arquitetura do Projeto**
 
-![Diagrama de Arquitetura](../assets/DiagramaArquitetura.png)
+![Diagrama de Arquitetura](../assets/DiagramaArquitetura.jpeg)
 
 ## **Introdução**
 
@@ -16,7 +16,6 @@ O objetivo principal do projeto é desenvolver uma plataforma que permita o moni
 
 - **API**: Application Programming Interface (Interface de Programação de Aplicações).
 - **PTGF**: Portal da Transparência do Governo Federal.
-- **MVC**: Model-View-Controller (Modelo-Visão-Controlador).
 
 ## **Tecnologias Escolhidas**
 
@@ -30,25 +29,32 @@ O objetivo principal do projeto é desenvolver uma plataforma que permita o moni
 
 ## **Visão dos Componentes**
 
-### **Model-View-Controller (MVC)**
+### Arquitetura Monolítica
+A arquitetura monolítica é um modelo tradicional de desenvolvimento de software que consiste em uma única unidade de código que executa todas as funções do sistema. Nesta arquitetura, todos os componentes estão interconectados dentro de um mesmo pacote ou aplicação. Isso significa que os módulos responsáveis pelo front-end, back-end e pela manipulação de dados interagem diretamente entre si sem camadas adicionais ou separação de responsabilidades em diferentes serviços.
 
-O projeto será desenvolvido utilizando a arquitetura **MVC** (Model-View-Controller). A separação em camadas facilita a manutenção, escalabilidade e a organização do código.
+#### Vantagens da Arquitetura Monolítica
+- **Facilidade de Desenvolvimento Inicial**: Como todos os componentes estão em um só lugar, é mais simples configurar e implementar.
+- **Performance**: A comunicação interna entre módulos é mais rápida, pois ocorre dentro do mesmo processo.
+- **Deploy Simplificado**: Apenas um pacote ou aplicação precisa ser implantado.
 
-#### **Model**
+#### Desafios
+- **Escalabilidade**: É mais difícil escalar componentes específicos do sistema sem replicar toda a aplicação.
+- **Manutenção**: Com o crescimento do projeto, o código pode se tornar complexo e mais propenso a erros.
+- **Acoplamento**: Alterar um componente pode impactar outros, exigindo uma bateria maior de testes.
 
-A camada **Model** é responsável por gerenciar os dados do sistema e implementar as regras de negócios. Ela faz a comunicação com a base de dados e com fontes externas, como APIs, para garantir que os dados corretos sejam processados e disponibilizados.
+## Organização dos Arquivos
 
-#### **View**
+O projeto segue uma estrutura clara para organizar os módulos e garantir a manutenção:
 
-A camada **View** é responsável pela apresentação dos dados ao usuário final. A interface gráfica será construída utilizando **HTML** e **CSS**, garantindo que o usuário tenha uma experiência visual agradável e acessível.
-
-#### **Controller**
-
-O **Controller** atua como intermediário entre a **Model** e a **View**. Ele recebe as ações do usuário, processa essas ações de acordo com as regras de negócios e atualiza a **View** com os resultados. O **Controller** também faz a mediação entre o **front-end** e o **back-end**, garantindo que os dados corretos sejam exibidos.
+### Arquivos principais:
+- **despesas.py**: Centraliza os dados relacionados a despesas gerais do Distrito Federal.
+- **notafiscal.py**: Gerencia as informações sobre notas fiscais eletrônicas.
+- **licitacoes.py**: Processa e organiza dados de licitações públicas.
 
 #### **Outros Componentes**
 
-Além das camadas principais do modelo **MVC**, o projeto inclui componentes adicionais, como arquivos de configuração para o **Flask** e **Python**, variáveis de ambiente, chaves de **API** e bibliotecas externas para manipulação e visualização dos dados.
+- **Arquivos JSON**: Utilizados para armazenamento temporário de dados obtidos da API.
+- **Configurações do Flask**: Incluem rotas e inicialização do servidor.
 
 ### **Front-end**
 
@@ -74,6 +80,8 @@ A coleta de dados será feita por meio da **API** do **PTGF**, que disponibiliza
 
 O sistema irá incluir métricas e indicadores de fácil compreensão, ajudando o usuário a realizar uma análise aprofundada dos gastos públicos, com base nos critérios de interesse.
 
-| Versão  |    Data    | Descrição                                      | Autor                                              | Revisão                                      |
-| :-----: | :--------: | ---------------------------------------------- | -------------------------------------------------- | -------------------------------------------- |
-| `0.1.0` | 08/11/2024 | Criação do documento de arquitetura do projeto | [Gabriel Barbaceli](https://github.com/Nibaacriba) | [João Pedro](https://github.com/johnaopedro) |
+| Versão  |    Data    | Descrição                                      | Autor                                              | Revisão                                                      |
+| :-----: | :--------: | ---------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------ |
+| `0.1.0` | 08/11/2024 | Criação do documento de arquitetura do projeto | [Gabriel Barbaceli](https://github.com/Nibaacriba) | [João Pedro](https://github.com/johnaopedro)                 |
+| `0.1.1` | 19/12/2024 | Atualização do documento de arquitetura do projeto | [Artur Mendonça](https://github.com/ArtyMend07) [Gabriel Lopes](https://github.com/BrzGab) | [Gabriel Barbaceli](https://github.com/Nibaacriba) [Julia Gabriela](https://github.com/JuliaGabP) |
+

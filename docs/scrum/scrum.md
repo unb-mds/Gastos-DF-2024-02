@@ -67,7 +67,7 @@ Os requisitos são orientados a criar uma base sólida para o desenvolvimento, o
 ### Back-end:
 
 Usaremos o Flask para gerenciar as rotas e processar as solicitações do servidor. Ele será responsável pela lógica de negócio e comunicação com o front-end.
-A arquitetura será do tipo MVC (Model-View-Controller), onde o Flask serve como controlador e comunica-se com o front-end.
+A arquitetura será monolítica.
 
 ### Front-end:
 

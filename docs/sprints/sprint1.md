@@ -22,7 +22,8 @@ Durante a Sprint 1, foram realizadas as seguintes atividades:
   - Criação de uma Wiki interna para documentar as diretrizes e decisões tomadas ao longo do desenvolvimento.
 
 - **Definição da Arquitetura**:
-  - Elaboração do modelo arquitetural do sistema, com o padrão **MVC** (Model-View-Controller) como base para a organização do código.
+  - Elaboração do modelo arquitetural do sistema, adotando uma abordagem **monolítica**, onde todos os componentes são integrados em uma única aplicação.
+
 
 - **Documentação de Padrões para o GitHub**:
   - Estabelecimento de convenções para commits, organização do repositório e colaboração através de **Pull Requests**.
@@ -54,10 +55,10 @@ O ambiente de desenvolvimento foi parcialmente configurado, com a organização 
 
 A arquitetura foi documentada com foco na integração entre os componentes front-end e back-end.
 
-- **Padrão MVC**:
-  - **Model**: Dados e regras de negócio.
-  - **View**: Páginas HTML/CSS.
-  - **Controller**: Gerenciamento das rotas e lógica.
+- **Arquitetura Monolítica**:
+  - **Componentes Integrados**: Todos os módulos (dados, interface e lógica) estão reunidos em uma única aplicação.
+  - **Front-end**: Páginas HTML/CSS responsáveis pela interface do usuário.
+  - **Back-end**: Lógica de controle e gerenciamento das rotas, integrada diretamente com o front-end e os dados.
 
 ---
 

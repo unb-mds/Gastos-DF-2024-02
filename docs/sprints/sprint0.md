@@ -63,7 +63,7 @@ Para garantir um desenvolvimento colaborativo organizado, foram realizadas as se
 Uma arquitetura inicial foi proposta para guiar o desenvolvimento e definir a estrutura do sistema.
 
 - **Arquitetura do Sistema**:
-  - **Back-end**: Desenvolvido com Flask, organizado no padrão **MVC** (Model-View-Controller), onde o Flask atua como o controlador.
+  - **Back-end**: Desenvolvido com Flask.
   - **Front-end**: Estrutura básica em HTML e CSS para a visualização de dados.
 - **Componentes Principais**:
   - Integração inicial de rotas no Flask, permitindo comunicação com o front-end e exibição de dados.
@@ -100,7 +100,7 @@ Para a **Sprint 1**, os próximos passos focarão nos requisitos **R3** e **R4**
 
 - **Requisito R3: Especificar a Arquitetura Básica do Sistema**
   - **Objetivo**: Documentar a arquitetura inicial, detalhando a estrutura do front-end e back-end, além da integração entre esses componentes.
-  - **Descrição**: Elaboração de um documento formal, explicando a divisão de responsabilidades e comunicação entre front-end e back-end. O foco é definir uma arquitetura escalável, com APIs para comunicação entre componentes, seguindo o padrão MVC, onde o Flask assume o papel de controlador.
+  - **Descrição**: Elaboração de um documento formal que detalha a estrutura e organização da arquitetura monolítica do sistema, explicando a divisão de responsabilidades e a interação entre front-end e back-end. O objetivo é apresentar uma abordagem simplificada, onde todos os componentes estão integrados em uma única aplicação, com o Flask gerenciando as rotas e a lógica de controle. A arquitetura visa otimizar o desenvolvimento inicial e a comunicação entre os módulos, mantendo a performance e a simplicidade, enquanto define claramente como cada parte do sistema interage dentro de um único pacote.
   - **Entregáveis**: Documento de Arquitetura Básica do Sistema, contendo diagramas de estrutura e descrição textual dos componentes e interações.
 
 - **Requisito R4: Configurar o Repositório Git**
