@@ -69,3 +69,15 @@
 - Criação do script conectado na API para coleta de dados - Gabriel da Cunha Barbaceli; João Pedro Costa; Julia Gabriela Cunha Paulino; 
 - Personalização do layout dos dados no site - Artur Mendonça Arruda;  Gabriel Lima Amorim; Lucas Mendonça Arruda;
 - Criação do protótipo de alta fidelidade - Gabriel da Cunha Barbaceli; João Pedro Costa;
+
+## SPRINT 8
+- Documentação das atas de reunião - João Pedro Costa;
+- Criação das issues da semana - João Pedro Costa;
+- Documentação das funções na sprint - Julia Gabriela Cunha Paulino;
+- Criar documentação sobre a Sprint 7 - Julia Gabriela Cunha Paulino; Gabriel da Cunha Barbaceli;
+- Criação do script conectado na API para coleta de dados - Gabriel da Cunha Barbaceli; João Pedro Costa; Julia Gabriela Cunha Paulino; 
+- Personalização do layout dos dados no site - Gabriel Lima Amorim; Lucas Mendonça Arruda; Artur Mendonça Arruda;
+  - Exibir gráficos e tabelas interativas que representem os gastos públicos do Distrito Federal;
+  - Permitir filtros por categoria de gastos (Saúde, educação e bolsa família);
+  - Exibir informações referentes a um dado específico(ex.: para tabela de licitações, a página deverá exibir todos os dados referentes a uma licitação); 
+- Atualização do protótipo de alta fidelidade - Gabriel da Cunha Barbaceli; João Pedro Costa;
