@@ -85,5 +85,5 @@ O sistema irá incluir métricas e indicadores de fácil compreensão, ajudando 
 | :-----: | :--------: | ---------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------ |
 | `0.1.0` | 08/11/2024 | Criação do documento de arquitetura do projeto | [Gabriel Barbaceli](https://github.com/Nibaacriba) | [João Pedro](https://github.com/johnaopedro)                 |
 | `0.1.1` | 19/12/2024 | Atualização do documento de arquitetura do projeto | [Artur Mendonça](https://github.com/ArtyMend07) [Gabriel Lopes](https://github.com/BrzGab) | [Gabriel Barbaceli](https://github.com/Nibaacriba) [Julia Gabriela](https://github.com/JuliaGabP) |
-| `0.1.0` | 08/11/2024 | Inclusão do uso de duas APIs na coleta de dados | [Artur Mendonça](https://github.com/ArtyMend07) | [Julia Gabriela](https://github.com/JuliaGabP)                 |
+| `0.1.2` | 08/11/2024 | Inclusão do uso de duas APIs na coleta de dados | [Artur Mendonça](https://github.com/ArtyMend07) | [Julia Gabriela](https://github.com/JuliaGabP)                 |
 
