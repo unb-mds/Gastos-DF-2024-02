@@ -16,6 +16,7 @@ O objetivo principal do projeto é desenvolver uma plataforma que permita o moni
 
 - **API**: Application Programming Interface (Interface de Programação de Aplicações).
 - **PTGF**: Portal da Transparência do Governo Federal.
+- **QD**: Querido Diário.
 
 ## **Tecnologias Escolhidas**
 
@@ -66,11 +67,11 @@ O **back-end** será desenvolvido em **Python**, utilizando o **Flask** como fra
 
 #### **Interação com Sistemas Externos**
 
-O sistema será integrado com a **API** do **PTGF**, permitindo que os dados sobre os gastos públicos sejam obtidos diretamente do Portal da Transparência do Governo Federal.
+O sistema será integrado às **APIs** do **PTGF** e do **QD**, permitindo que os dados sobre os gastos públicos sejam obtidos diretamente do Portal da Transparência do Governo Federal.
 
 #### **Coleta de Dados**
 
-A coleta de dados será feita por meio da **API** do **PTGF**, que disponibiliza informações detalhadas sobre os gastos públicos. O sistema filtrará esses dados para focar nos gastos específicos relacionados ao Distrito Federal, permitindo que a plataforma forneça informações precisas e relevantes para a análise.
+A coleta de dados será feita por meio das **APIs** do **PTGF** e do **QD**, que disponibilizam informações detalhadas sobre os gastos públicos. O sistema filtrará esses dados para focar nos gastos específicos relacionados ao Distrito Federal, permitindo que a plataforma forneça informações precisas e relevantes para a análise.
 
 #### **Modelagem de Dados**
 
@@ -84,4 +85,5 @@ O sistema irá incluir métricas e indicadores de fácil compreensão, ajudando 
 | :-----: | :--------: | ---------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------ |
 | `0.1.0` | 08/11/2024 | Criação do documento de arquitetura do projeto | [Gabriel Barbaceli](https://github.com/Nibaacriba) | [João Pedro](https://github.com/johnaopedro)                 |
 | `0.1.1` | 19/12/2024 | Atualização do documento de arquitetura do projeto | [Artur Mendonça](https://github.com/ArtyMend07) [Gabriel Lopes](https://github.com/BrzGab) | [Gabriel Barbaceli](https://github.com/Nibaacriba) [Julia Gabriela](https://github.com/JuliaGabP) |
+| `0.1.2` | 08/11/2024 | Inclusão do uso de duas APIs na coleta de dados | [Artur Mendonça](https://github.com/ArtyMend07) | [Julia Gabriela](https://github.com/JuliaGabP)                 |
 
