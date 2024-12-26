@@ -25,7 +25,7 @@ Este projeto consiste na criação de um site hospedado no GitHub Pages para a a
 
 O projeto está sendo desenvolvido por um grupo de seis alunos da disciplina, conforme lista abaixo:
 
-- **[Arthur Mendonça](https://github.com/ArtyMend07)** - Desenvolvedor
+- **[Artur Mendonça](https://github.com/ArtyMend07)** - Desenvolvedor
 - **[Gabriel da Cunha](https://github.com/Nibaacriba)** - Product Owner
 - **[Gabriel Lopes](https://github.com/BrzGab)** - Desenvolvedor
 - **[João Pedro](https://github.com/johnaopedro)** - Desenvolvedor e estruturador da maioria das issues.
