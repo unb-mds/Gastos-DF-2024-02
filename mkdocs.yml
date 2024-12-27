@@ -26,6 +26,7 @@ nav:
       - 21/11/24: atas/ata_21_11_24.md
       - 27/11/24: atas/ata_27_11_24.md
       - 29/11/24: atas/ata_29_11_24.md
+      - 19/12/24: atas/ata_19_12_24.md
   - Sprints:
     - Introdução: sprints/organizacao.md
     - Sprint 0: sprints/sprint0.md
@@ -34,7 +35,11 @@ nav:
     - Sprint 3: sprints/sprint3.md
     - Sprint 4: sprints/sprint4.md
     - Sprint 5: sprints/sprint5.md
-  - Scrum: scrum/scrum.md
+    - Sprint 6: sprints/sprint6.md
+    - Sprint 7: sprints/sprint7.md
+  - Scrum: 
+    - Parte 1: scrum/scrum.md
+    - Parte 2: scrum/scrum_pt2.md
   - Matriz de Competências: 
     - Formulario: matriz_de_competencias/formulario.md
     - Resultados: matriz_de_competencias/resultados.md
@@ -45,6 +50,8 @@ nav:
     - Baixa Fidelidade:
       - v0.1.0: prototipo-baixa-fidelidade/v0.1.0/v0.1.0.md
       - v0.1.1: prototipo-baixa-fidelidade/v0.1.1/v0.1.1.md
+    - Alta Fidelidade:
+      - v0.1.0: prototipo-alta-fidelidade/v0.1.0/v0.1.0.md
   - Stories: user_story/user_story.md
   - Estudos:
     - Releases: 
