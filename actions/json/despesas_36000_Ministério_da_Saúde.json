@@ -1,0 +1,302 @@
+[
+    {
+        "ano": 2024,
+        "orgao": "Ministério da Saúde - Unidades com vínculo direto",
+        "codigoOrgao": "36000",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "203.320.645.440,02",
+        "liquidado": "186.835.214.136,88",
+        "pago": "184.761.692.843,31"
+    },
+    {
+        "ano": 2024,
+        "orgao": "Fundação Oswaldo Cruz",
+        "codigoOrgao": "36201",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "10.658.477.655,13",
+        "liquidado": "8.757.980.757,94",
+        "pago": "8.146.643.745,34"
+    },
+    {
+        "ano": 2024,
+        "orgao": "Hospital Nossa Senhora da Conceição S.A.",
+        "codigoOrgao": "36210",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "2.207.150.334,41",
+        "liquidado": "1.912.725.762,14",
+        "pago": "1.933.484.029,39"
+    },
+    {
+        "ano": 2024,
+        "orgao": "Fundação Nacional de Saúde",
+        "codigoOrgao": "36211",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "2.120.984.644,10",
+        "liquidado": "1.673.010.759,79",
+        "pago": "1.605.389.678,62"
+    },
+    {
+        "ano": 2024,
+        "orgao": "Agência Nacional de Vigilância Sanitária",
+        "codigoOrgao": "36212",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "855.361.905,33",
+        "liquidado": "744.281.693,65",
+        "pago": "727.889.581,83"
+    },
+    {
+        "ano": 2024,
+        "orgao": "Agência Nacional de Saúde Suplementar",
+        "codigoOrgao": "36213",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "317.517.470,21",
+        "liquidado": "281.940.726,32",
+        "pago": "274.620.132,12"
+    },
+    {
+        "ano": 2023,
+        "orgao": "Ministério da Saúde - Unidades com vínculo direto",
+        "codigoOrgao": "36000",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "176.788.293.846,49",
+        "liquidado": "158.171.446.888,98",
+        "pago": "157.022.735.249,61"
+    },
+    {
+        "ano": 2023,
+        "orgao": "Fundação Oswaldo Cruz",
+        "codigoOrgao": "36201",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "11.042.930.718,01",
+        "liquidado": "8.206.620.025,33",
+        "pago": "7.864.848.989,02"
+    },
+    {
+        "ano": 2023,
+        "orgao": "Hospital Nossa Senhora da Conceição S.A.",
+        "codigoOrgao": "36210",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "1.959.276.176,51",
+        "liquidado": "1.873.871.483,16",
+        "pago": "1.811.119.568,87"
+    },
+    {
+        "ano": 2023,
+        "orgao": "Fundação Nacional de Saúde",
+        "codigoOrgao": "36211",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "1.697.212.394,05",
+        "liquidado": "1.656.875.229,38",
+        "pago": "1.532.494.035,85"
+    },
+    {
+        "ano": 2023,
+        "orgao": "Agência Nacional de Vigilância Sanitária",
+        "codigoOrgao": "36212",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "826.740.628,08",
+        "liquidado": "782.991.872,07",
+        "pago": "716.295.083,08"
+    },
+    {
+        "ano": 2023,
+        "orgao": "Agência Nacional de Saúde Suplementar",
+        "codigoOrgao": "36213",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "313.937.206,09",
+        "liquidado": "293.089.647,66",
+        "pago": "272.276.569,97"
+    },
+    {
+        "ano": 2020,
+        "orgao": "Ministério da Saúde - Unidades com vínculo direto",
+        "codigoOrgao": "36000",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "156.537.089.062,52",
+        "liquidado": "147.863.917.927,79",
+        "pago": "145.487.916.733,13"
+    },
+    {
+        "ano": 2020,
+        "orgao": "Fundação Oswaldo Cruz",
+        "codigoOrgao": "36201",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "9.968.133.806,15",
+        "liquidado": "8.343.055.426,06",
+        "pago": "7.960.760.181,97"
+    },
+    {
+        "ano": 2020,
+        "orgao": "Fundação Nacional de Saúde",
+        "codigoOrgao": "36211",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "2.535.564.281,26",
+        "liquidado": "2.014.540.707,70",
+        "pago": "1.879.373.079,77"
+    },
+    {
+        "ano": 2020,
+        "orgao": "Hospital Nossa Senhora da Conceição S.A.",
+        "codigoOrgao": "36210",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "1.568.267.867,94",
+        "liquidado": "1.536.276.769,18",
+        "pago": "1.506.362.822,94"
+    },
+    {
+        "ano": 2020,
+        "orgao": "Agência Nacional de Vigilância Sanitária",
+        "codigoOrgao": "36212",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "725.517.282,69",
+        "liquidado": "698.087.399,29",
+        "pago": "659.662.965,35"
+    },
+    {
+        "ano": 2020,
+        "orgao": "Agência Nacional de Saúde Suplementar",
+        "codigoOrgao": "36213",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "303.960.796,85",
+        "liquidado": "289.261.720,95",
+        "pago": "278.126.203,24"
+    },
+    {
+        "ano": 2022,
+        "orgao": "Ministério da Saúde - Unidades com vínculo direto",
+        "codigoOrgao": "36000",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "147.810.439.008,31",
+        "liquidado": "134.799.249.654,77",
+        "pago": "133.683.854.900,02"
+    },
+    {
+        "ano": 2022,
+        "orgao": "Fundação Oswaldo Cruz",
+        "codigoOrgao": "36201",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "9.062.240.609,81",
+        "liquidado": "6.684.313.537,91",
+        "pago": "6.405.905.569,01"
+    },
+    {
+        "ano": 2022,
+        "orgao": "Fundação Nacional de Saúde",
+        "codigoOrgao": "36211",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "3.144.570.370,01",
+        "liquidado": "1.932.291.915,87",
+        "pago": "1.804.240.273,04"
+    },
+    {
+        "ano": 2022,
+        "orgao": "Hospital Nossa Senhora da Conceição S.A.",
+        "codigoOrgao": "36210",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "1.774.928.776,19",
+        "liquidado": "1.746.503.064,52",
+        "pago": "1.720.541.957,83"
+    },
+    {
+        "ano": 2022,
+        "orgao": "Agência Nacional de Vigilância Sanitária",
+        "codigoOrgao": "36212",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "749.650.912,02",
+        "liquidado": "719.461.431,83",
+        "pago": "678.790.712,75"
+    },
+    {
+        "ano": 2022,
+        "orgao": "Agência Nacional de Saúde Suplementar",
+        "codigoOrgao": "36213",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "284.841.319,77",
+        "liquidado": "272.750.419,06",
+        "pago": "260.825.909,87"
+    },
+    {
+        "ano": 2021,
+        "orgao": "Ministério da Saúde - Unidades com vínculo direto",
+        "codigoOrgao": "36000",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "170.712.519.830,20",
+        "liquidado": "156.414.763.572,38",
+        "pago": "155.059.459.376,92"
+    },
+    {
+        "ano": 2021,
+        "orgao": "Fundação Oswaldo Cruz",
+        "codigoOrgao": "36201",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "14.011.113.008,65",
+        "liquidado": "10.160.375.391,96",
+        "pago": "9.368.037.554,01"
+    },
+    {
+        "ano": 2021,
+        "orgao": "Fundação Nacional de Saúde",
+        "codigoOrgao": "36211",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "2.405.159.074,44",
+        "liquidado": "1.933.124.492,85",
+        "pago": "1.802.977.907,76"
+    },
+    {
+        "ano": 2021,
+        "orgao": "Hospital Nossa Senhora da Conceição S.A.",
+        "codigoOrgao": "36210",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "1.648.387.730,91",
+        "liquidado": "1.606.194.564,25",
+        "pago": "1.585.972.375,80"
+    },
+    {
+        "ano": 2021,
+        "orgao": "Agência Nacional de Vigilância Sanitária",
+        "codigoOrgao": "36212",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "734.107.851,35",
+        "liquidado": "705.093.386,68",
+        "pago": "663.535.141,27"
+    },
+    {
+        "ano": 2021,
+        "orgao": "Agência Nacional de Saúde Suplementar",
+        "codigoOrgao": "36213",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "290.888.530,99",
+        "liquidado": "279.387.810,51",
+        "pago": "267.735.952,49"
+    }
+]

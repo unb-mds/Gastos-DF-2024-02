@@ -1,0 +1,52 @@
+[
+    {
+        "ano": 2024,
+        "orgao": "Ministério do Esporte - Unidades com vínculo direto",
+        "codigoOrgao": "51000",
+        "orgaoSuperior": "Ministério do Esporte",
+        "codigoOrgaoSuperior": "51000",
+        "empenhado": "1.397.680.502,42",
+        "liquidado": "220.274.894,53",
+        "pago": "215.715.771,12"
+    },
+    {
+        "ano": 2023,
+        "orgao": "Ministério do Esporte - Unidades com vínculo direto",
+        "codigoOrgao": "51000",
+        "orgaoSuperior": "Ministério do Esporte",
+        "codigoOrgaoSuperior": "51000",
+        "empenhado": "940.153.047,87",
+        "liquidado": "331.703.819,81",
+        "pago": "329.093.413,58"
+    },
+    {
+        "ano": 2020,
+        "orgao": "Ministério do Esporte - Unidades com vínculo direto",
+        "codigoOrgao": "51000",
+        "orgaoSuperior": "Ministério do Esporte",
+        "codigoOrgaoSuperior": "51000",
+        "empenhado": "538.285.886,21",
+        "liquidado": "93.228.444,80",
+        "pago": "91.454.419,03"
+    },
+    {
+        "ano": 2022,
+        "orgao": "Ministério do Esporte - Unidades com vínculo direto",
+        "codigoOrgao": "51000",
+        "orgaoSuperior": "Ministério do Esporte",
+        "codigoOrgaoSuperior": "51000",
+        "empenhado": "805.731.918,61",
+        "liquidado": "268.650.430,64",
+        "pago": "266.661.088,33"
+    },
+    {
+        "ano": 2021,
+        "orgao": "Ministério do Esporte - Unidades com vínculo direto",
+        "codigoOrgao": "51000",
+        "orgaoSuperior": "Ministério do Esporte",
+        "codigoOrgaoSuperior": "51000",
+        "empenhado": "841.287.417,22",
+        "liquidado": "195.138.110,22",
+        "pago": "195.101.265,42"
+    }
+]
