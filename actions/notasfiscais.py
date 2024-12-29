@@ -5,6 +5,7 @@ import os
 
 API_KEY = os.getenv('API_KEY')
 API_COOKIE = os.getenv('API_COOKIE')
+
 # Dicionário com os códigos dos órgãos superiores
 ORGAOS_SUPERIORES = {
     "Presidência da República": 20000,
@@ -28,12 +29,14 @@ ORGAOS_SUPERIORES = {
     "Ministério da Segurança Pública": 29000,
     "Ministério da Saúde (SUS)": 36001,
 }
+
 # Função para buscar os dados da API do Portal da Transparência
 def fetch_data(pagina, orgao_superior):
-    url = f"https://api.portaldatransparencia.gov.br/api-de-dados/notas-fiscais?codigoOrgao={orgao_superior}&pagina={pagina}" 
+    url = f"https://api.portaldatransparencia.gov.br/api-de-dados/notas-fiscais?codigoOrgao={orgao_superior}&pagina={pagina}"
     headers = {
-        'chave-api-dados': API_KEY,
-        'Cookie': API_COOKIE}
+        'chave-api-dados': 'e6152c1558b273b4666d27d60ed32f3f',
+        'Cookie': API_COOKIE
+    }
     try:
         response = requests.get(url, headers=headers)
         response.raise_for_status()
@@ -41,12 +44,14 @@ def fetch_data(pagina, orgao_superior):
     except requests.RequestException:
         print(f"Erro ao acessar a API para a página {pagina}.")
         return None
+
 # Função para buscar as informações detalhadas de uma nota fiscal por chave
 def fetch_detailed_data(chave):
     url = f"https://api.portaldatransparencia.gov.br/api-de-dados/notas-fiscais-por-chave?chaveUnicaNotaFiscal={chave}"
     headers = {
-        'chave-api-dados': API_KEY,
-        'Cookie': API_COOKIE}
+        'chave-api-dados': 'e6152c1558b273b4666d27d60ed32f3f',
+        'Cookie': API_COOKIE
+    }
     try:
         response = requests.get(url, headers=headers)
         response.raise_for_status()
@@ -54,6 +59,7 @@ def fetch_detailed_data(chave):
     except requests.RequestException:
         print(f"Erro ao acessar a API para a chave {chave}.")
         return None
+
 # Função principal que chama a API para diferentes órgãos e páginas
 def fetch_and_save_data():
     jsons_dir = os.path.join(os.path.dirname(__file__), 'json')
@@ -62,7 +68,7 @@ def fetch_and_save_data():
     
     for orgao, codigo in ORGAOS_SUPERIORES.items():
         print(f"Buscando dados para o órgão: {orgao} (Código: {codigo})")
-        pagina = 1
+        pagina = 1  # Começar da primeira página
         detailed_output_file = os.path.join(jsons_dir, f"notas_fiscais_{codigo}_{orgao.replace(' ', '_')}.json")
         
         if os.path.exists(detailed_output_file):
@@ -115,19 +121,17 @@ def fetch_and_save_data():
                 except ValueError:
                     data_emissao_obj = None
                 
-                # Se o município for "BRASILIA" ou se a data de emissão for anterior a 2024, ignora o item
-                if municipio == "BRASILIA" or not data_emissao_obj or data_emissao_obj.year < 2024:
-                    continue  # Descarta o item e passa para o próximo
-                
-                chave_nota_fiscal = item.get("chaveNotaFiscal")
-                if chave_nota_fiscal and chave_nota_fiscal not in seen:
-                    seen.add(chave_nota_fiscal)  # Marca a chave como vista
-                    
-                    # Agora, para cada item válido, capturamos a chaveNotaFiscal e fazemos a requisição detalhada
-                    detailed_data = fetch_detailed_data(chave_nota_fiscal)
-                    if detailed_data:
-                        all_data.append(detailed_data)
-                        page_data_added = True  # Marca que houve adição de dados
+                # Filtra para pegar apenas notas de "BRASILIA" e com ano de emissão 2024 ou superior
+                if municipio == "BRASILIA" and data_emissao_obj and data_emissao_obj.year >= 2024:
+                    chave_nota_fiscal = item.get("chaveNotaFiscal")
+                    if chave_nota_fiscal and chave_nota_fiscal not in seen:
+                        seen.add(chave_nota_fiscal)  # Marca a chave como vista
+                        
+                        # Agora, para cada item válido, capturamos a chaveNotaFiscal e fazemos a requisição detalhada
+                        detailed_data = fetch_detailed_data(chave_nota_fiscal)
+                        if detailed_data:
+                            all_data.append(detailed_data)
+                            page_data_added = True  # Marca que houve adição de dados
 
             # Se nenhum dado válido foi adicionado, significa que a página foi "pulada" devido ao filtro de data
             if not page_data_added:
@@ -141,5 +145,6 @@ def fetch_and_save_data():
             with open(detailed_output_file, "w", encoding="utf-8") as file:
                 json.dump(all_data, file, ensure_ascii=False, indent=4)
             print(f"Dados detalhados das notas fiscais salvos em {detailed_output_file}")
+
 if __name__ == "__main__":
     fetch_and_save_data()
