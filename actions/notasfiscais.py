@@ -34,7 +34,7 @@ ORGAOS_SUPERIORES = {
 def fetch_data(pagina, orgao_superior):
     url = f"https://api.portaldatransparencia.gov.br/api-de-dados/notas-fiscais?codigoOrgao={orgao_superior}&pagina={pagina}"
     headers = {
-        'chave-api-dados': 'e6152c1558b273b4666d27d60ed32f3f',
+        'chave-api-dados': API_KEY,
         'Cookie': API_COOKIE
     }
     try:
@@ -49,7 +49,7 @@ def fetch_data(pagina, orgao_superior):
 def fetch_detailed_data(chave):
     url = f"https://api.portaldatransparencia.gov.br/api-de-dados/notas-fiscais-por-chave?chaveUnicaNotaFiscal={chave}"
     headers = {
-        'chave-api-dados': 'e6152c1558b273b4666d27d60ed32f3f',
+        'chave-api-dados': API_KEY,
         'Cookie': API_COOKIE
     }
     try:
