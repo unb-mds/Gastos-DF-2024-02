@@ -53,6 +53,7 @@ nav:
       - v0.1.1: prototipo-baixa-fidelidade/v0.1.1/v0.1.1.md
     - Alta Fidelidade:
       - v0.1.0: prototipo-alta-fidelidade/v0.1.0/v0.1.0.md
+      - v0.2.0: prototipo-alta-fidelidade/v0.2.0/v0.2.0.md
   - Stories: user_story/user_story.md
   - Estudos:
     - Releases: 
