@@ -598,5 +598,15 @@
         "empenhado": "0,00",
         "liquidado": "0,00",
         "pago": "0,00"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Indústria de Material Bélico do Brasil",
+        "codigoOrgao": "52221",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "11.189.775,87",
+        "liquidado": "0,00",
+        "pago": "0,00"
     }
 ]
