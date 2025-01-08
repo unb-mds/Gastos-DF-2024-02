@@ -738,5 +738,25 @@
         "empenhado": "204.721,44",
         "liquidado": "0,00",
         "pago": "0,00"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
+        "codigoOrgao": "53000",
+        "orgaoSuperior": "Ministério da Integração e do Desenvolvimento Regional",
+        "codigoOrgaoSuperior": "53000",
+        "empenhado": "211.821,44",
+        "liquidado": "0,00",
+        "pago": "0,00"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Superintendência do Desenvolvimento do Nordeste",
+        "codigoOrgao": "53203",
+        "orgaoSuperior": "Ministério da Integração e do Desenvolvimento Regional",
+        "codigoOrgaoSuperior": "53000",
+        "empenhado": "138.500,00",
+        "liquidado": "0,00",
+        "pago": "0,00"
     }
 ]

@@ -498,5 +498,25 @@
         "empenhado": "209.304.769,00",
         "liquidado": "0,00",
         "pago": "0,00"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Conselho Administrativo de Defesa Econômica",
+        "codigoOrgao": "30211",
+        "orgaoSuperior": "Ministério da Justiça e Segurança Pública",
+        "codigoOrgaoSuperior": "30000",
+        "empenhado": "163.855,34",
+        "liquidado": "0,00",
+        "pago": "0,00"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundo Nacional de Segurança Pública",
+        "codigoOrgao": "30911",
+        "orgaoSuperior": "Ministério da Justiça e Segurança Pública",
+        "codigoOrgaoSuperior": "30000",
+        "empenhado": "228.927.019,00",
+        "liquidado": "0,00",
+        "pago": "0,00"
     }
 ]
