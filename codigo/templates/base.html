@@ -4,14 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Gastos Públicos DF{% endblock %}</title>
-    <link rel="stylesheet" href="static/css/style.css"/> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/> 
+    <style>
+      /* Estilos adicionais para o dropdown e gráficos */
+      .dropdown {
+          position: relative;
+          display: inline-block;
+      }
+      .dropdown-content a {
+          display: block;
+      }
+      .dropdown-content p {
+          margin: 5px 10px;
+          color: #0056b3;
+          font-weight: bold;
+      }
+      .dropdown-btn {
+          font-size: 16px;
+      }
+      .dropdown-content a:hover {
+          background-color: #ddd;
+      }
+      /* Estilos para os gráficos */
+      .content {
+          padding: 20px;
+      }
+    </style>
+    {% block head %}{% endblock %}
   </head>
   <body>
     <header>
       <nav id="header-container"> 
         <div id="logo-container"> 
           <img
-            src="static/images/logo.png"
+            src="{{ url_for('static', filename='images/logo.png') }}"
             alt="Logo"
             id="header-logo" /> 
           <h1>Monitoramento De Gastos Públicos - DF</h1>
@@ -19,11 +45,11 @@
         <div class="header-buttons">
           <!-- Botões de navegação, com classe 'active' para a página atual -->
           {% if request.path == '/' %}
-            <a class="btn-header active">Início</a>
-            <a href="/charts" class="btn-header">Análise de Gráficos</a>
+            <a href="{{ url_for('index') }}" class="btn-header active">Início</a>
+            <a href="{{ url_for('charts') }}" class="btn-header">Análise de Gráficos</a>
           {% elif request.path == '/charts' or request.path == '/tables' %}
-            <a href="/" class="btn-header">Início</a>
-            <a class="btn-header active">
+            <a href="{{ url_for('index') }}" class="btn-header">Início</a>
+            <a href="{% if request.path == '/charts' %}{{ url_for('charts') }}{% elif request.path == '/tables' %}{{ url_for('tables') }}{% endif %}" class="btn-header active">
               {% if request.path == '/charts' %}
                 Análise de Gráficos
               {% elif request.path == '/tables' %}
@@ -34,7 +60,6 @@
         </div>
       </nav>
     </header>
-
     <!-- Conteúdo da página -->
     <main>
       {% block content %}
