@@ -1,79 +1,104 @@
-{% extends 'base.html' %}
-
-{% block title %}Análise de Gráficos{% endblock %}
-
-{% block content %}
-<!-- Barra de navegação -->
-<div id="barra-navegacao"> 
-    <a href="{{ url_for('charts') }}" class="nav-link active">Gráficos</a>
-    <a href="{{ url_for('tables') }}" class="nav-link">Tabelas</a>
-</div>
+{% extends 'base.html' %} {% block title %}Análise de Gastos{% endblock %} {%
+block content %}
 
 <!-- Conteúdo principal -->
 <div class="content">
-    <h2>Monitoramento de Gastos Públicos - DF</h2>
+  <h2 style="text-align: center">Monitoramento de Gastos Públicos - DF</h2>
 
-    <!-- Menu dropdown para escolha -->
-    <div class="dropdown">
-        <button class="dropdown-btn">Escolher</button>
-        <div class="dropdown-content">
-            <a href="#" onclick="atualizarGrafico('Despesas'); return false;">Despesas</a>
-            <a href="#" onclick="atualizarGrafico('Bolsa Família'); return false;">Bolsa Família</a>
-            <a href="#" onclick="atualizarGrafico('Notas Fiscais'); return false;">Notas Fiscais</a>
-            <a href="#" onclick="atualizarGrafico('Licitações'); return false;">Licitações</a>
-        </div>
-    </div>
+  <!-- Div para gráfico de compras -->
+  <div id="grafico-compras-container" class="chart-container">
+    <h3 style="text-align: center">Gastos com Compras</h3>
+    <div id="grafico-compras" style="width: 100%; height: 400px"></div>
+    <p class="chart-description">
+      Este gráfico apresenta a evolução anual dos gastos com compras públicas no
+      Distrito Federal, mostrando os valores empenhados (azul). Os dados são
+      atualizados periodicamente e permitem acompanhar o ciclo completo das
+      despesas com aquisições governamentais.
+    </p>
+  </div>
 
-    <!-- Div onde o gráfico será exibido -->
-    <div id="grafico-plotly"></div>
+  <!-- Divs para gráficos de despesas por órgão -->
+  {% for orgao, dados in despesas_por_orgao.items() %}
+  <div
+    id="grafico-{{ orgao|replace(' ', '_') }}-container"
+    class="chart-container"
+  >
+    <h3 style="text-align: center">Despesas - {{ orgao.split(' ', 1)[1] }}</h3>
+    <div
+      id="grafico-{{ orgao|replace(' ', '_') }}"
+      style="width: 100%; height: 400px"
+    ></div>
+    <p class="chart-description">
+      {% set nome_orgao = orgao.split(' ', 1)[1] %} {% if 'Justiça' in orgao %}
+      Este gráfico apresenta a evolução anual das despesas do {{ nome_orgao }}
+      no Distrito Federal, abrangendo investimentos em segurança pública,
+      sistema penitenciário, políticas antidrogas e proteção ao consumidor. Os
+      valores empenhados (azul), liquidados (laranja) e pagos (verde) demonstram
+      a execução orçamentária nas ações de justiça e segurança pública. {% elif
+      'Trabalho' in orgao %} Este gráfico detalha a evolução anual das despesas
+      do {{ nome_orgao }} no Distrito Federal, incluindo investimentos em
+      políticas de emprego, fiscalização trabalhista e programas de qualificação
+      profissional. Os valores empenhados (azul), liquidados (laranja) e pagos
+      (verde) refletem os recursos destinados às políticas de trabalho e renda.
+      {% elif 'Defesa' in orgao %} Este gráfico mostra a evolução anual das
+      despesas do {{ nome_orgao }} no Distrito Federal, contemplando gastos com
+      as Forças Armadas, projetos estratégicos de defesa e proteção das
+      fronteiras. Os valores empenhados (azul), liquidados (laranja) e pagos
+      (verde) indicam os investimentos na defesa nacional. {% elif 'Presidência'
+      in orgao %} Este gráfico apresenta a evolução anual das despesas da {{
+      nome_orgao }} no Distrito Federal, incluindo gastos com a administração
+      presidencial, órgãos essenciais e programas estratégicos do governo. Os
+      valores empenhados (azul), liquidados (laranja) e pagos (verde) mostram a
+      execução orçamentária da administração federal superior. {% elif
+      'Agricultura' in orgao %} Este gráfico detalha a evolução anual das
+      despesas do {{ nome_orgao }} no Distrito Federal, abrangendo investimentos
+      em desenvolvimento rural, segurança alimentar e fomento agropecuário. Os
+      valores empenhados (azul), liquidados (laranja) e pagos (verde) demonstram
+      os recursos aplicados no setor agrícola. {% elif 'Esporte' in orgao %}
+      Este gráfico ilustra a evolução anual das despesas do {{ nome_orgao }} no
+      Distrito Federal, contemplando investimentos em infraestrutura esportiva,
+      programas de incentivo ao esporte e apoio ao atleta. Os valores empenhados
+      (azul), liquidados (laranja) e pagos (verde) refletem o compromisso com o
+      desenvolvimento esportivo. {% elif 'Relações Exteriores' in orgao %} Este
+      gráfico apresenta a evolução anual das despesas do {{ nome_orgao }} no
+      Distrito Federal, incluindo gastos com representações diplomáticas,
+      cooperação internacional e promoção comercial. Os valores empenhados
+      (azul), liquidados (laranja) e pagos (verde) mostram os investimentos na
+      política externa brasileira. {% elif 'Integração' in orgao %} Este gráfico
+      detalha a evolução anual das despesas do {{ nome_orgao }} no Distrito
+      Federal, abrangendo investimentos em desenvolvimento regional, obras
+      contra as secas e defesa civil. Os valores empenhados (azul), liquidados
+      (laranja) e pagos (verde) demonstram os recursos destinados à integração
+      nacional. {% elif 'Saúde' in orgao %} Este gráfico mostra a evolução anual
+      das despesas do {{ nome_orgao }} no Distrito Federal, contemplando
+      investimentos no SUS, programas de saúde pública e vigilância sanitária.
+      Os valores empenhados (azul), liquidados (laranja) e pagos (verde)
+      refletem os recursos aplicados na saúde da população. {% else %} Este
+      gráfico apresenta a evolução anual das despesas da {{ nome_orgao }} no
+      Distrito Federal, detalhando os valores empenhados (azul), liquidados
+      (laranja) e pagos (verde). Os dados são atualizados periodicamente e
+      permitem acompanhar o ciclo orçamentário completo desta unidade
+      administrativa. {% endif %}
+    </p>
+  </div>
+  {% endfor %}
 </div>
 
 <!-- Scripts para os gráficos -->
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
-    // Dados iniciais do gráfico
-    var dadosPlotly = {
-        x: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
-        y: [200, 300, 400, 500, 600],
-        type: 'bar'
+  const dadosGastosCompras = {{ compras | tojson | safe }};
+  const despesasPorOrgao = {{ despesas_por_orgao | tojson | safe }};
+
+  try {
+    const script = document.createElement('script');
+    script.src = "{{ url_for('static', filename='scripts/charts.js') }}";
+    script.onerror = function() {
+      console.error('Erro ao carregar o arquivo charts.js');
     };
-
-    // Configurações do gráfico inicial
-    var layout = {
-        title: 'Gastos mensais'
-    };
-
-    // Renderizar gráfico inicial
-    Plotly.newPlot('grafico-plotly', [dadosPlotly], layout);
-
-    // Atualizar gráfico com base na seleção
-    function atualizarGrafico(tipo) {
-        let labels, valores, titulo;
-        if (tipo === 'Despesas') {
-            labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'];
-            valores = [200, 300, 400, 500, 600];
-            titulo = 'Gastos com Despesas';
-        } else if (tipo === 'Bolsa Família') {
-            labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'];
-            valores = [150, 250, 350, 450, 550];
-            titulo = 'Gastos com Bolsa Família';
-        } else if (tipo === 'Notas Fiscais') {
-            labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'];
-            valores = [100, 200, 300, 400, 500];
-            titulo = 'Gastos com Notas Fiscais';
-        } else if (tipo === 'Licitações') {
-            labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'];
-            valores = [250, 350, 450, 550, 650];
-            titulo = 'Gastos com Licitações';
-        }
-
-        var dadosAtualizados = [{
-            x: labels,
-            y: valores,
-            type: 'bar'
-        }];
-
-        Plotly.newPlot('grafico-plotly', dadosAtualizados, { title: titulo });
-    }
+    document.body.appendChild(script);
+  } catch (error) {
+    console.error('Erro ao importar charts.js:', error);
+  }
 </script>
 {% endblock %}
