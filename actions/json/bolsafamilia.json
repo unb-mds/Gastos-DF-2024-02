@@ -1,0 +1,464 @@
+[
+    {
+        "id": 190410600,
+        "dataReferencia": "2023-03-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 111488224.0,
+        "quantidadeBeneficiados": 168384
+    },
+    {
+        "id": 190648424,
+        "dataReferencia": "2023-04-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 109239907.0,
+        "quantidadeBeneficiados": 165333
+    },
+    {
+        "id": 191107176,
+        "dataReferencia": "2023-05-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 109672045.0,
+        "quantidadeBeneficiados": 165815
+    },
+    {
+        "id": 191344488,
+        "dataReferencia": "2023-06-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 117221935.0,
+        "quantidadeBeneficiados": 167628
+    },
+    {
+        "id": 191747176,
+        "dataReferencia": "2023-07-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 111275344.0,
+        "quantidadeBeneficiados": 165457
+    },
+    {
+        "id": 191969384,
+        "dataReferencia": "2023-08-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 111269007.0,
+        "quantidadeBeneficiados": 165374
+    },
+    {
+        "id": 192446632,
+        "dataReferencia": "2023-09-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 128551968.0,
+        "quantidadeBeneficiados": 189625
+    },
+    {
+        "id": 192837224,
+        "dataReferencia": "2023-10-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 128502747.0,
+        "quantidadeBeneficiados": 189326
+    },
+    {
+        "id": 193034152,
+        "dataReferencia": "2023-11-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 128288195.0,
+        "quantidadeBeneficiados": 192433
+    },
+    {
+        "id": 193439016,
+        "dataReferencia": "2023-12-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 128567083.0,
+        "quantidadeBeneficiados": 192958
+    },
+    {
+        "id": 193737192,
+        "dataReferencia": "2024-01-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 128737197.0,
+        "quantidadeBeneficiados": 191879
+    },
+    {
+        "id": 194430248,
+        "dataReferencia": "2024-02-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 127553766.0,
+        "quantidadeBeneficiados": 190740
+    },
+    {
+        "id": 194722280,
+        "dataReferencia": "2024-03-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 121742316.0,
+        "quantidadeBeneficiados": 183959
+    },
+    {
+        "id": 195105064,
+        "dataReferencia": "2024-04-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 121957029.0,
+        "quantidadeBeneficiados": 183296
+    },
+    {
+        "id": 195362216,
+        "dataReferencia": "2024-05-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 121696176.0,
+        "quantidadeBeneficiados": 182921
+    },
+    {
+        "id": 195718376,
+        "dataReferencia": "2024-06-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 120953814.0,
+        "quantidadeBeneficiados": 181875
+    },
+    {
+        "id": 196079592,
+        "dataReferencia": "2024-07-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 118128388.0,
+        "quantidadeBeneficiados": 177810
+    },
+    {
+        "id": 196425960,
+        "dataReferencia": "2024-08-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 118288209.0,
+        "quantidadeBeneficiados": 177610
+    },
+    {
+        "id": 196830376,
+        "dataReferencia": "2024-09-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 120576473.0,
+        "quantidadeBeneficiados": 178289
+    },
+    {
+        "id": 197027240,
+        "dataReferencia": "2024-10-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 115020684.0,
+        "quantidadeBeneficiados": 172012
+    },
+    {
+        "id": 197533864,
+        "dataReferencia": "2024-11-01",
+        "municipio": {
+            "codigoIBGE": "5300108",
+            "nomeIBGE": "BRASÍLIA",
+            "codigoRegiao": "5",
+            "nomeRegiao": "CENTRO-OESTE",
+            "pais": "BRASIL",
+            "uf": {
+                "sigla": "DF",
+                "nome": "DISTRITO FEDERAL"
+            }
+        },
+        "tipo": {
+            "id": 8,
+            "descricao": "Novo Bolsa Família",
+            "descricaoDetalhada": "Novo Bolsa Família"
+        },
+        "valor": 114896539.0,
+        "quantidadeBeneficiados": 168639
+    }
+]
