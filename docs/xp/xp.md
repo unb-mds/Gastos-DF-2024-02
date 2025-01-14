@@ -1,7 +1,7 @@
-##Metodologia XP
+## Metodologia XP
 A metodologia XP (Extreme Programming) é uma abordagem ágil para o desenvolvimento de software focada em melhorar a qualidade do software e a capacidade de resposta às mudanças dos requisitos do cliente, enfatizando a colaboração, a comunicação, e práticas técnicas rigorosas para entregar software funcional em ciclos curtos e iterativos.
 
-###Princípios básicos
+### Princípios básicos
 - **Simplicidade**
 	Construção apenas do que é necessário no momento.
 	Evitar sobrecarga ou funcionalidade extra que não tenha valor imediato.
@@ -18,7 +18,7 @@ A metodologia XP (Extreme Programming) é uma abordagem ágil para o desenvolvim
 	Todos na equipe são importantes e suas contribuições devem ser valorizadas.
 	Criação de um ambiente de trabalho saudável e de apoio mútuo.
 
-###Práticas fundamentais
+### Práticas fundamentais
 - **Planejamento**
 	Planejamento das entregas em iterações curtas, com feedback constante.
 	Criação de uma lista priorizada de histórias de usuário.
@@ -42,14 +42,14 @@ A metodologia XP (Extreme Programming) é uma abordagem ágil para o desenvolvim
 - **Padrões de código**
 	Adoção de padrões de codificação consistentes para facilitar a leitura e a manutenção do código.
 
-###Benefícios
+### Benefícios
 - **Entrega Rápida**: O foco em pequenas versões permite ciclos curtos de feedback e entregas frequentes.
 - **Adaptabilidade**: Requisitos podem ser ajustados a qualquer momento com impacto mínimo.
 - **Alta Qualidade**: Práticas como refatoração e testes garantem software robusto e de fácil manutenção.
 - **Engajamento do Cliente**: A presença contínua do cliente ajuda a alinhar o produto às suas expectativas.
 - **Colaboração**: Promove um ambiente colaborativo e saudável para a equipe.
 
-###Quando usar a XP?
+### Quando usar a XP?
 Projetos com requisitos altamente dinâmicos.
 Times pequenos (5-12 membros) que podem trabalhar em estreita colaboração.
 Desenvolvimento orientado a sistemas críticos, onde a qualidade é essencial.
