@@ -1,22 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Barra de navegação -->
-<div id="barra-navegacao">
+<div id="barra-navegacao" style="margin-top: -38px;">
   <a href="{{ url_for('charts') }}" class="nav-link">Gráficos</a>
   <a href="{{ url_for('tables') }}" class="nav-link active">Tabelas</a>
 </div>
 
-<!-- Conteúdo principal -->
 <div class="content">
-  <h2 style="text-align: center; margin-bottom: 20px;">Monitoramento de Gastos Públicos</h2>
+  <h2 class="titulo-principal">Monitoramento de Gastos Públicos</h2>
 
-  <!-- Menu dropdown para escolha -->
+  <!-- Seção de Filtragem por Mês -->
+  <div class="filters-container">
+    <div class="filter-group">
+      <label for="month-filter">Filtrar por Mês:</label>
+      <select id="month-filter" name="month-filter">
+        <option value="">Todos os Meses</option>
+        <option value="01">Janeiro</option>
+        <option value="02">Fevereiro</option>
+        <option value="03">Março</option>
+        <option value="04">Abril</option>
+        <option value="05">Maio</option>
+        <option value="06">Junho</option>
+        <option value="07">Julho</option>
+        <option value="08">Agosto</option>
+        <option value="09">Setembro</option>
+        <option value="10">Outubro</option>
+        <option value="11">Novembro</option>
+        <option value="12">Dezembro</option>
+      </select>
+    </div>
+  </div>
+
   <div class="dropdown">
-    <button class="dropdown-btn">Escolher</button>
-    <div class="dropdown-content">
+    <button class="dropdown-btn" id="dropdownButton">Escolher</button>
+    <div class="dropdown-content" id="dropdownContent">
       <a href="#" onclick="showSection('compras'); return false;">Gastos com Compras</a>
-      <p style="margin-left: 10px; font-weight: bold;">Órgãos de Despesas:</p>
+      <p class="dropdown-subtitle">Órgãos de Despesas:</p>
       {% for orgao, _ in despesas_por_orgao.items() %}
         <a href="#" onclick="showSpecificDespesas('{{ orgao }}'); return false;">
           {{ orgao.split(' ', 1)[1] }}
@@ -25,60 +44,31 @@
     </div>
   </div>
 
-  <!-- Formulário de pesquisa -->
-  <div class="search-container" id="search-container" style="display: flex; justify-content: center; margin: 20px 0;">
+  <div class="search-container" id="search-container">
     <input
       id="search-input"
       type="text"
       placeholder="Pesquisar..."
       class="search-input"
-      style="padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 5px;"
     />
-    <button onclick="searchTable()" class="search-button" style="padding: 10px 20px; margin-left: 10px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    <button onclick="searchTable()" class="search-button">
       Pesquisar
     </button>
   </div>
 
-  <!-- Tabelas de despesas -->
+  <!-- Contêiner de despesas -->
   <div id="despesas-container" style="display: none;">
-    <h3 id="despesas-title" style="text-align: center; font-size: 20px; margin-bottom: 20px;">Gastos com Despesas Gerais</h3>
-    {% for orgao, despesas in despesas_por_orgao.items() %}
-      <div class="despesas-orgao" id="despesas-{{ orgao }}" style="margin-bottom: 30px;">
-        <h4 style="text-align: center; font-size: 18px; color: #333;">{{ orgao.split(' ', 1)[1] }}</h4>
-        <table class="data-table" style="width: 100%; border-collapse: collapse; margin: 0 auto; text-align: left;">
-          <thead>
-            <tr style="background-color: #f4f4f4; border-bottom: 2px solid #ddd;">
-              <th>Ano</th>
-              <th>Órgão</th>
-              <th>Código do Órgão</th>
-              <th>Empenhado</th>
-              <th>Liquidado</th>
-              <th>Pago</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for item in despesas %}
-            <tr>
-              <td>{{ item.ano }}</td>
-              <td>{{ item.orgao }}</td>
-              <td>{{ item.codigoOrgao }}</td>
-              <td>R$ {{ "%.2f"|format(item.empenhado) }}</td>
-              <td>R$ {{ "%.2f"|format(item.liquidado) }}</td>
-              <td>R$ {{ "%.2f"|format(item.pago) }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    {% endfor %}
+    <h3 id="despesas-title" class="subtitulo">Gastos com Despesas Gerais</h3>
+    <div id="despesas-tabela-container"></div>
+    <p id="result-count-despesas" class="result-count"></p>
   </div>
 
-  <!-- Tabela de compras -->
+  <!-- Contêiner de compras -->
   <div id="compras-container">
-    <h3 style="text-align: center; font-size: 20px; margin-bottom: 20px;">Gastos com Compras</h3>
-    <table class="data-table" style="width: 100%; border-collapse: collapse; margin: 0 auto; text-align: left;">
+    <h3 class="subtitulo">Gastos com Compras</h3>
+    <table class="data-table">
       <thead>
-        <tr style="background-color: #f4f4f4; border-bottom: 2px solid #ddd;">
+        <tr>
           <th>Empresa</th>
           <th>CNPJ</th>
           <th>Objeto</th>
@@ -90,22 +80,21 @@
         <!-- Dados preenchidos dinamicamente -->
       </tbody>
     </table>
-    <p id="result-count" class="result-count" style="text-align: center; margin-top: 10px;">Exibindo 0 resultado(s).</p>
+    <p id="result-count" class="result-count">Exibindo 0 resultado(s).</p>
   </div>
 </div>
 
 <script>
-  // Dados enviados pelo Flask
   const compras = {{ compras|safe }};
   const despesasPorOrgao = {{ despesas_por_orgao|tojson }};
   let currentData = [];
   let currentSection = "compras";
+  let despesasAtuais = [];
 
-  // Renderizar a tabela de compras
-  function renderTable(data) {
+  function renderTableCompras(data) {
     const tbody = document.querySelector("#table-body");
     const resultCount = document.querySelector("#result-count");
-    tbody.innerHTML = ""; // Limpar tabela existente
+    tbody.innerHTML = "";
 
     if (data.length === 0) {
       resultCount.textContent = "Nenhum resultado encontrado.";
@@ -126,12 +115,55 @@
     resultCount.textContent = `Exibindo ${data.length} resultado(s).`;
   }
 
-  // Alternar entre compras e despesas gerais
+  function renderTableDespesas(data) {
+    const tabelaContainer = document.querySelector("#despesas-tabela-container");
+    const resultCount = document.querySelector("#result-count-despesas");
+    tabelaContainer.innerHTML = "";
+
+    if (data.length === 0) {
+      tabelaContainer.innerHTML = "<p style='text-align: center;'>Nenhum resultado encontrado.</p>";
+      resultCount.textContent = "";
+      return;
+    }
+
+    const tableHtml = `
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Ano</th>
+            <th>Órgão</th>
+            <th>Código do Órgão</th>
+            <th>Empenhado</th>
+            <th>Liquidado</th>
+            <th>Pago</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${data
+            .map(
+              (item) => `
+                <tr>
+                  <td>${item.ano}</td>
+                  <td>${item.orgao}</td>
+                  <td>${item.codigoOrgao}</td>
+                  <td>R$ ${item.empenhado.toFixed(2)}</td>
+                  <td>R$ ${item.liquidado.toFixed(2)}</td>
+                  <td>R$ ${item.pago.toFixed(2)}</td>
+                </tr>`
+            )
+            .join("")}
+        </tbody>
+      </table>
+    `;
+
+    tabelaContainer.innerHTML = tableHtml;
+    resultCount.textContent = `Exibindo ${data.length} resultado(s).`;
+  }
+
   function showSection(section) {
     const comprasContainer = document.getElementById("compras-container");
     const despesasContainer = document.getElementById("despesas-container");
     const searchContainer = document.getElementById("search-container");
-    const sectionTitle = document.getElementById("despesas-title");
 
     if (section === "compras") {
       comprasContainer.style.display = "block";
@@ -139,26 +171,91 @@
       searchContainer.style.display = "flex";
       currentSection = "compras";
       currentData = compras;
-      renderTable(compras);
+      renderTableCompras(compras);
     } else if (section === "despesas") {
       comprasContainer.style.display = "none";
       despesasContainer.style.display = "block";
       searchContainer.style.display = "flex";
       currentSection = "despesas";
+      currentData = despesasAtuais;
+      renderTableDespesas(despesasAtuais);
     }
   }
 
-  // Mostrar despesas de um órgão específico
   function showSpecificDespesas(orgao) {
     showSection("despesas");
-    document.querySelectorAll(".despesas-orgao").forEach((section) => {
-      section.style.display = "none";
-    });
-    document.getElementById(`despesas-${orgao}`).style.display = "block";
-    document.getElementById("despesas-title").textContent = orgao.split(" ", 1)[1];
+    despesasAtuais = despesasPorOrgao[orgao];
+    renderTableDespesas(despesasAtuais);
   }
 
-  // Carregar a tabela inicial com compras
+  function searchTable() {
+    const query = document.getElementById("search-input").value.toLowerCase();
+    const selectedMonth = document.getElementById("month-filter").value;
+    let filteredData = [];
+
+    if (currentSection === "compras") {
+      filteredData = currentData.filter((item) => {
+        const itemDate = new Date(item.data);
+        let isWithinMonth = true;
+
+        if (selectedMonth) {
+          // Extrai o mês em formato 'MM'
+          const itemMonth = (itemDate.getMonth() + 1).toString().padStart(2, '0');
+          isWithinMonth = (itemMonth === selectedMonth);
+        }
+
+        return (
+          isWithinMonth &&
+          (
+            item.empresa.toLowerCase().includes(query) ||
+            item.cnpj.toLowerCase().includes(query) ||
+            item.objeto.toLowerCase().includes(query) ||
+            item.data.includes(query) ||
+            item.valor.toString().includes(query)
+          )
+        );
+      });
+      renderTableCompras(filteredData);
+    } else if (currentSection === "despesas") {
+      filteredData = currentData.filter((item) => {
+        return (
+          item.ano.toString().includes(query) ||
+          item.orgao.toLowerCase().includes(query) ||
+          item.codigoOrgao.toString().includes(query) ||
+          item.empenhado.toString().includes(query) ||
+          item.liquidado.toString().includes(query) ||
+          item.pago.toString().includes(query)
+        );
+      });
+      renderTableDespesas(filteredData);
+    }
+  }
+
+  // Função para alternar a exibição do dropdown
+  function toggleDropdown() {
+    document.getElementById("dropdownContent").classList.toggle("show");
+  }
+
+  // Fecha o dropdown se o usuário clicar fora dele
+  window.onclick = function(event) {
+    if (!event.target.matches('#dropdownButton')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      for (var i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
+  // Adiciona o evento de clique ao botão do dropdown
+  document.getElementById("dropdownButton").addEventListener("click", function(event) {
+    event.stopPropagation(); // Evita que o clique seja propagado para o window
+    toggleDropdown();
+  });
+
+  // Inicializa a seção de compras ao carregar a página
   showSection("compras");
 </script>
 {% endblock %}

@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Análise de Gráficos{% endblock %}
+{% block title %}Análise de Gastos{% endblock %}
 
 {% block content %}
 <!-- Barra de navegação -->
-<div id="barra-navegacao"> 
+<div id="barra-navegacao" style="margin-top: -38px;"> 
     <a href="{{ url_for('charts') }}" class="nav-link active">Gráficos</a>
     <a href="{{ url_for('tables') }}" class="nav-link">Tabelas</a>
 </div>
@@ -13,24 +13,18 @@
 <div class="content">
     <h2 style="text-align: center;">Monitoramento de Gastos Públicos - DF</h2>
 
-    <!-- Menu dropdown para escolha -->
-    <div class="dropdown" style="text-align: center; margin-bottom: 20px;">
-        <button class="dropdown-btn" style="padding: 10px 20px; background-color: #0056b3; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            Escolher Gráfico
-        </button>
-        <div class="dropdown-content" style="text-align: left; background-color: #f9f9f9; padding: 10px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); max-height: 300px; overflow-y: auto;">
-            <a href="#" onclick="mostrarGrafico('compras'); return false;" style="display: block; padding: 5px 10px; color: #0056b3; text-decoration: none;">Gastos com Compras</a>
-            <p style="margin: 5px 10px; color: #0056b3; font-weight: bold;">Despesas</p>
-            {% for orgao in despesas_por_orgao.keys() %}
-                <a href="#" onclick="mostrarGrafico('{{ orgao|replace(' ', '_') }}'); return false;" style="display: block; padding: 5px 10px; color: #0056b3; text-decoration: none;">{{ orgao|replace(' 2024', '') }}</a>
-            {% endfor %}
-        </div>
+    <!-- Div para gráfico de compras -->
+    <div id="grafico-compras-container" style="width: 90%; margin: 0 auto; background-color: #f3f7fa; border-radius: 10px; margin-bottom: 20px; padding: 20px;">
+        <h3 style="text-align: center;">Gastos com Compras</h3>
+        <div id="grafico-compras" style="width: 100%; height: 400px;"></div>
     </div>
 
-    <!-- Divs onde os gráficos serão exibidos -->
-    <div id="grafico-compras" style="padding: 20px; background-color: #f3f7fa; border-radius: 10px;"></div>
-    {% for orgao in despesas_por_orgao.keys() %}
-        <div id="grafico-{{ orgao|replace(' ', '_') }}" style="display: none; padding: 20px; background-color: #f3f7fa; border-radius: 10px;"></div>
+    <!-- Divs para gráficos de despesas por órgão -->
+    {% for orgao, dados in despesas_por_orgao.items() %}
+        <div id="grafico-{{ orgao|replace(' ', '_') }}-container" style="width: 90%; margin: 0 auto; background-color: #f3f7fa; border-radius: 10px; margin-bottom: 20px; padding: 20px;">
+            <h3 style="text-align: center;">Despesas - {{ orgao.split(' ', 1)[1] }}</h3>
+            <div id="grafico-{{ orgao|replace(' ', '_') }}" style="width: 100%; height: 400px;"></div>
+        </div>
     {% endfor %}
 </div>
 
@@ -40,131 +34,59 @@
     const compras = {{ compras | tojson | safe }};
     const despesasPorOrgao = {{ despesas_por_orgao | tojson | safe }};
 
-    function renderizarGrafico(id, dados, titulo) {
-        if (!dados || dados.labels.length === 0 || (dados.empenhado.length === 0 && dados.liquidado.length === 0 && dados.pago.length === 0)) {
+    function renderizarGrafico(id, dados) {
+        if (!dados || !dados.labels || !dados.empenhado || dados.labels.length === 0) {
             document.getElementById(id).innerHTML = `<p style="text-align: center; color: #555;">Não há dados para exibir no momento.</p>`;
             return;
         }
 
-        const data = [];
-
-        if (dados.empenhado.length > 0) {
-            data.push({
+        const data = [
+            {
                 x: dados.labels,
                 y: dados.empenhado,
                 type: 'bar',
                 name: 'Empenhado',
                 marker: { color: '#1f77b4' }
-            });
-        }
-
-        if (dados.liquidado.length > 0) {
-            data.push({
+            },
+            {
                 x: dados.labels,
                 y: dados.liquidado,
                 type: 'bar',
                 name: 'Liquidado',
                 marker: { color: '#ff7f0e' }
-            });
-        }
-
-        if (dados.pago.length > 0) {
-            data.push({
+            },
+            {
                 x: dados.labels,
                 y: dados.pago,
                 type: 'bar',
                 name: 'Pago',
                 marker: { color: '#2ca02c' }
-            });
-        }
+            }
+        ];
 
         const layout = {
-            title: titulo,
             xaxis: { title: 'Ano' },
             yaxis: { title: 'Valor (R$)' },
             barmode: 'group',
+            autosize: true,
+            width: document.getElementById(id).clientWidth - 20,
+            height: 400,
             plot_bgcolor: "#f3f7fa",
             paper_bgcolor: "#f3f7fa",
-            font: { color: '#333' }
+            font: { color: '#333' },
+            margin: { t: 20, l: 50, r: 50, b: 50 }, // Reduzimos o topo (t) para remover espaço extra
         };
 
-        Plotly.newPlot(id, data, layout);
+        Plotly.newPlot(id, data, layout, { displayModeBar: false }); // Desabilita barra de ferramentas interativa
     }
 
-    function renderizarGraficoCompras(id, dados, titulo) {
-        if (!dados || dados.labels.length === 0 || (dados.empenhado.length === 0 && dados.liquidado.length === 0 && dados.pago.length === 0)) {
-            document.getElementById(id).innerHTML = `<p style="text-align: center; color: #555;">Não há dados para exibir no momento.</p>`;
-            return;
-        }
+    // Renderiza gráfico de compras
+    renderizarGrafico('grafico-compras', compras);
 
-        const data = [];
-
-        if (dados.empenhado.length > 0) {
-            data.push({
-                x: dados.labels,
-                y: dados.empenhado,
-                type: 'bar',
-                name: 'Empenhado',
-                marker: { color: '#1f77b4' }
-            });
-        }
-
-        if (dados.liquidado.length > 0) {
-            data.push({
-                x: dados.labels,
-                y: dados.liquidado,
-                type: 'bar',
-                name: 'Liquidado',
-                marker: { color: '#ff7f0e' }
-            });
-        }
-
-        if (dados.pago.length > 0) {
-            data.push({
-                x: dados.labels,
-                y: dados.pago,
-                type: 'bar',
-                name: 'Pago',
-                marker: { color: '#2ca02c' }
-            });
-        }
-
-        const layout = {
-            title: titulo,
-            xaxis: { title: 'Mês/Ano' },
-            yaxis: { title: 'Valor Total (R$)' },
-            barmode: 'group',
-            plot_bgcolor: "#f3f7fa",
-            paper_bgcolor: "#f3f7fa",
-            font: { color: '#333' }
-        };
-
-        Plotly.newPlot(id, data, layout);
-    }
-
-    function mostrarGrafico(tipo) {
-        // Esconder todos os gráficos
-        document.getElementById('grafico-compras').style.display = 'none';
-        {% for orgao in despesas_por_orgao.keys() %}
-            document.getElementById('grafico-{{ orgao|replace(' ', '_') }}').style.display = 'none';
-        {% endfor %}
-
-        if (tipo === 'compras') {
-            renderizarGraficoCompras('grafico-compras', compras, 'Gastos com Compras');
-            document.getElementById('grafico-compras').style.display = 'block';
-        } else {
-            // Reverter o nome do órgão substituindo underscores por espaços
-            const orgao = tipo.replace(/_/g, ' ');
-            const dados = despesasPorOrgao[orgao];
-            if (dados) {
-                const divId = `grafico-${tipo}`;
-                renderizarGrafico(divId, dados, `Despesas - ${orgao}`);
-                document.getElementById(divId).style.display = 'block';
-            }
-        }
-    }
-
-    // Exibir o gráfico de compras por padrão
-    mostrarGrafico('compras');
+    // Renderiza gráficos de despesas por órgão
+    Object.entries(despesasPorOrgao).forEach(([orgao, dados]) => {
+        const divId = `grafico-${orgao.replace(/\s/g, '_')}`;
+        renderizarGrafico(divId, dados);
+    });
 </script>
 {% endblock %}

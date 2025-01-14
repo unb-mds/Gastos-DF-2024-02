@@ -46,12 +46,12 @@
           <!-- Botões de navegação, com classe 'active' para a página atual -->
           {% if request.path == '/' %}
             <a href="{{ url_for('index') }}" class="btn-header active">Início</a>
-            <a href="{{ url_for('charts') }}" class="btn-header">Análise de Gráficos</a>
+            <a href="{{ url_for('charts') }}" class="btn-header">Análise de Gastos</a>
           {% elif request.path == '/charts' or request.path == '/tables' %}
             <a href="{{ url_for('index') }}" class="btn-header">Início</a>
             <a href="{% if request.path == '/charts' %}{{ url_for('charts') }}{% elif request.path == '/tables' %}{{ url_for('tables') }}{% endif %}" class="btn-header active">
               {% if request.path == '/charts' %}
-                Análise de Gráficos
+                Análise de Gastos
               {% elif request.path == '/tables' %}
                 Análise de Gastos
               {% endif %}
