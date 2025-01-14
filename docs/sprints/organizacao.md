@@ -81,3 +81,15 @@
   - Permitir filtros por categoria de gastos (Saúde, educação e bolsa família);
   - Exibir informações referentes a um dado específico(ex.: para tabela de licitações, a página deverá exibir todos os dados referentes a uma licitação); 
 - Atualização do protótipo de alta fidelidade - Gabriel da Cunha Barbaceli; João Pedro Costa;
+
+## SPRINT 9
+- Documentação das atas de reunião - Gabriel da Cunha Barbaceli;
+- Criação das issues da semana - João Pedro Costa;
+- Documentação das funções na sprint - Julia Gabriela Cunha Paulino;
+- Criar documentação sobre a Sprint 8 - Julia Gabriela Cunha Paulino; Gabriel da Cunha Barbaceli;
+- Continuação da personalização do layout dos dados no site - Gabriel Lima Amorim; Lucas Mendonça Arruda; João Pedro Costa;
+  - Adicionar gráficos e tabelas dos dados de outubro até o momento;
+  - Permitir filtros por período(mês e ano) em todos os tipos de dados;
+  - Organizar os dados das tabelas em ordem decrescente;
+- Inserir a opção de fazer download dos dados - Artur Mendonça Arruda; Julia Gabriela Cunha Paulino;
+- Incluir texto alternativo para imagens e descrição para gráfico - Artur Mendonça Arruda; Gabriel da Cunha Barbaceli;
