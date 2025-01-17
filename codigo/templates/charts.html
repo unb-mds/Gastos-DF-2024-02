@@ -1,92 +1,191 @@
-{% extends 'base.html' %}
-
-{% block title %}Análise de Gastos{% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% block title %}Análise de Gastos{% endblock %} {%
+block content %}
 <!-- Barra de navegação -->
-<div id="barra-navegacao" style="margin-top: -38px;"> 
-    <a href="{{ url_for('charts') }}" class="nav-link active">Gráficos</a>
-    <a href="{{ url_for('tables') }}" class="nav-link">Tabelas</a>
+<div id="barra-navegacao" style="margin-top: -38px">
+  <a href="{{ url_for('charts') }}" class="nav-link active">Gráficos</a>
+  <a href="{{ url_for('tables') }}" class="nav-link">Tabelas</a>
 </div>
 
 <!-- Conteúdo principal -->
 <div class="content">
-    <h2 style="text-align: center;">Monitoramento de Gastos Públicos - DF</h2>
+  <h2 style="text-align: center">Monitoramento de Gastos Públicos - DF</h2>
 
-    <!-- Div para gráfico de compras -->
-    <div id="grafico-compras-container" style="width: 90%; margin: 0 auto; background-color: #f3f7fa; border-radius: 10px; margin-bottom: 20px; padding: 20px;">
-        <h3 style="text-align: center;">Gastos com Compras</h3>
-        <div id="grafico-compras" style="width: 100%; height: 400px;"></div>
-    </div>
+  <!-- Div para gráfico de compras -->
+  <div id="grafico-compras-container" class="chart-container">
+    <h3 style="text-align: center">Gastos com Compras</h3>
+    <div id="grafico-compras" style="width: 100%; height: 400px"></div>
+    <p class="chart-description">
+      Este gráfico apresenta a evolução anual dos gastos com compras públicas no
+      Distrito Federal, mostrando os valores empenhados (azul). Os dados são
+      atualizados periodicamente e permitem acompanhar o ciclo completo das
+      despesas com aquisições governamentais.
+    </p>
+  </div>
 
-    <!-- Divs para gráficos de despesas por órgão -->
-    {% for orgao, dados in despesas_por_orgao.items() %}
-        <div id="grafico-{{ orgao|replace(' ', '_') }}-container" style="width: 90%; margin: 0 auto; background-color: #f3f7fa; border-radius: 10px; margin-bottom: 20px; padding: 20px;">
-            <h3 style="text-align: center;">Despesas - {{ orgao.split(' ', 1)[1] }}</h3>
-            <div id="grafico-{{ orgao|replace(' ', '_') }}" style="width: 100%; height: 400px;"></div>
-        </div>
-    {% endfor %}
+  <!-- Divs para gráficos de despesas por órgão -->
+  {% for orgao, dados in despesas_por_orgao.items() %}
+  <div
+    id="grafico-{{ orgao|replace(' ', '_') }}-container"
+    class="chart-container"
+  >
+    <h3 style="text-align: center">Despesas - {{ orgao.split(' ', 1)[1] }}</h3>
+    <div
+      id="grafico-{{ orgao|replace(' ', '_') }}"
+      style="width: 100%; height: 400px"
+    ></div>
+    <p class="chart-description">
+      {% set nome_orgao = orgao.split(' ', 1)[1] %} {% if 'Justiça' in orgao %}
+      Este gráfico apresenta a evolução anual das despesas do {{ nome_orgao }}
+      no Distrito Federal, abrangendo investimentos em segurança pública,
+      sistema penitenciário, políticas antidrogas e proteção ao consumidor. Os
+      valores empenhados (azul), liquidados (laranja) e pagos (verde) demonstram
+      a execução orçamentária nas ações de justiça e segurança pública. {% elif
+      'Trabalho' in orgao %} Este gráfico detalha a evolução anual das despesas
+      do {{ nome_orgao }} no Distrito Federal, incluindo investimentos em
+      políticas de emprego, fiscalização trabalhista e programas de qualificação
+      profissional. Os valores empenhados (azul), liquidados (laranja) e pagos
+      (verde) refletem os recursos destinados às políticas de trabalho e renda.
+      {% elif 'Defesa' in orgao %} Este gráfico mostra a evolução anual das
+      despesas do {{ nome_orgao }} no Distrito Federal, contemplando gastos com
+      as Forças Armadas, projetos estratégicos de defesa e proteção das
+      fronteiras. Os valores empenhados (azul), liquidados (laranja) e pagos
+      (verde) indicam os investimentos na defesa nacional. {% elif 'Presidência'
+      in orgao %} Este gráfico apresenta a evolução anual das despesas da {{
+      nome_orgao }} no Distrito Federal, incluindo gastos com a administração
+      presidencial, órgãos essenciais e programas estratégicos do governo. Os
+      valores empenhados (azul), liquidados (laranja) e pagos (verde) mostram a
+      execução orçamentária da administração federal superior. {% elif
+      'Agricultura' in orgao %} Este gráfico detalha a evolução anual das
+      despesas do {{ nome_orgao }} no Distrito Federal, abrangendo investimentos
+      em desenvolvimento rural, segurança alimentar e fomento agropecuário. Os
+      valores empenhados (azul), liquidados (laranja) e pagos (verde) demonstram
+      os recursos aplicados no setor agrícola. {% elif 'Esporte' in orgao %}
+      Este gráfico ilustra a evolução anual das despesas do {{ nome_orgao }} no
+      Distrito Federal, contemplando investimentos em infraestrutura esportiva,
+      programas de incentivo ao esporte e apoio ao atleta. Os valores empenhados
+      (azul), liquidados (laranja) e pagos (verde) refletem o compromisso com o
+      desenvolvimento esportivo. {% elif 'Relações Exteriores' in orgao %} Este
+      gráfico apresenta a evolução anual das despesas do {{ nome_orgao }} no
+      Distrito Federal, incluindo gastos com representações diplomáticas,
+      cooperação internacional e promoção comercial. Os valores empenhados
+      (azul), liquidados (laranja) e pagos (verde) mostram os investimentos na
+      política externa brasileira. {% elif 'Integração' in orgao %} Este gráfico
+      detalha a evolução anual das despesas do {{ nome_orgao }} no Distrito
+      Federal, abrangendo investimentos em desenvolvimento regional, obras
+      contra as secas e defesa civil. Os valores empenhados (azul), liquidados
+      (laranja) e pagos (verde) demonstram os recursos destinados à integração
+      nacional. {% elif 'Saúde' in orgao %} Este gráfico mostra a evolução anual
+      das despesas do {{ nome_orgao }} no Distrito Federal, contemplando
+      investimentos no SUS, programas de saúde pública e vigilância sanitária.
+      Os valores empenhados (azul), liquidados (laranja) e pagos (verde)
+      refletem os recursos aplicados na saúde da população. {% else %} Este
+      gráfico apresenta a evolução anual das despesas da {{ nome_orgao }} no
+      Distrito Federal, detalhando os valores empenhados (azul), liquidados
+      (laranja) e pagos (verde). Os dados são atualizados periodicamente e
+      permitem acompanhar o ciclo orçamentário completo desta unidade
+      administrativa. {% endif %}
+    </p>
+  </div>
+  {% endfor %}
 </div>
 
 <!-- Scripts para os gráficos -->
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
-    const compras = {{ compras | tojson | safe }};
-    const despesasPorOrgao = {{ despesas_por_orgao | tojson | safe }};
+  const dadosGastosCompras = {{ compras | tojson | safe }};
+  const despesasPorOrgao = {{ despesas_por_orgao | tojson | safe }};
 
-    function renderizarGrafico(id, dados) {
-        if (!dados || !dados.labels || !dados.empenhado || dados.labels.length === 0) {
-            document.getElementById(id).innerHTML = `<p style="text-align: center; color: #555;">Não há dados para exibir no momento.</p>`;
-            return;
-        }
-
-        const data = [
-            {
-                x: dados.labels,
-                y: dados.empenhado,
-                type: 'bar',
-                name: 'Empenhado',
-                marker: { color: '#1f77b4' }
-            },
-            {
-                x: dados.labels,
-                y: dados.liquidado,
-                type: 'bar',
-                name: 'Liquidado',
-                marker: { color: '#ff7f0e' }
-            },
-            {
-                x: dados.labels,
-                y: dados.pago,
-                type: 'bar',
-                name: 'Pago',
-                marker: { color: '#2ca02c' }
-            }
-        ];
-
-        const layout = {
-            xaxis: { title: 'Ano' },
-            yaxis: { title: 'Valor (R$)' },
-            barmode: 'group',
-            autosize: true,
-            width: document.getElementById(id).clientWidth - 20,
-            height: 400,
-            plot_bgcolor: "#f3f7fa",
-            paper_bgcolor: "#f3f7fa",
-            font: { color: '#333' },
-            margin: { t: 20, l: 50, r: 50, b: 50 }, // Reduzimos o topo (t) para remover espaço extra
-        };
-
-        Plotly.newPlot(id, data, layout, { displayModeBar: false }); // Desabilita barra de ferramentas interativa
+  function renderizarGrafico(id, dados) {
+    // Verifica se é o gráfico de compras
+    const isGraficoCompras = id === "grafico-compras";
+    if (
+      !dados ||
+      !dados.labels ||(
+    isGraficoCompras ? !dados.pago : !dados.empenhado
+      ) ||
+      dados.labels.length === 0
+    ) {
+      document.getElementById(
+        id
+      ).innerHTML = `<p style="text-align: center; color: #555;">Não há dados para exibir no momento.</p>`;
+      return;
     }
 
-    // Renderiza gráfico de compras
-    renderizarGrafico('grafico-compras', compras);
 
-    // Renderiza gráficos de despesas por órgão
-    Object.entries(despesasPorOrgao).forEach(([orgao, dados]) => {
-        const divId = `grafico-${orgao.replace(/\s/g, '_')}`;
-        renderizarGrafico(divId, dados);
-    });
+
+    // Define os dados do gráfico
+    const data = [
+      {
+        x: dados.labels,
+        y:  isGraficoCompras ? dados.pago : dados.empenhado,
+        type: "bar",
+        name: isGraficoCompras ? "Compras" : "Empenhado",
+        marker: { color: "#1f77b4" },
+        hovertemplate:
+          `<b>Valor ${isGraficoCompras ? 'Pago': 'Empenhado'}</b><br>` +
+          "Ano: %{x}<br>" +
+          "Valor: R$ %{y:,.2f}<br>" +
+          `<i>${isGraficoCompras ? 'Representa o pagamento efetivo realizado ao credor pelo serviço/produto' : 'Representa o primeiro estágio da despesa, quando há reserva do valor para um fim específico'}</i><extra></extra>`,
+      }
+    ];
+
+    // Adiciona dados de liquidado e pago apenas se não for o gráfico de compras
+    if (!isGraficoCompras && dados.liquidado && dados.pago) {
+      data.push({
+        x: dados.labels,
+        y: dados.liquidado,
+        type: "bar",
+        name: "Liquidado",
+        marker: { color: "#ff7f0e" },
+        hovertemplate:
+          "<b>Valor Liquidado</b><br>" +
+          "Ano: %{x}<br>" +
+          "Valor: R$ %{y:,.2f}<br>" +
+          "<i>Indica que o serviço/produto foi entregue e verificado, confirmando o direito do credor receber</i><extra></extra>",
+      },
+      {
+        x: dados.labels,
+        y: dados.pago,
+        type: "bar",
+        name: "Pago",
+        marker: { color: "#2ca02c" },
+        hovertemplate:
+          "<b>Valor Pago</b><br>" +
+          "Ano: %{x}<br>" +
+          "Valor: R$ %{y:,.2f}<br>" +
+          "<i>Representa o pagamento efetivo realizado ao credor pelo serviço/produto</i><extra></extra>",
+      });
+    }
+
+    const grafico_compras = document.getElementById('grafico-compras');
+
+    const layout = {
+      xaxis: {
+        title: { text: "Ano", standoff: 20 },
+        automargin: true
+      },
+      yaxis: { title: "Valor (R$)"},
+      barmode: "group",
+      hovermode: "closest",
+      autosize: true,
+      width: document.getElementById(id).clientWidth - 20,
+      height: 400,
+      plot_bgcolor: "#f3f7fa",
+      paper_bgcolor: "#f3f7fa",
+      font: { color: "#333" },
+      margin: { t: 20, l: 50, r: 50, b: document.getElementById(id) === grafico_compras ? 60 : 50 },
+    };
+
+    Plotly.newPlot(id, data, layout, { displayModeBar: false });
+  }
+
+  // Renderiza gráfico de compras
+  renderizarGrafico("grafico-compras", dadosGastosCompras);
+
+  // Renderiza gráficos de despesas por órgão
+  Object.entries(despesasPorOrgao).forEach(([orgao, dados]) => {
+    const divId = `grafico-${orgao.replace(/\s/g, "_")}`;
+    renderizarGrafico(divId, dados);
+  });
 </script>
 {% endblock %}

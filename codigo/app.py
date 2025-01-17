@@ -18,32 +18,52 @@ def carregar_dados_compras():
 
 # Processar dados de compras para gráficos
 def processar_dados_compras():
+    traducao_meses = {
+        'January': 'Janeiro',
+        'February': 'Fevereiro',
+        'March': 'Março',
+        'April': 'Abril',
+        'May': 'Maio',
+        'June': 'Junho',
+        'July': 'Julho',
+        'August': 'Agosto',
+        'September': 'Setembro',
+        'October': 'Outubro',
+        'November': 'Novembro',
+        'December': 'Dezembro'
+    }
+
     dados_compras = carregar_dados_compras()
     gastos_mensais = {}
-    liquidado_mensais = {}
-    pago_mensais = {}
 
     for data, itens in dados_compras.items():
-        mes = datetime.strptime(data, "%Y-%m-%d").strftime("%B/%Y")  # Exemplo: Janeiro/2024
-        total_empenhado = sum(
+        mes = datetime.strptime(data, "%Y-%m-%d").strftime("%B/%Y")
+        mes_traduzido = f"{traducao_meses[mes.split('/')[0]]}/{mes.split('/')[1]}"
+
+        total_pago = sum(
             float(item["Valor"].replace("R$", "").replace(".", "").replace(",", ".")) for item in itens
         )
-        total_liquidado = total_empenhado * 0.9  # Supondo 90% do empenhado
-        total_pago = total_empenhado * 0.8  # Supondo 80% do empenhado
 
-        gastos_mensais[mes] = gastos_mensais.get(mes, 0) + total_empenhado
-        liquidado_mensais[mes] = liquidado_mensais.get(mes, 0) + total_liquidado
-        pago_mensais[mes] = pago_mensais.get(mes, 0) + total_pago
+        if total_pago > 0:
+            gastos_mensais[mes_traduzido] = gastos_mensais.get(mes_traduzido, 0) + total_pago
 
-    meses_ordenados = sorted(gastos_mensais.keys(), key=lambda x: datetime.strptime(x, "%B/%Y"))
-    empenhado = [gastos_mensais[mes] for mes in meses_ordenados]
-    liquidado = [liquidado_mensais[mes] for mes in meses_ordenados]
-    pago = [pago_mensais[mes] for mes in meses_ordenados]
+    meses_ordenados = sorted(gastos_mensais.keys(), key=lambda x: datetime.strptime(x.replace('Janeiro', 'January')
+                                                                                    .replace('Fevereiro', 'February')
+                                                                                    .replace('Março', 'March')
+                                                                                    .replace('Abril', 'April')
+                                                                                    .replace('Maio', 'May')
+                                                                                    .replace('Junho', 'June')
+                                                                                    .replace('Julho', 'July')
+                                                                                    .replace('Agosto', 'August')
+                                                                                    .replace('Setembro', 'September')
+                                                                                    .replace('Outubro', 'October')
+                                                                                    .replace('Novembro', 'November')
+                                                                                    .replace('Dezembro', 'December'), "%B/%Y"))
+
+    pago = [gastos_mensais[mes] for mes in meses_ordenados]
 
     return {
         "labels": meses_ordenados,
-        "empenhado": empenhado,
-        "liquidado": liquidado,
         "pago": pago
     }
 
@@ -74,6 +94,7 @@ def listar_arquivos_despesas():
 def processar_dados_despesas():
     despesas_por_orgao = {}
     arquivos = listar_arquivos_despesas()
+    limite_minimo_percentual = 0.005
 
     for arquivo in arquivos:
         orgao = arquivo.replace("despesas_", "").replace(".json", "").replace("_", " ")
@@ -87,17 +108,43 @@ def processar_dados_despesas():
             liquidado = []
             pago = []
 
+            # Calcula as médias de cada gasto, levando em conta todos os anos
+            empenhado_media = sum(float(item["empenhado"].replace(".", "").replace(",", "."))
+                                for item in dados) / len(anos)
+            liquidado_media = sum(float(item["liquidado"].replace(".", "").replace(",", "."))
+                                for item in dados) / len(anos)
+            pago_media = sum(float(item["pago"].replace(".", "").replace(",", "."))
+                           for item in dados) / len(anos)
+
+            # Lista para armazenar os anos válidos
+            anos_validos = []
+
             for ano in anos:
-                empenhado_val = sum(float(item["empenhado"].replace(".", "").replace(",", ".")) for item in dados if item["ano"] == ano)
-                liquidado_val = sum(float(item["liquidado"].replace(".", "").replace(",", ".")) for item in dados if item["ano"] == ano)
-                pago_val = sum(float(item["pago"].replace(".", "").replace(",", ".")) for item in dados if item["ano"] == ano)
 
-                empenhado.append(empenhado_val)
-                liquidado.append(liquidado_val)
-                pago.append(pago_val)
+                # Soma os valores de cada gasto, levando em conta apenas o ano atual
+                empenhado_val = sum(float(item["empenhado"].replace(".", "").replace(",", "."))
+                                  for item in dados if item["ano"] == ano)
+                liquidado_val = sum(float(item["liquidado"].replace(".", "").replace(",", "."))
+                                  for item in dados if item["ano"] == ano)
+                pago_val = sum(float(item["pago"].replace(".", "").replace(",", "."))
+                             for item in dados if item["ano"] == ano)
 
+                # Verifica se os valores são maiores que 0.05% de suas respectivas médias
+                if (empenhado_val >= empenhado_media * limite_minimo_percentual):
+                    empenhado.append(empenhado_val)
+
+                if( liquidado_val >= liquidado_media * limite_minimo_percentual):
+                    liquidado.append(liquidado_val)
+
+                if(pago_val >= pago_media * limite_minimo_percentual):
+                    pago.append(pago_val)
+
+                anos_validos.append(str(ano))
+
+
+            # Atualiza os labels para usar apenas os anos válidos
             despesas_por_orgao[orgao] = {
-                "labels": [str(ano) for ano in anos],
+                "labels": anos_validos,
                 "empenhado": empenhado,
                 "liquidado": liquidado,
                 "pago": pago
@@ -149,8 +196,8 @@ def index():
 def charts():
     compras = processar_dados_compras()  # Processa os dados de compras para gráficos
     despesas_por_orgao = processar_dados_despesas()  # Processa os dados de despesas para gráficos
-    return render_template('charts.html', 
-                           compras=compras, 
+    return render_template('charts.html',
+                           compras=compras,
                            despesas_por_orgao=despesas_por_orgao)
 
 # Rota para a página de tabelas

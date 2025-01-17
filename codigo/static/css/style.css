@@ -1,9 +1,31 @@
 /* Estilos Gerais */
 body {
   background-color: #f3f7fa;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+}
+
+.chart-description {
+  text-align: justify;
+  color: #2a2a2a;
+  margin: 15px 20px;
+  font-size: 0.95em;
+  line-height: 1.5;
+  font-style: italic;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container {
+  width: 90%;
+  margin: 0 auto;
+  background-color: #f3f7fa;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
 /* Header estático no topo */
@@ -87,7 +109,7 @@ h1 {
 }
 
 /* Barra de Navegação Azul (Não Fixa) */
-#barra-navegacao { 
+#barra-navegacao {
   background: linear-gradient(90deg, #003d82, #0056b3);
   padding: 0.5rem 1rem; /* Reduzido de 0.9375rem para 0.5rem */
   display: flex;
@@ -449,7 +471,7 @@ ol {
     font-size: 0.85rem; /* Reduzido de 0.9375rem para 0.85rem */
   }
 
-  #footer-container { 
+  #footer-container {
     flex-direction: column;
   }
 
@@ -458,7 +480,7 @@ ol {
     margin: 0.625rem;
   }
 
-  #titulo-principal { 
+  #titulo-principal {
     font-size: 2rem;
   }
 
@@ -531,4 +553,4 @@ ol {
 /* Classe para exibir o conteúdo do dropdown */
 .dropdown-content.show {
   display: block;
-} 
+}

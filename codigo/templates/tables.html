@@ -1,7 +1,5 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<div id="barra-navegacao" style="margin-top: -38px;">
+{% extends 'base.html' %} {% block content %}
+<div id="barra-navegacao" style="margin-top: -38px">
   <a href="{{ url_for('charts') }}" class="nav-link">Gráficos</a>
   <a href="{{ url_for('tables') }}" class="nav-link active">Tabelas</a>
 </div>
@@ -12,34 +10,53 @@
   <!-- Seção de Filtragem por Mês -->
   <div class="filters-container">
     <div class="filter-group">
-      <label for="month-filter">Filtrar por Mês:</label>
-      <select id="month-filter" name="month-filter">
-        <option value="">Todos os Meses</option>
-        <option value="01">Janeiro</option>
-        <option value="02">Fevereiro</option>
-        <option value="03">Março</option>
-        <option value="04">Abril</option>
-        <option value="05">Maio</option>
-        <option value="06">Junho</option>
-        <option value="07">Julho</option>
-        <option value="08">Agosto</option>
-        <option value="09">Setembro</option>
-        <option value="10">Outubro</option>
-        <option value="11">Novembro</option>
-        <option value="12">Dezembro</option>
-      </select>
+      <!-- Filtro de Meses (para Compras) -->
+      <div id="month-filter-container" style="display: none">
+        <label for="month-filter">Filtrar por Mês:</label>
+        <select id="month-filter" name="month-filter">
+          <option value="">Todos os Meses</option>
+          <option value="01">Janeiro</option>
+          <option value="02">Fevereiro</option>
+          <option value="03">Março</option>
+          <option value="04">Abril</option>
+          <option value="05">Maio</option>
+          <option value="06">Junho</option>
+          <option value="07">Julho</option>
+          <option value="08">Agosto</option>
+          <option value="09">Setembro</option>
+          <option value="10">Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>
+        </select>
+      </div>
+
+      <!-- Filtro de Anos (para Despesas) -->
+      <div id="year-filter-container" style="display: none">
+        <label for="year-filter">Filtrar por Ano:</label>
+        <select id="year-filter" name="year-filter">
+          <option value="">Todos os Anos</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+        </select>
+      </div>
     </div>
   </div>
 
   <div class="dropdown">
-    <button class="dropdown-btn" id="dropdownButton">Escolher</button>
+    <button class="dropdown-btn" id="dropdownButton">Selecionar Gasto</button>
     <div class="dropdown-content" id="dropdownContent">
-      <a href="#" onclick="showSection('compras'); return false;">Gastos com Compras</a>
+      <a href="#" onclick="showSection('compras'); return false;"
+        >Gastos com Compras</a
+      >
       <p class="dropdown-subtitle">Órgãos de Despesas:</p>
       {% for orgao, _ in despesas_por_orgao.items() %}
-        <a href="#" onclick="showSpecificDespesas('{{ orgao }}'); return false;">
-          {{ orgao.split(' ', 1)[1] }}
-        </a>
+      <a href="#" onclick="showSpecificDespesas('{{ orgao }}'); return false;">
+        {{ orgao.split(' ', 1)[1] }}
+      </a>
       {% endfor %}
     </div>
   </div>
@@ -51,13 +68,11 @@
       placeholder="Pesquisar..."
       class="search-input"
     />
-    <button onclick="searchTable()" class="search-button">
-      Pesquisar
-    </button>
+    <button onclick="searchTable()" class="search-button">Pesquisar</button>
   </div>
 
   <!-- Contêiner de despesas -->
-  <div id="despesas-container" style="display: none;">
+  <div id="despesas-container" style="display: none">
     <h3 id="despesas-title" class="subtitulo">Gastos com Despesas Gerais</h3>
     <div id="despesas-tabela-container"></div>
     <p id="result-count-despesas" class="result-count"></p>
@@ -164,70 +179,87 @@
     const comprasContainer = document.getElementById("compras-container");
     const despesasContainer = document.getElementById("despesas-container");
     const searchContainer = document.getElementById("search-container");
+    const monthFilterContainer = document.getElementById("month-filter-container");
+    const yearFilterContainer = document.getElementById("year-filter-container");
 
     if (section === "compras") {
-      comprasContainer.style.display = "block";
-      despesasContainer.style.display = "none";
-      searchContainer.style.display = "flex";
-      currentSection = "compras";
-      currentData = compras;
-      renderTableCompras(compras);
+        comprasContainer.style.display = "block";
+        despesasContainer.style.display = "none";
+        searchContainer.style.display = "flex";
+        monthFilterContainer.style.display = "block";
+        yearFilterContainer.style.display = "none";
+        currentSection = "compras";
+        currentData = compras;
+        renderTableCompras(compras);
     } else if (section === "despesas") {
-      comprasContainer.style.display = "none";
-      despesasContainer.style.display = "block";
-      searchContainer.style.display = "flex";
-      currentSection = "despesas";
-      currentData = despesasAtuais;
-      renderTableDespesas(despesasAtuais);
+        comprasContainer.style.display = "none";
+        despesasContainer.style.display = "block";
+        searchContainer.style.display = "flex";
+        monthFilterContainer.style.display = "none";
+        yearFilterContainer.style.display = "block";
+        currentSection = "despesas";
+        currentData = despesasAtuais;
+        renderTableDespesas(despesasAtuais);
     }
   }
 
   function showSpecificDespesas(orgao) {
-    showSection("despesas");
     despesasAtuais = despesasPorOrgao[orgao];
+    showSection("despesas");
     renderTableDespesas(despesasAtuais);
   }
 
   function searchTable() {
-    const query = document.getElementById("search-input").value.toLowerCase();
+    const query = document.getElementById("search-input").value.toLowerCase().trim();
     const selectedMonth = document.getElementById("month-filter").value;
+    const selectedYear = document.getElementById("year-filter").value;
     let filteredData = [];
 
     if (currentSection === "compras") {
-      filteredData = currentData.filter((item) => {
-        const itemDate = new Date(item.data);
-        let isWithinMonth = true;
+    if(selectedMonth === "") return showSection("compras");
 
-        if (selectedMonth) {
-          // Extrai o mês em formato 'MM'
-          const itemMonth = (itemDate.getMonth() + 1).toString().padStart(2, '0');
-          isWithinMonth = (itemMonth === selectedMonth);
-        }
+        filteredData = compras.filter((item) => {
+            const itemMonth = item.data.split('/')[1]
+            let isWithinMonth = false;
 
-        return (
-          isWithinMonth &&
-          (
-            item.empresa.toLowerCase().includes(query) ||
-            item.cnpj.toLowerCase().includes(query) ||
-            item.objeto.toLowerCase().includes(query) ||
-            item.data.includes(query) ||
-            item.valor.toString().includes(query)
-          )
-        );
-      });
-      renderTableCompras(filteredData);
+            if (selectedMonth) {
+                if(itemMonth === selectedMonth) console.log( itemMonth, selectedMonth)
+                isWithinMonth = (itemMonth === selectedMonth);
+            }
+
+            const matchesSearch = query === '' || (
+                item.empresa.toLowerCase().includes(query) ||
+                item.cnpj.toLowerCase().includes(query) ||
+                item.objeto.toLowerCase().includes(query) ||
+                item.data.includes(query) ||
+                item.valor.toString().includes(query)
+            );
+
+            return isWithinMonth && matchesSearch;
+        });
+        renderTableCompras(filteredData);
     } else if (currentSection === "despesas") {
-      filteredData = currentData.filter((item) => {
-        return (
-          item.ano.toString().includes(query) ||
-          item.orgao.toLowerCase().includes(query) ||
-          item.codigoOrgao.toString().includes(query) ||
-          item.empenhado.toString().includes(query) ||
-          item.liquidado.toString().includes(query) ||
-          item.pago.toString().includes(query)
-        );
-      });
-      renderTableDespesas(filteredData);
+    if(selectedYear === "") return showSection("despesas");
+
+        filteredData = despesasAtuais.filter((item) => {
+            let isWithinYear = true;
+
+            if (selectedYear) {
+                isWithinYear = (item.ano.toString() === selectedYear);
+            }
+
+            const matchesSearch = query === '' || (
+                item.ano.toString().includes(query) ||
+                item.orgao.toLowerCase().includes(query) ||
+                item.codigoOrgao.toString().includes(query) ||
+                item.empenhado.toString().includes(query) ||
+                item.liquidado.toString().includes(query) ||
+                item.pago.toString().includes(query)
+            );
+
+            return isWithinYear && matchesSearch;
+        });
+        renderTableDespesas(filteredData);
     }
   }
 
@@ -253,6 +285,15 @@
   document.getElementById("dropdownButton").addEventListener("click", function(event) {
     event.stopPropagation(); // Evita que o clique seja propagado para o window
     toggleDropdown();
+  });
+
+  // Adicione event listeners para os filtros
+  document.getElementById("month-filter").addEventListener("change", function() {
+    searchTable();
+  });
+
+  document.getElementById("year-filter").addEventListener("change", function() {
+    searchTable();
   });
 
   // Inicializa a seção de compras ao carregar a página
