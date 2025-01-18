@@ -109,12 +109,9 @@ def processar_dados_despesas():
             pago = []
 
             # Calcula as médias de cada gasto, levando em conta todos os anos
-            empenhado_media = sum(float(item["empenhado"].replace(".", "").replace(",", "."))
-                                for item in dados) / len(anos)
-            liquidado_media = sum(float(item["liquidado"].replace(".", "").replace(",", "."))
-                                for item in dados) / len(anos)
-            pago_media = sum(float(item["pago"].replace(".", "").replace(",", "."))
-                           for item in dados) / len(anos)
+            empenhado_media = sum(float(item["empenhado"].replace(".", "").replace(",", ".")) for item in dados) / len(anos)
+            liquidado_media = sum(float(item["liquidado"].replace(".", "").replace(",", ".")) for item in dados) / len(anos)
+            pago_media = sum(float(item["pago"].replace(".", "").replace(",", ".")) for item in dados) / len(anos)
 
             # Lista para armazenar os anos válidos
             anos_validos = []
@@ -122,12 +119,9 @@ def processar_dados_despesas():
             for ano in anos:
 
                 # Soma os valores de cada gasto, levando em conta apenas o ano atual
-                empenhado_val = sum(float(item["empenhado"].replace(".", "").replace(",", "."))
-                                  for item in dados if item["ano"] == ano)
-                liquidado_val = sum(float(item["liquidado"].replace(".", "").replace(",", "."))
-                                  for item in dados if item["ano"] == ano)
-                pago_val = sum(float(item["pago"].replace(".", "").replace(",", "."))
-                             for item in dados if item["ano"] == ano)
+                empenhado_val = sum(float(item["empenhado"].replace(".", "").replace(",", ".")) for item in dados if item["ano"] == ano)
+                liquidado_val = sum(float(item["liquidado"].replace(".", "").replace(",", ".")) for item in dados if item["ano"] == ano)
+                pago_val = sum(float(item["pago"].replace(".", "").replace(",", ".")) for item in dados if item["ano"] == ano)
 
                 # Verifica se os valores são maiores que 0.05% de suas respectivas médias
                 if (empenhado_val >= empenhado_media * limite_minimo_percentual):
@@ -140,7 +134,6 @@ def processar_dados_despesas():
                     pago.append(pago_val)
 
                 anos_validos.append(str(ano))
-
 
             # Atualiza os labels para usar apenas os anos válidos
             despesas_por_orgao[orgao] = {
@@ -182,7 +175,7 @@ def processar_dados_tabela_despesas(filename):
             "codigoOrgao": item["codigoOrgao"],
             "empenhado": float(item["empenhado"].replace(".", "").replace(",", ".")),
             "liquidado": float(item["liquidado"].replace(".", "").replace(",", ".")),
-            "pago": float(item["pago"].replace(".", "").replace(",", "."))
+            "pago": float(item["pago"].replace(".", "").replace(",", ".")),
         })
     return despesas_detalhadas
 

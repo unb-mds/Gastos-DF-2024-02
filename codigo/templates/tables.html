@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+
+{% block content %}
 <div id="barra-navegacao" style="margin-top: -38px">
   <a href="{{ url_for('charts') }}" class="nav-link">Gráficos</a>
   <a href="{{ url_for('tables') }}" class="nav-link active">Tabelas</a>
@@ -49,9 +51,7 @@
   <div class="dropdown">
     <button class="dropdown-btn" id="dropdownButton">Selecionar Gasto</button>
     <div class="dropdown-content" id="dropdownContent">
-      <a href="#" onclick="showSection('compras'); return false;"
-        >Gastos com Compras</a
-      >
+      <a href="#" onclick="showSection('compras'); return false;">Gastos com Compras</a>
       <p class="dropdown-subtitle">Órgãos de Despesas:</p>
       {% for orgao, _ in despesas_por_orgao.items() %}
       <a href="#" onclick="showSpecificDespesas('{{ orgao }}'); return false;">
@@ -62,12 +62,7 @@
   </div>
 
   <div class="search-container" id="search-container">
-    <input
-      id="search-input"
-      type="text"
-      placeholder="Pesquisar..."
-      class="search-input"
-    />
+    <input id="search-input" type="text" placeholder="Pesquisar..." class="search-input" />
     <button onclick="searchTable()" class="search-button">Pesquisar</button>
   </div>
 
@@ -100,8 +95,8 @@
 </div>
 
 <script>
-  const compras = {{ compras|safe }};
-  const despesasPorOrgao = {{ despesas_por_orgao|tojson }};
+  const compras = {{ compras | safe }};
+  const despesasPorOrgao = {{ despesas_por_orgao | tojson }};
   let currentData = [];
   let currentSection = "compras";
   let despesasAtuais = [];
@@ -156,7 +151,7 @@
         <tbody>
           ${data
             .map(
-              (item) => `
+              (item) => ` 
                 <tr>
                   <td>${item.ano}</td>
                   <td>${item.orgao}</td>
@@ -216,16 +211,9 @@
     let filteredData = [];
 
     if (currentSection === "compras") {
-    if(selectedMonth === "") return showSection("compras");
-
         filteredData = compras.filter((item) => {
-            const itemMonth = item.data.split('/')[1]
-            let isWithinMonth = false;
-
-            if (selectedMonth) {
-                if(itemMonth === selectedMonth) console.log( itemMonth, selectedMonth)
-                isWithinMonth = (itemMonth === selectedMonth);
-            }
+            const itemMonth = item.data.split('/')[1];
+            const matchesMonth = selectedMonth ? itemMonth === selectedMonth : true;
 
             const matchesSearch = query === '' || (
                 item.empresa.toLowerCase().includes(query) ||
@@ -235,18 +223,12 @@
                 item.valor.toString().includes(query)
             );
 
-            return isWithinMonth && matchesSearch;
+            return matchesMonth && matchesSearch;
         });
         renderTableCompras(filteredData);
     } else if (currentSection === "despesas") {
-    if(selectedYear === "") return showSection("despesas");
-
         filteredData = despesasAtuais.filter((item) => {
-            let isWithinYear = true;
-
-            if (selectedYear) {
-                isWithinYear = (item.ano.toString() === selectedYear);
-            }
+            const matchesYear = selectedYear ? item.ano.toString() === selectedYear : true;
 
             const matchesSearch = query === '' || (
                 item.ano.toString().includes(query) ||
@@ -257,7 +239,7 @@
                 item.pago.toString().includes(query)
             );
 
-            return isWithinYear && matchesSearch;
+            return matchesYear && matchesSearch;
         });
         renderTableDespesas(filteredData);
     }
@@ -285,15 +267,6 @@
   document.getElementById("dropdownButton").addEventListener("click", function(event) {
     event.stopPropagation(); // Evita que o clique seja propagado para o window
     toggleDropdown();
-  });
-
-  // Adicione event listeners para os filtros
-  document.getElementById("month-filter").addEventListener("change", function() {
-    searchTable();
-  });
-
-  document.getElementById("year-filter").addEventListener("change", function() {
-    searchTable();
   });
 
   // Inicializa a seção de compras ao carregar a página
