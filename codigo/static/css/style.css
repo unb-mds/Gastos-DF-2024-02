@@ -410,43 +410,110 @@ footer p {
   color: white;
 }
 
+#despesas-container{
+  overflow-x: auto;
+}
+#compras-container{
+  overflow-x: auto;
+}
+
+
 /* Responsividade */
 @media (max-width: 768px) {
+  .content {
+    margin: 0.625rem;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 0.5rem;
+    padding-left: 0.625rem;
+    font-size: 12px;
+  }
+
+  .search-input,
+  .filter-group select {
+    width: 100%;
+  }
+
+  .search-container {
+    max-width: 15.625rem;
+  }
+
+  .filters-container {
+    max-width: 20rem;
+  }
+
+  /* Ajustes nas Tabelas */
+  .data-table th,
+  .data-table td {
+    padding: 10px 12px; /* Reduzido para telas médias */
+  }
+}
+
+/* Classe para exibir o conteúdo do dropdown */
+.dropdown-content.show {
+  display: block;
+}
+
+@media (max-width: 480px) {
   #header-container {
-    flex-direction: column;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
     text-align: center;
-    align-items: flex-start;
-    gap: 1rem;
+    align-items: center; /* Alinha itens à esquerda */
+    gap: 0.2rem; /* Ajuste de espaçamento */
   }
 
   .header-buttons {
     width: 100%;
-    justify-content: flex-start;
-    margin-left: 0;
+    justify-content: center;
+
   }
 
   #barra-navegacao {
-    flex-direction: column;
-    height: auto;
+    flex-direction: row;
+    height: 2.5rem; /* Reduzido de 3rem para 2.5rem */
+    margin-top: 2rem; /* Reduzido de 4rem para 3rem */
+    padding: 0.5rem 0.1rem; /* Reduzido de 0.9375rem para 0.5rem */
   }
 
   .nav-link {
-    margin: 0.5rem 0;
-    width: 100%;
-    text-align: center;
+    margin: 0.5rem 0; /* Reduzido de 0.3125rem para 0.5rem */
+    padding: 0.5rem 1rem; /* Reduzido de 0.75rem para 0.5rem */
+    font-size: 0.85rem; /* Reduzido de 0.9375rem para 0.85rem */
   }
 
-  .content {
-    padding: 1.5rem;
-    margin: 1rem;
-  }
-
-  .filters-container {
+  #footer-container {
     flex-direction: column;
   }
 
-  .data-table {
-    overflow-x: auto;
+  .content {
+    padding: 0.9375rem;
+    margin: 0.625rem;
+  }
+
+  #titulo-principal {
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 0.925rem;
+    
+  }
+
+  #header-logo {
+    width: 2.5rem; /* Reduzido de 3.125rem para 2.5rem */
+  }
+
+  footer p {
+    font-size: 0.875rem;
   }
 
   .search-container,
@@ -459,46 +526,16 @@ footer p {
     width: 100%;
   }
 
-  #footer-container {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  #header-container {
-    flex-direction: column;
-    text-align: center;
-    align-items: flex-start;
-  }
-
-  .header-buttons {
-    width: 100%;
-    justify-content: flex-start;
-    margin-left: 0;
-  }
-
-  h1 {
-    font-size: 1.125rem;
-  }
-
-  #header-logo {
-    width: 2.5rem;
-  }
-
-  .content {
-    padding: 1rem;
-    margin: 0.5rem;
-  }
-
-  #titulo-principal {
-    font-size: 2rem;
-  }
-
+  /* Ajustes nas Tabelas */
   .data-table th,
   .data-table td {
-    font-size: 0.75rem;
-    padding: 8px 10px;
+    padding: 8px 10px; /* Reduzido para telas menores */
+    padding-left: 0.5rem; /* Ajustado para menor espaçamento */
+    margin: 0 auto;
+    margin: 20px auto;
   }
+  }
+
 
   .chart-container {
     width: 100%;
@@ -509,4 +546,14 @@ footer p {
   footer p {
     font-size: 0.875rem;
   }
-}
+  
+  .chart-container {
+    width: 95%; /* Reduza a largura para garantir espaços iguais */
+    margin: 0 auto; /* Centraliza o gráfico horizontalmente */
+    background-color: #f3f7fa;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-sizing: border-box; /* Garante que padding não afete a largura */
+  }
+  
