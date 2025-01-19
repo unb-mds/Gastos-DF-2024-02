@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "1f721a82-13fd-490f-a699-60a594715d9e",
+		"name": "API de Dados Portal da Transparência",
+		"description": "# Guia para Monitoramento de Gastos Públicos\n\nEssa coleção tem como objetivo te guiar através dos métodos de interação com a **API do Portal da Transparência**, a fim de obter dados relacionados ao monitoramento de **gastos públicos**.\n\n## Funcionalidades da API\n\nA API oferece diferentes endpoints para acesso a informações sobre:\n\n- **Despesas**: Detalhes sobre as despesas públicas realizadas pelos órgãos do governo.\n    \n- **Bolsa Família**: Dados sobre os pagamentos e beneficiários do programa Bolsa Família.\n    \n\n## Definição da chave da API\n\n<img src=\"https://content.pstmn.io/2395a4f6-0574-4bb0-8025-046661fe1e7f/aW1hZ2UucG5n\" width=\"443\" height=\"257\">\n\n### Como Funciona:\n\nPara utilizar a API do Portal da Transparência, siga os passos abaixo:\n\n1. **Cadastro no Portal**  \n    Acesse o link [http://portaldatransparencia.gov.br/api-de-dados/cadastrar-email](http://portaldatransparencia.gov.br/api-de-dados/cadastrar-email) e faça o cadastro com seu e-mail. Após o cadastro, você receberá um **token** no e-mail informado. Esse token será utilizado para realizar consultas via API.\n    \n2. **Configuração no Postman**  \n    Para realizar as requisições na API utilizando o Postman, siga os seguintes passos:\n    \n    - Abra o Postman e acesse a aba **Authorization** na pasta **\"API de Dados Portal da Transparência\"**.\n        \n    - Configure os campos conforme o exemplo abaixo:\n        \n        1. **Auth type**: Selecione **API Key**.\n            \n        2. **Key**: chave-api-dados\n            \n        3. **Value**: Insira o token que você recebeu.\n            \n        4. **Add to**: Selecione **Header**.\n            \n\nApós essas configurações, você estará pronto para realizar suas consultas na API utilizando o Postman.\n\n## Definição de Variáveis\n\n<img src=\"https://content.pstmn.io/de4fdb5a-cfde-4526-a58a-5b83417763cc/VmFyaWF2ZWlzLnBuZw==\" alt=\"Principais%20variáveis.\" width=\"569\" height=\"203\">\n\n### Como funciona:\n\nPara criar, acessar ou mudar os valores das variaveis principais é necessário acessar \"Variables\" na pasta \"API de Dados Portal da Transparência\".\n\nDentro dessa variavel há o valor inicial (initial value) e o valor atual (current value), que funcionam da seguinte forma:\n\n- variavel (variable): Identificador. Ex.: base_url.\n    \n- valor inicial (initial value): É o valor que a variável tem quando ela é criada ou definida pela primeira vez. Este valor é usado como valor padrão. Ex.:[https://api.portaldatransparencia.gov.br/api-de-dados/](https://api.portaldatransparencia.gov.br/api-de-dados/)\n    \n- valor atual (current value): É o valor que a variável tem no momento em que é usada durante a execução das requisições. O valor atual pode ser alterado durante a execução das requisições (como por exemplo, quando uma resposta da API retorna um valor que deve ser armazenado em uma variável para ser usado em requisições subsequentes). Ex.:[https://api.portaldatransparencia.gov.br/api-de-dados/](https://api.portaldatransparencia.gov.br/api-de-dados/)\n    \n\nAlém disso, as variáveis podem ser empregadas de maneira estratégica para parametrizar URLs e outros elementos frequentemente utilizados no projeto, como códigos, tokens de autenticação e valores dinâmicos. Essa flexibilidade permite otimizar a reutilização de informações recorrentes, evitando redundância e garantindo maior eficiência no processo de desenvolvimento e teste das APIs. O uso de variáveis, ao permitir a substituição automática de valores, oferece um controle mais refinado sobre a personalização das requisições, essencial para a implementação de fluxos dinâmicos e para a manutenção de consistência ao longo do projeto.\n\n# Relacionados\n\nPara mais informações acessar a documentação do postman: [https://learning.postman.com/docs/introduction/overview/](https://learning.postman.com/docs/introduction/overview/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39754264",
+		"_collection_link": "https://squad-13-8316.postman.co/workspace/bfee63cd-26ac-4cd1-9818-fbb316aa9fcf/collection/21783479-1f721a82-13fd-490f-a699-60a594715d9e?action=share&source=collection_link&creator=39754264"
+	},
+	"item": [
+		{
+			"name": "despesas",
+			"item": [
+				{
+					"name": "Despesas por orgao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}{{despesas}}por-orgao?ano=2020&orgaoSuperior=36000&pagina",
+							"host": [
+								"{{base_url}}{{despesas}}por-orgao"
+							],
+							"query": [
+								{
+									"key": "ano",
+									"value": "2020",
+									"description": "Obrigatório(AAAA)"
+								},
+								{
+									"key": "orgaoSuperior",
+									"value": "36000",
+									"description": "codigo SIAFI"
+								},
+								{
+									"key": "orgao",
+									"value": "36000",
+									"description": "codigo SIAFI",
+									"disabled": true
+								},
+								{
+									"key": "pagina",
+									"value": null,
+									"description": "Obrigatório"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "# 🚀 Comece aqui\n\nEssa pasta trata a respeito das rotas de despesas. Caso tenha alguma dúvida em relação ao próprio endpoint, como erros, `status code`, etc, basta acessar a [documentação](https://api.portaldatransparencia.gov.br/swagger-ui/index.html#/Despesas%20P%C3%BAblicas/despesasPorOrgao) da api do portal da transparência, e navegar até o endpoint.\n\n## 🔖 Como usar o rota de Despesas por Órgão\n\nRota para ver as despesas do governo por órgão. podemos filtrar as despesas dos ministerios, como da saúde, transporte, etc, por empresas estatais, etc\n\nEsta rota utiliza a seguinte url:\n\n> [https://api.portaldatransparencia.gov.br/api-de-dados/despesas/por-orgao](https://api.portaldatransparencia.gov.br/api-de-dados/despesas/por-orgao) \n  \n\n#### **Passo 1: identificar parâmetros**\n\nAntes de enviar requisições para este endpoint, é preciso identificar quais `query parameters` serão utilizados. Nessa rota, é possível fornecer os seguintes parâmetros:\n\n- `ano(AAAA)`\n    \n- `orgaoSuperior(Código órgão superior SIAFI)`\n    \n- `orgao(Código órgão/Entidade vinculada SIAFI)`\n    \n- `pagina(página consultada; padrão =1)`\n    \n\nSendo os seguintes `query parameters` **Obrigatórios**:\n\n- `ano`\n    \n- `pagina`\n    \n\nAlém disso, é importante ressaltar que, além dos dois `query parameters` obrigatórios, é necessário ter pelo menos um dos parâmetros opcionais, caso contrário, você receberá a seguinte mensagem de erro:\n\n``` json\n{\n    \"Erro na API\": \"Filtros mínimos:  Página (padrão = 1);  Ano do registro;  Ao menos um dos demais filtros; \"\n}\n\n ```\n\n#### **Passo 2: Enviar requisição**\n\nApós identificar os `query parameters` necessários para fazer a requisição, basta clicar em `send`. Se você selecionou os parâmetros da forma correta, deverá receber uma resposta com o seguinte template:\n\n``` json\n[\n{\n        \"ano\": 2020,\n        \"orgao\": \"Agência Nacional de Saúde Suplementar\",\n        \"codigoOrgao\": \"36213\",\n        \"orgaoSuperior\": \"Ministério da Saúde\",\n        \"codigoOrgaoSuperior\": \"36000\",\n        \"empenhado\": \"303.960.796,85\",\n        \"liquidado\": \"289.261.720,95\",\n        \"pago\": \"278.126.203,24\"\n}\n]\n\n ```"
+		},
+		{
+			"name": "bolsa família",
+			"item": [
+				{
+					"name": "Bolsa família por município",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}novo-bolsa-familia-por-municipio?mesAno=202403&codigoIbge=5300108",
+							"host": [
+								"{{base_url}}novo-bolsa-familia-por-municipio"
+							],
+							"query": [
+								{
+									"key": "mesAno",
+									"value": "202403",
+									"description": "Obrigatório(AAAAMM)"
+								},
+								{
+									"key": "codigoIbge",
+									"value": "5300108",
+									"description": "Obrigatório"
+								},
+								{
+									"key": "pagina",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "# 🚀 Comece aqui\n\nEssa pasta trata a respeito das rotas relacionadas com o bolsa família. Caso tenha alguma dúvida em relação ao próprio endpoint, como erros, `status code`, etc, basta acessar a [documentação](https://api.portaldatransparencia.gov.br/swagger-ui/index.html#/Despesas%20P%C3%BAblicas/despesasPorOrgao) da api do portal da transparência, e navegar até o endpoint.\n\n## 🔖 Como usar o rota de Bolsa família por município\n\nRota para ver as despesas do governo com o bolsa família por município. podemos ver dados gerais, como por exemplo o numero de beneficiarios, e o valor pago no mes e ano especificados.\n\nEsta rota utiliza a seguinte url:\n\n> [https://api.portaldatransparencia.gov.br/api-de-dados/novo-bolsa-familia-por-municipio](https://api.portaldatransparencia.gov.br/api-de-dados/novo-bolsa-familia-por-municipio) \n  \n\n#### **Passo 1: identificar parâmetros**\n\nAntes de enviar requisições para este endpoint, é preciso identificar quais `query parameters` serão utilizados. Nessa rota, é possível fornecer os seguintes parâmetros:\n\n- `mesAno(AAAAMM)`\n    \n- `codigoIbge(Município)`\n    \n- `pagina(página consultada; padrão =1)`\n    \n\nSendo os seguintes `query parameters` **Obrigatórios**:\n\n- `mesAno`\n    \n- `codigoIbge`\n    \n\n#### **Passo 2: Enviar requisição**\n\nApós identificar os `query parameters` necessários para fazer a requisição, basta clicar em `send`. Se você selecionou os parâmetros da forma correta, deverá receber uma resposta com o seguinte template:\n\n``` json\n[\n{\n        \"id\": 109871218,\n        \"dataReferencia\": \"2024-02-01\",\n        \"municipio\": {\n            \"codigoIBGE\": \"5300108\",\n            \"nomeIBGE\": \"BRASÍLIA\",\n            \"codigoRegiao\": \"5\",\n            \"nomeRegiao\": \"CENTRO-OESTE\",\n            \"pais\": \"BRASIL\",\n            \"uf\": {\n                \"sigla\": \"DF\",\n                \"nome\": \"DISTRITO FEDERAL\"\n            }\n        },\n        \"tipo\": {\n            \"id\": 8,\n            \"descricao\": \"Novo Bolsa Família\",\n            \"descricaoDetalhada\": \"Novo Bolsa Família\"\n        },\n        \"valor\": 127466667.00,\n        \"quantidadeBeneficiados\": 190600\n}\n]\n\n ```"
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": {
+			"value": "e6152c1558b273b4666d27d60ed32f3f",
+			"key": "chave-api-dados"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://api.portaldatransparencia.gov.br/api-de-dados/",
+			"type": "string"
+		},
+		{
+			"key": "despesas",
+			"value": "despesas/",
+			"type": "string"
+		},
+		{
+			"key": "licitacoes",
+			"value": "licitacoes"
+		}
+	]
+}
