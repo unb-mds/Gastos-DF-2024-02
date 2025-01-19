@@ -1,106 +1,122 @@
 {% extends 'base.html' %} {% block content %}
-<!-- Barra de navegação -->
-<div id="barra-navegacao">
-  <a href="{{ url_for('charts') }}" class="nav-link">Gráficos</a>
-  <a href="{{ url_for('tables') }}" class="nav-link active">Tabelas</a>
-</div>
 
-<!-- Conteúdo principal -->
 <div class="content">
-  <h2>Detalhes dos Gastos Públicos</h2>
+  <h2 class="titulo-principal">Monitoramento de Gastos Públicos</h2>
 
-  <!-- Formulário de pesquisa -->
-  <div class="search-container">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+  
+  <!-- Seção de Filtragem por Mês -->
+  <div class="filters-container">
+    <div class="filter-group">
+      <!-- Filtro de Meses (para Compras) -->
+      <div id="month-filter-container" style="display: none">
+        <label for="month-filter">Filtrar por Mês:</label>
+        <select id="month-filter" name="month-filter">
+          <option value="">Todos os Meses</option>
+          <option value="01">Janeiro</option>
+          <option value="02">Fevereiro</option>
+          <option value="03">Março</option>
+          <option value="04">Abril</option>
+          <option value="05">Maio</option>
+          <option value="06">Junho</option>
+          <option value="07">Julho</option>
+          <option value="08">Agosto</option>
+          <option value="09">Setembro</option>
+          <option value="10">Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>
+        </select>
+      </div>
+
+      <!-- Filtro de Anos (para Despesas) -->
+      <div id="year-filter-container" style="display: none">
+        <label for="year-filter">Filtrar por Ano:</label>
+        <select id="year-filter" name="year-filter">
+          <option value="">Todos os Anos</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button onclick="downloadTabelas()" class="dropdown-btn">
+      Baixar Tabelas (PDF)
+    </button>
+    <button class="dropdown-btn" id="dropdownButton">Selecionar Gasto</button>
+    <div class="dropdown-content" id="dropdownContent">
+      <a href="#" onclick=" secaoAtual = 'compras'; mostrarTabela();"
+        >Gastos com Compras</a
+      >
+      <p class="dropdown-subtitle">Órgãos de Despesas:</p>
+      {% for orgao, _ in despesas_por_orgao.items() %}
+      <a
+        href="#"
+        onclick="secaoAtual = 'despesas'; mostrarDespesasPorOrgao('{{ orgao }}');"
+      >
+        {{ orgao.split(' ', 1)[1] }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="search-container" id="search-container">
     <input
       id="search-input"
       type="text"
-      placeholder="Pesquisar por nome..."
+      placeholder="Pesquisar..."
       class="search-input"
     />
-    <button onclick="searchTable()" class="search-button">Pesquisar</button>
+    <button class="search-button" id="botao-pesquisar">Pesquisar</button>
   </div>
 
-  <!-- Tabela -->
-  <table class="data-table">
-    <thead>
-      <tr>
-        <th>
-          Nome
-          <button onclick="sortTable('name')" class="sort-button">⇵</button>
-        </th>
-        <th>
-          Despesa
-          <button onclick="sortTable('expense')" class="sort-button">⇵</button>
-        </th>
-      </tr>
-    </thead>
-    <tbody id="table-body">
-      <!-- Dados serão preenchidos dinamicamente -->
-    </tbody>
-  </table>
+  <h3 id="despesas-title" class="subtitulo">
+    Gastos com <span id="secao-selecionada">Compras</span>
+  </h3>
 
-  <!-- Exibição de resultados -->
+  <!-- Contêiner de despesas -->
+  <div id="despesas-container" style="display: none">
+    <div id="despesas-tabela-container"></div>
+  </div>
+
+  <!-- Contêiner de compras -->
+  <div id="compras-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Empresa</th>
+          <th>CNPJ</th>
+          <th>Objeto</th>
+          <th>Valor</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <!-- Dados preenchidos dinamicamente -->
+      </tbody>
+    </table>
+  </div>
   <p id="result-count" class="result-count">Exibindo 0 resultado(s).</p>
 </div>
 
-<!-- Scripts para a tabela -->
 <script>
-  // Dados em formato JSON diretamente no script
-  const data = [
-    { name: "Alice", expense: 230 },
-    { name: "Bob", expense: 150 },
-    { name: "Charlie", expense: 320 },
-    { name: "Daniel", expense: 500 },
-    { name: "Eva", expense: 450 },
-    { name: "Frank", expense: 300 },
-    { name: "Grace", expense: 350 },
-  ];
-
-  let sortOrder = "asc"; // Ordem inicial
-
-  // Renderizar a tabela
-  function renderTable(data) {
-    const tbody = document.querySelector("#table-body");
-    const resultCount = document.querySelector("#result-count");
-    tbody.innerHTML = ""; // Limpar tabela existente
-
-    if (data.length === 0) {
-      resultCount.textContent = "Nenhum resultado encontrado.";
-      return;
-    }
-
-    data.forEach((item) => {
-      const row = `<tr>
-                <td>${item.name}</td>
-                <td>R$ ${item.expense}</td>
-            </tr>`;
-      tbody.innerHTML += row;
-    });
-
-    resultCount.textContent = `Exibindo ${data.length} resultado(s).`;
+    const gastosCompras = {{ compras|safe }};
+    const despesasPorOrgao = {{ despesas_por_orgao|tojson }};
+  try {
+    const script = document.createElement('script');
+    script.src = "{{ url_for('static', filename='scripts/tables.js') }}";
+    script.onerror = function() {
+      console.error('Erro ao carregar o arquivo tables.js');
+    };
+    document.body.appendChild(script);
+  } catch (error) {
+    console.error('Erro ao importar tables.js:', error);
   }
-
-  // Ordenar a tabela
-  function sortTable(key) {
-    sortOrder = sortOrder === "asc" ? "desc" : "asc";
-    data.sort((a, b) => {
-      if (a[key] < b[key]) return sortOrder === "asc" ? -1 : 1;
-      if (a[key] > b[key]) return sortOrder === "asc" ? 1 : -1;
-      return 0;
-    });
-    renderTable(data);
-  }
-
-  // Filtrar os dados da tabela
-  function searchTable() {
-    const query = document.querySelector("#search-input").value.toLowerCase();
-    const filteredData = data.filter((item) =>
-      item.name.toLowerCase().includes(query)
-    );
-    renderTable(filteredData);
-  }
-
-  // Carregar a tabela inicial
-  renderTable(data);
 </script>
 {% endblock %}

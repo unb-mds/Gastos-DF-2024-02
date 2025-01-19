@@ -578,5 +578,65 @@
         "empenhado": "1.262.708,42",
         "liquidado": "36.128,52",
         "pago": "36.128,52"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério da Saúde - Unidades com vínculo direto",
+        "codigoOrgao": "36000",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "12.314.833.964,37",
+        "liquidado": "7.836.008.827,36",
+        "pago": "7.814.348.568,03"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Hospital Nossa Senhora da Conceição S.A.",
+        "codigoOrgao": "36210",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "45.745.631,40",
+        "liquidado": "19.813.986,83",
+        "pago": "11.230.991,27"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundação Oswaldo Cruz",
+        "codigoOrgao": "36201",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "2.214.642.882,68",
+        "liquidado": "9.746.381,69",
+        "pago": "2.828.860,77"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Agência Nacional de Vigilância Sanitária",
+        "codigoOrgao": "36212",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "4.543.040,86",
+        "liquidado": "657.554,68",
+        "pago": "580.247,16"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundação Nacional de Saúde",
+        "codigoOrgao": "36211",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "1.523.855.620,29",
+        "liquidado": "192.455,52",
+        "pago": "175.604,13"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Agência Nacional de Saúde Suplementar",
+        "codigoOrgao": "36213",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "1.336.337,76",
+        "liquidado": "36.128,52",
+        "pago": "36.128,52"
     }
 ]
