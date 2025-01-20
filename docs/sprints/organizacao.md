@@ -93,3 +93,13 @@
   - Organizar os dados das tabelas em ordem decrescente;
 - Inserir a opção de fazer download dos dados - Artur Mendonça Arruda; Julia Gabriela Cunha Paulino;
 - Incluir texto alternativo para imagens e descrição para gráfico - Artur Mendonça Arruda; Gabriel da Cunha Barbaceli;
+
+## SPRINT 10
+- Documentação das atas de reunião - Gabriel da Cunha Barbaceli;
+- Criação das issues da semana - João Pedro Costa;
+- Documentação das funções na sprint - Julia Gabriela Cunha Paulino;
+- Criar documentação sobre a Sprint 9 - Julia Gabriela Cunha Paulino; Lucas Mendonça Arruda;
+- Organização estrutural dos códigos - Gabriel Lima Amorim; Gabriel da Cunha Barbaceli;
+    - Renderização de tabelas e filtros;
+- Incluir uma área de informações sobre os valores médios gastos, possuindo alertas caso os dados do dia estejam fora do comum - Artur Mendonça Arruda; João Pedro Costa; Gabriel Lima Amorim; 
+- Inserir dados após o período de setembro de 2024 - João Pedro Costa; Lucas Mendonça Arruda;
