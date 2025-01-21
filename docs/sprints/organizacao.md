@@ -63,7 +63,7 @@
 - Documentação das atas de reunião - Julia Gabriela Cunha Paulino;
 - Criação das issues da semana - João Pedro Costa;
 - Documentação das funções na sprint - Julia Gabriela Cunha Paulino;
-- Reorganizar documentação da organização da arquitetura do projeto - Artur Mendonça Arruda; Gabriel Lima Amorim;
+- Reorganizar documentação da organização da arquitetura do projeto - Artur Mendonça Arruda; Gabriel Lopes Amorim;
 - Automação do GitHub Pages - João Pedro Costa;
 - Criar documentação sobre a Sprint 6 - Artur Mendonça Arruda; Lucas Mendonça Arruda;
 - Criação do script conectado na API para coleta de dados - Gabriel da Cunha Barbaceli; João Pedro Costa; Julia Gabriela Cunha Paulino; 
@@ -76,7 +76,7 @@
 - Documentação das funções na sprint - Julia Gabriela Cunha Paulino;
 - Criar documentação sobre a Sprint 7 - Julia Gabriela Cunha Paulino; Gabriel da Cunha Barbaceli;
 - Criação do script conectado na API para coleta de dados - Gabriel da Cunha Barbaceli; João Pedro Costa; Julia Gabriela Cunha Paulino; 
-- Personalização do layout dos dados no site - Gabriel Lima Amorim; Lucas Mendonça Arruda; Artur Mendonça Arruda;
+- Personalização do layout dos dados no site - Gabriel Lopes Amorim; Lucas Mendonça Arruda; Artur Mendonça Arruda;
   - Exibir gráficos e tabelas interativas que representem os gastos públicos do Distrito Federal;
   - Permitir filtros por categoria de gastos (Saúde, educação e bolsa família);
   - Exibir informações referentes a um dado específico(ex.: para tabela de licitações, a página deverá exibir todos os dados referentes a uma licitação); 
@@ -87,7 +87,7 @@
 - Criação das issues da semana - João Pedro Costa;
 - Documentação das funções na sprint - Julia Gabriela Cunha Paulino;
 - Criar documentação sobre a Sprint 8 - Julia Gabriela Cunha Paulino; Gabriel da Cunha Barbaceli;
-- Continuação da personalização do layout dos dados no site - Gabriel Lima Amorim; Lucas Mendonça Arruda; João Pedro Costa;
+- Continuação da personalização do layout dos dados no site - Gabriel Lopes Amorim; Lucas Mendonça Arruda; João Pedro Costa;
   - Adicionar gráficos e tabelas dos dados de outubro até o momento;
   - Permitir filtros por período(mês e ano) em todos os tipos de dados;
   - Organizar os dados das tabelas em ordem decrescente;
@@ -99,7 +99,7 @@
 - Criação das issues da semana - João Pedro Costa;
 - Documentação das funções na sprint - Julia Gabriela Cunha Paulino;
 - Criar documentação sobre a Sprint 9 - Julia Gabriela Cunha Paulino; Lucas Mendonça Arruda;
-- Organização estrutural dos códigos - Gabriel Lima Amorim; Gabriel da Cunha Barbaceli;
+- Organização estrutural dos códigos - Gabriel Lopes Amorim; Gabriel da Cunha Barbaceli;
     - Renderização de tabelas e filtros;
-- Incluir uma área de informações sobre os valores médios gastos, possuindo alertas caso os dados do dia estejam fora do comum - Artur Mendonça Arruda; João Pedro Costa; Gabriel Lima Amorim; 
-- Inserir dados após o período de setembro de 2024 - João Pedro Costa; Lucas Mendonça Arruda;
+- Incluir uma área de informações sobre os valores médios gastos, possuindo alertas caso os dados do dia estejam fora do comum - Artur Mendonça Arruda; João Pedro Costa; Gabriel Lopes Amorim; 
+- Criação de um guia de uso - João Pedro Costa; Lucas Mendonça Arruda;
