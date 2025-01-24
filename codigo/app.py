@@ -15,7 +15,7 @@ from reportlab.lib import colors
 
 app = Flask(__name__)
 
-DATA_DIR = "../actions/json"
+DATA_DIR = "./actions/json"
 
 def carregar_dados_compras():
     json_path = os.path.join(DATA_DIR, "compras.json")
@@ -206,6 +206,10 @@ def tables():
     compras = processar_dados_tabela_compras()
     despesas_por_orgao = carregar_todas_despesas()
     return render_template('tables.html', compras=compras, despesas_por_orgao=despesas_por_orgao)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/download-graficos', methods=['POST'])
 def download_graficos():
