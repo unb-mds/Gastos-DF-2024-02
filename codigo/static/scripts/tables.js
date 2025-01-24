@@ -230,7 +230,7 @@ function downloadTabelas() {
 
   const tabelaData = { headers, rows };
 
-  fetch('/download-tabelas', {
+  fetch('/baixar-tabelas', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
