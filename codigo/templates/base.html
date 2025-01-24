@@ -50,11 +50,19 @@
           <!-- Botões de navegação, com classe 'active' para a página atual -->
           {% if request.path == '/' %}
           <a href="{{ url_for('index') }}" class="btn-header active">Início</a>
+          <a href="{{ url_for('about') }}" class="btn-header">Guia de Uso</a>
+          <a href="{{ url_for('charts') }}" class="btn-header"
+            >Análise de Gastos</a
+          >
+          {% elif request.path == '/about' %}
+          <a href="{{ url_for('index') }}" class="btn-header">Início</a>
+          <a href="{{ url_for('about') }}" class="btn-header active">Guia de Uso</a>
           <a href="{{ url_for('charts') }}" class="btn-header"
             >Análise de Gastos</a
           >
           {% elif request.path == '/charts' or request.path == '/tables' %}
           <a href="{{ url_for('index') }}" class="btn-header">Início</a>
+          <a href="{{ url_for('about') }}" class="btn-header">Guia de Uso</a>
           <a
             href="{% if request.path == '/charts' %}{{ url_for('charts') }}{% elif request.path == '/tables' %}{{ url_for('tables') }}{% endif %}"
             class="btn-header active"
@@ -67,7 +75,7 @@
     </header>
     <!-- Conteúdo da página -->
     <main>
-      {%if request.path != '/' %}
+      {%if request.path != '/' and request.path != '/about' %}
       <div id="barra-navegacao" style="margin-top: -38px">
         <a
           href="{{ url_for('charts') }}"

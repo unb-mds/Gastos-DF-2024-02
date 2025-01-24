@@ -1,0 +1,50 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="content" style="display: flex; flex-direction: column; justify-content: center">
+  <h1 id="titulo-principal">
+    Guia de Uso
+  </h1>
+
+  <section class="description-container">
+    <h2>Páginas do Site</h2>
+
+    <!-- Página "Início" -->
+    <h3>1. Página "Início"</h3>
+    <p>
+      A página "Início" apresenta uma visão geral do projeto, com informações sobre seu objetivo, tecnologias utilizadas e os membros da equipe.
+      Ela serve como uma introdução ao site e à sua proposta de promover a transparência nos gastos públicos do Distrito Federal.
+    </p>
+
+<!-- Página "Análise de Gastos" -->
+<h3>2. Página "Análise de Gastos"</h3>
+<p>
+  A página "Análise de Gastos" mostra como o Governo do Distrito Federal gasta dinheiro em várias áreas, como saúde, educação e segurança. Aqui você pode ver esses gastos em gráficos e tabelas fáceis de entender.
+</p>
+
+<h4>Gráficos Interativos</h4>
+<p>
+  Os gráficos mostram como os gastos estão divididos em diferentes áreas. Para entender melhor:
+</p>
+<ul>
+  <li>Você pode usar o filtro para escolher um período de tempo ou um órgão público específico. Isso ajuda a mostrar apenas os dados que você quer ver.</li>
+  <li>Quando você passa o mouse sobre qualquer parte do gráfico, vai aparecer um valor explicando o que aquele número significa. É uma maneira de entender o que está sendo mostrado de forma mais clara.</li>
+</ul>
+<p>
+  Abaixo, temos uma imagem que mostra como usar o filtro e como passar o mouse para ver os detalhes.
+</p>
+<img src="/static/imagens/grafico-exemplo.png" alt="Exemplo de gráfico de gastos públicos" style="max-width: 100%; height: auto;"/>
+
+<h4>Tabelas Detalhadas</h4>
+<p>
+  As tabelas mostram os valores exatos dos gastos. Se você passar o mouse sobre as células da tabela, vai aparecer uma explicação sobre o que aquele número representa. Isso ajuda a entender melhor os dados.
+</p>
+<img src="/static/imagens/tabela-exemplo.png" alt="Exemplo de tabela de gastos públicos" style="max-width: 100%; height: auto;"/>
+
+<h4>Baixar os Dados</h4>
+<p>
+  Se você quiser guardar as informações para olhar depois, pode fazer o download dos gráficos e tabelas. Você pode baixar os dados em dois formatos: CSV (para abrir no Excel) ou PDF (para ver em qualquer computador). Aqui está um exemplo de como efetuar o download:
+</p>
+<img src="/static/imagens/icone-download.png" alt="Ícone de download" style="max-width: 50px; height: auto;"/>
+  </section>
+</div>
+{% endblock %}
