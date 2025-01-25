@@ -15,7 +15,7 @@ from reportlab.lib import colors
 
 app = Flask(__name__)
 
-DATA_DIR = "./actions/json"
+DATA_DIR = "../actions/json"
 
 def carregar_dados_compras():
     json_path = os.path.join(DATA_DIR, "compras.json")
