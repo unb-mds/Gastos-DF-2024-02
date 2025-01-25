@@ -15,10 +15,31 @@ const fonteLegenda = () => ({
   size: eCelular ? 8 : 12,
 });
 
+const calcularMedias = (dados) => {
+  const eGraficoCompras = dados.pago !== undefined;
+  const valores = eGraficoCompras ? dados.pago : dados.empenhado;
+  
+  if (!valores || valores.length === 0) return null;
+  
+  const media = valores.reduce((a, b) => a + b, 0) / valores.length;
+  const limiteSuperior = media * 1.2; // 20% acima da média
+  
+  const alertas = valores.map((valor, index) => {
+    return valor > limiteSuperior ? {
+      ano: dados.labels[index],
+      valor,
+      variacao: ((valor - media) / media) * 100
+    } : null;
+  }).filter(a => a);
+  
+  return { media, alertas };
+};
+
 const estruturarDadosDoGrafico = (tagId, dados) => {
   const eGraficoCompras = tagId === "grafico-compras";
-
-  return [
+  const mediasEAlertas = calcularMedias(dados);
+  
+  const dadosBase = [
     {
       x: dados.labels,
       y: eGraficoCompras ? dados.pago : dados.empenhado,
@@ -34,40 +55,88 @@ const estruturarDadosDoGrafico = (tagId, dados) => {
             ? "Representa o pagamento efetivo realizado ao credor pelo serviço/produto"
             : "Representa o primeiro estágio da despesa, quando há reserva do valor para um fim específico"
         }</i><extra></extra>`,
-    },
-    !eGraficoCompras && dados.liquidado
-      ? {
-          x: dados.labels,
-          y: dados.liquidado,
-          type: "bar",
-          name: "Liquidado",
-          marker: { color: "#ff7f0e" },
-          hovertemplate:
-            "<b>Valor Liquidado</b><br>" +
-            "Ano: %{x}<br>" +
-            "Valor: R$ %{y:,.2f}<br>" +
-            "<i>Indica que o serviço/produto foi entregue e verificado, confirmando o direito do credor receber</i><extra></extra>",
-        }
-      : {},
-    !eGraficoCompras && dados.pago
-      ? {
-          x: dados.labels,
-          y: dados.pago,
-          type: "bar",
-          name: "Pago",
-          marker: { color: "#2ca02c" },
-          hovertemplate:
-            "<b>Valor Pago</b><br>" +
-            "Ano: %{x}<br>" +
-            "Valor: R$ %{y:,.2f}<br>" +
-            "<i>Representa o pagamento efetivo realizado ao credor pelo serviço/produto</i><extra></extra>",
-        }
-      : {},
+    }
   ];
+
+  // Adiciona linha de média
+  if (mediasEAlertas) {
+    dadosBase.push({
+      x: dados.labels,
+      y: Array(dados.labels.length).fill(mediasEAlertas.media),
+      type: 'scatter',
+      mode: 'lines',
+      name: 'Média',
+      line: {
+        color: 'red',
+        dash: 'dash'
+      },
+      hovertemplate:
+        "<b>Média do Período</b><br>" +
+        "R$ %{y:,.2f}<br>" +
+        "<i>Linha de referência para análise de variações</i><extra></extra>"
+    });
+  }
+
+  // Adiciona dados de liquidado e pago para gráficos que não são de compras
+  if (!eGraficoCompras) {
+    if (dados.liquidado) {
+      dadosBase.push({
+        x: dados.labels,
+        y: dados.liquidado,
+        type: "bar",
+        name: "Liquidado",
+        marker: { color: "#ff7f0e" },
+        hovertemplate:
+          "<b>Valor Liquidado</b><br>" +
+          "Ano: %{x}<br>" +
+          "Valor: R$ %{y:,.2f}<br>" +
+          "<i>Indica que o serviço/produto foi entregue e verificado</i><extra></extra>"
+      });
+    }
+    if (dados.pago) {
+      dadosBase.push({
+        x: dados.labels,
+        y: dados.pago,
+        type: "bar",
+        name: "Pago",
+        marker: { color: "#2ca02c" },
+        hovertemplate:
+          "<b>Valor Pago</b><br>" +
+          "Ano: %{x}<br>" +
+          "Valor: R$ %{y:,.2f}<br>" +
+          "<i>Representa o pagamento efetivo realizado</i><extra></extra>"
+      });
+    }
+  }
+
+  return dadosBase;
 };
 
-const montarLayoutDoGrafico = (tagId) => {
+const montarLayoutDoGrafico = (tagId, dados) => {
   const graficoContainer = `${tagId}-container`;
+  const mediasEAlertas = calcularMedias(dados);
+  
+  // Cria anotações para alertas
+  const annotacao = [];
+  if (mediasEAlertas && mediasEAlertas.alertas.length > 0) {
+    mediasEAlertas.alertas.forEach(alerta => {
+      annotacao.push({
+        x: alerta.ano,
+        y: alerta.valor,
+        text: `⚠️ +${alerta.variacao.toFixed(1)}%`,
+        showarrow: true,
+        arrowhead: 2,
+        arrowsize: 1,
+        arrowwidth: 2,
+        arrowcolor: '#ff4444',
+        font: {
+          size: eCelular ? 10 : 12,
+          color: '#ff4444'
+        },
+        ay: -40
+      });
+    });
+  }
 
   return {
     xaxis: {
@@ -101,11 +170,12 @@ const montarLayoutDoGrafico = (tagId) => {
       y: eCelular ? -0.3 : 1,
     },
     margin: {
-      t: 20,
+      t: 40, 
       l: 50,
       r: 50,
       b: eCelular ? 80 : 60,
     },
+    annotacao: annotacao
   };
 };
 
@@ -125,12 +195,12 @@ function renderizarGrafico(tagId, dados) {
 
   const dadosDoGrafico = estruturarDadosDoGrafico(tagId, dados);
 
-  const layout = montarLayoutDoGrafico(tagId);
+  const layout = montarLayoutDoGrafico(tagId, dados);
 
   Plotly.newPlot(tagId, dadosDoGrafico, layout, { displayModeBar: false });
   window.addEventListener("resize", () => {
     atualizarECelular();
-    const updatedLayout = montarLayoutDoGrafico(tagId);
+    const updatedLayout = montarLayoutDoGrafico(tagId, dados);
     Plotly.react(tagId, dadosDoGrafico, updatedLayout);
   });
 }
