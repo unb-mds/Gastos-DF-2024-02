@@ -213,7 +213,7 @@ document
 
 mostrarTabela();
 
-function downloadTabelas() {
+function baixarTabelas() {
   const tabelaAtiva = secaoAtual === "compras" 
     ? document.querySelector("#compras-container table") 
     : document.querySelector("#despesas-container table");
@@ -223,14 +223,14 @@ function downloadTabelas() {
     return;
   }
 
-  const headers = Array.from(tabelaAtiva.querySelectorAll('thead th')).map(th => th.innerText.trim());
-  const rows = Array.from(tabelaAtiva.querySelectorAll('tbody tr')).map(tr => {
+  const cabecalhos = Array.from(tabelaAtiva.querySelectorAll('thead th')).map(th => th.innerText.trim());
+  const linhas = Array.from(tabelaAtiva.querySelectorAll('tbody tr')).map(tr => {
     return Array.from(tr.querySelectorAll('td')).map(td => td.innerText.trim());
   });
 
-  const tabelaData = { headers, rows };
+  const tabelaData = { cabecalhos, linhas };
 
-  fetch('/download-tabelas', {
+  fetch('/baixar-tabelas', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -244,7 +244,6 @@ function downloadTabelas() {
     return response.blob();
   })
   .then(blob => {
-    // Cria o link de download do PDF
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;

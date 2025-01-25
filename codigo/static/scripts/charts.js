@@ -162,7 +162,7 @@ function downloadGraficos() {
         titulo: graficosDados[index].titulo
       }));
 
-      fetch('/download-graficos', {
+      fetch('/baixar-graficos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -195,7 +195,7 @@ function downloadGraficoIndividual(graficoId) {
 
   Plotly.toImage(grafico, {format: 'png', width: 800, height: 450})
     .then(imageUrl => {
-      fetch('/download-graficos', {
+      fetch('/baixar-graficos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
