@@ -19,13 +19,12 @@ from reportlab.lib import colors
 
 app = Flask(__name__)
 
-
 carregador = CarregadorDados()
 processador = ProcessadorDados(carregador)
 
 @app.before_request
 def adicionar_ano_contexto():
-    g.current_year = datetime.now().year
+    g.ano_atual = datetime.now().year
 
 @app.route('/')
 def pagina_inicial():
@@ -69,8 +68,8 @@ def pagina_tabelas():
 @app.route('/baixar-graficos', methods=['POST'])
 def baixar_graficos():
     try:
-        data = request.get_json()
-        graficos = data.get('graficos', [])
+        dados = request.get_json()
+        graficos = dados.get('graficos', [])
 
         buffer = BytesIO()
 
@@ -97,12 +96,11 @@ def baixar_graficos():
         for grafico in graficos:
             titulo = Paragraph(grafico['titulo'], estilo_subtitulo)
 
-            # Decodificar imagem base64
-            img_data = grafico['imagem'].split(',')[1]
-            img_bytes = base64.b64decode(img_data)
-            img_buffer = BytesIO(img_bytes)
+            dados_img = grafico['imagem'].split(',')[1]
+            bytes_img = base64.b64decode(dados_img)
+            buffer_img = BytesIO(bytes_img)
 
-            img = Image(img_buffer, width=9*inch, height=5*inch)
+            img = Image(buffer_img, width=9*inch, height=5*inch)
 
             elementos_grafico = [
                 titulo,
@@ -123,16 +121,16 @@ def baixar_graficos():
             download_name='graficos_gastos_df.pdf'
         )
     except Exception as e:
-        return {"error": f"Erro ao gerar PDF: {str(e)}"}, 500
+        return {"erro": f"Erro ao gerar PDF: {str(e)}"}, 500
 
 @app.route('/baixar-tabelas', methods=['POST'])
-def baixar_Tabelas():  
+def baixarTabelas():  
     try:
-        data = request.get_json()
-        if not data or 'tabelas' not in data:
-            return {"error": "Nenhuma tabela fornecida"}, 400
+        dados = request.get_json()
+        if not dados or 'tabelas' not in dados:
+            return {"erro": "Nenhuma tabela fornecida"}, 400
         
-        tabelas = data['tabelas']
+        tabelas = dados['tabelas']
         buffer = BytesIO()
 
         doc = SimpleDocTemplate(
@@ -151,26 +149,26 @@ def baixar_Tabelas():
         estilo_normal = estilos['BodyText']
         elementos.append(Paragraph("Monitoramento de Gastos Públicos - Tabelas", estilo_titulo))
         elementos.append(Spacer(1, 12))
-        page_width, _ = landscape(A4)
-        usable_width = page_width - doc.leftMargin - doc.rightMargin
+        largura_pagina, _ = landscape(A4)
+        largura_utilizavel = largura_pagina - doc.leftMargin - doc.rightMargin
 
-        for index, tabela in enumerate(tabelas, 1):
-            if not all(key in tabela for key in ['headers', 'rows']):
+        for indice, tabela in enumerate(tabelas, 1):
+            if not all(chave in tabela for chave in ['cabecalhos', 'linhas']):
                 continue
 
-            headers = tabela['headers']
-            rows = tabela['rows']
-            elementos.append(Paragraph(f"Tabela {index}", estilo_normal))
+            cabecalhos = tabela['cabecalhos']
+            linhas = tabela['linhas']
+            elementos.append(Paragraph(f"Tabela {indice}", estilo_normal))
             elementos.append(Spacer(1, 6))
-            num_columns = len(headers)
-            col_width = usable_width / num_columns
-            col_widths = [col_width] * num_columns
+            num_colunas = len(cabecalhos)
+            largura_coluna = largura_utilizavel / num_colunas
+            larguras_colunas = [largura_coluna] * num_colunas
             dados = [
-                [Paragraph(str(cell), estilo_normal) for cell in row] 
-                for row in ([headers] + rows)
+                [Paragraph(str(celula), estilo_normal) for celula in linha] 
+                for linha in ([cabecalhos] + linhas)
             ]
 
-            tabela_pdf = Table(dados, colWidths=col_widths, repeatRows=1)
+            tabela_pdf = Table(dados, colWidths=larguras_colunas, repeatRows=1)
             tabela_pdf.setStyle(TableStyle([
                 ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
                 ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
@@ -201,7 +199,7 @@ def baixar_Tabelas():
     
     except Exception as e:
         print(f"Erro ao gerar PDF: {str(e)}")
-        return {"error": f"Erro ao gerar PDF: {str(e)}"}, 500
+        return {"erro": f"Erro ao gerar PDF: {str(e)}"}, 500
 
 if __name__ == '__main__':
     app.run(debug=True)
