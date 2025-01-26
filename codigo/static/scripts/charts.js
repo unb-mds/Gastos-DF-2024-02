@@ -117,10 +117,10 @@ const montarLayoutDoGrafico = (tagId, dados) => {
   const mediasEAlertas = calcularMedias(dados);
   
   // Cria anotações para alertas
-  const annotacao = [];
+  const annotations = [];
   if (mediasEAlertas && mediasEAlertas.alertas.length > 0) {
     mediasEAlertas.alertas.forEach(alerta => {
-      annotacao.push({
+      annotations.push({
         x: alerta.ano,
         y: alerta.valor,
         text: `⚠️ +${alerta.variacao.toFixed(1)}%`,
@@ -175,7 +175,7 @@ const montarLayoutDoGrafico = (tagId, dados) => {
       r: 50,
       b: eCelular ? 80 : 60,
     },
-    annotacao: annotacao
+    annotations: annotations
   };
 };
 
