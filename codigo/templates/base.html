@@ -33,6 +33,17 @@
           <a href="{{ url_for('pagina_inicial') }}" class="btn-header active"
             >Início</a
           >
+          <a href="{{ url_for('about') }}" class="btn-header">Guia de Uso</a>
+          <a href="{{ url_for('pagina_graficos') }}" class="btn-header"
+            >Análise de Gastos</a
+          >
+          {% elif request.path == '/about' %}
+          <a href="{{ url_for('pagina_inicial') }}" class="btn-header"
+            >Início</a
+          >
+          <a href="{{ url_for('about') }}" class="btn-header active"
+            >Guia de Uso</a
+          >
           <a href="{{ url_for('pagina_graficos') }}" class="btn-header"
             >Análise de Gastos</a
           >
@@ -40,6 +51,7 @@
           <a href="{{ url_for('pagina_inicial') }}" class="btn-header"
             >Início</a
           >
+          <a href="{{ url_for('about') }}" class="btn-header">Guia de Uso</a>
           <a
             href="{% if request.path == '/graficos' %}{{ url_for('pagina_graficos') }}{% elif request.path == '/tabelas' %}{{ url_for('pagina_tabelas') }}{% endif %}"
             class="btn-header active"
@@ -52,7 +64,7 @@
     </header>
     <!-- Conteúdo da página -->
     <main>
-      {%if request.path != '/' %}
+      {%if request.path != '/' and request.path != '/about' %}
       <div id="barra-navegacao" style="margin-top: -38px">
         <a
           href="{{ url_for('pagina_graficos') }}"

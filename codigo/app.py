@@ -10,7 +10,7 @@ from utils.conversores import converter_valor_monetario, formatar_data
 
 from reportlab.lib.pagesizes import letter, landscape, A4
 from reportlab.platypus import (
-    SimpleDocTemplate, Image, Spacer, 
+    SimpleDocTemplate, Image, Spacer,
     Paragraph, Table, TableStyle, KeepTogether
 )
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -43,11 +43,11 @@ def pagina_tabelas():
     compras = processador.processar_dados_tabela_compras()
     despesas_por_orgao = {}
     arquivos = carregador.listar_arquivos_despesas()
-    
+
     for arquivo in arquivos:
         nome_orgao = arquivo.replace("despesas_", "").replace(".json", "").replace("_", " ")
         dados = carregador.carregar_dados_despesas(arquivo)
-        
+
         despesas_detalhadas = []
         for item in dados:
             despesas_detalhadas.append({
@@ -58,12 +58,17 @@ def pagina_tabelas():
                 "liquidado": converter_valor_monetario(item["liquidado"]),
                 "pago": converter_valor_monetario(item["pago"])
             })
-        
+
         despesas_por_orgao[nome_orgao] = despesas_detalhadas
-    
-    return render_template('tabelas.html', 
-                           compras=compras, 
+
+    return render_template('tabelas.html',
+                           compras=compras,
                            despesas_por_orgao=despesas_por_orgao)
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/baixar-graficos', methods=['POST'])
 def baixar_graficos():
@@ -124,17 +129,17 @@ def baixar_graficos():
         return {"erro": f"Erro ao gerar PDF: {str(e)}"}, 500
 
 @app.route('/baixar-tabelas', methods=['POST'])
-def baixarTabelas():  
+def baixarTabelas():
     try:
         dados = request.get_json()
         if not dados or 'tabelas' not in dados:
             return {"erro": "Nenhuma tabela fornecida"}, 400
-        
+
         tabelas = dados['tabelas']
         buffer = BytesIO()
 
         doc = SimpleDocTemplate(
-            buffer, 
+            buffer,
             pagesize=landscape(A4),
             rightMargin=36,
             leftMargin=36,
@@ -164,7 +169,7 @@ def baixarTabelas():
             largura_coluna = largura_utilizavel / num_colunas
             larguras_colunas = [largura_coluna] * num_colunas
             dados = [
-                [Paragraph(str(celula), estilo_normal) for celula in linha] 
+                [Paragraph(str(celula), estilo_normal) for celula in linha]
                 for linha in ([cabecalhos] + linhas)
             ]
 
@@ -183,7 +188,7 @@ def baixarTabelas():
                 ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
                 ('WORDWRAP', (0, 0), (-1, -1), 'LTR'),
             ]))
-            
+
             elementos.append(tabela_pdf)
             elementos.append(Spacer(1, 24))
 
@@ -196,7 +201,7 @@ def baixarTabelas():
             as_attachment=True,
             download_name='tabelas_gastos_publicos.pdf'
         )
-    
+
     except Exception as e:
         print(f"Erro ao gerar PDF: {str(e)}")
         return {"erro": f"Erro ao gerar PDF: {str(e)}"}, 500
