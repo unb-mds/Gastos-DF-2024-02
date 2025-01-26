@@ -5,7 +5,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-  
+
   <!-- Seção de Filtragem por Mês -->
   <div class="filters-container">
     <div class="filter-group">
@@ -46,66 +46,64 @@
   </div>
 
   <div class="dropdown">
-    <div class="dropdown">
-      <button onclick="baixarTabelas()" class="dropdown-btn">
-        Baixar Tabelas (PDF)
-      </button>
-      <button class="dropdown-btn" id="dropdownButton">Selecionar Gasto</button>
-      <div class="dropdown-content" id="dropdownContent">
-        <a href="#" onclick=" secaoAtual = 'compras'; mostrarTabela();"
-          >Gastos com Compras</a
-        >
-        <p class="dropdown-subtitle">Órgãos de Despesas:</p>
-        {% for orgao, _ in despesas_por_orgao.items() %}
-        <a
-          href="#"
-          onclick="secaoAtual = 'despesas'; mostrarDespesasPorOrgao('{{ orgao }}');"
-        >
-          {{ orgao.split(' ', 1)[1] }}
-        </a>
-        {% endfor %}
-      </div>
+    <button onclick="baixarTabelas()" class="dropdown-btn">
+      Baixar Tabelas (PDF)
+    </button>
+    <button class="dropdown-btn" id="dropdownButton">Selecionar Gasto</button>
+    <div class="dropdown-content" id="dropdownContent">
+      <a href="#" onclick=" secaoAtual = 'compras'; mostrarTabela();"
+        >Gastos com Compras</a
+      >
+      <p class="dropdown-subtitle">Órgãos de Despesas:</p>
+      {% for orgao, _ in despesas_por_orgao.items() %}
+      <a
+        href="#"
+        onclick="secaoAtual = 'despesas'; mostrarDespesasPorOrgao('{{ orgao }}');"
+      >
+        {{ orgao.split(' ', 1)[1] }}
+      </a>
+      {% endfor %}
     </div>
-  
-    <div class="search-container" id="search-container">
-      <input
-        id="search-input"
-        type="text"
-        placeholder="Pesquisar..."
-        class="search-input"
-      />
-      <button class="search-button" id="botao-pesquisar">Pesquisar</button>
-    </div>
-  
-    <h3 id="despesas-title" class="subtitulo">
-      Gastos com <span id="secao-selecionada">Compras</span>
-    </h3>
-  
-    <!-- Contêiner de despesas -->
-    <div id="despesas-container" style="display: none">
-      <div id="despesas-tabela-container"></div>
-    </div>
-  
-    <!-- Contêiner de compras -->
-    <div id="compras-container">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Empresa</th>
-            <th>CNPJ</th>
-            <th>Objeto</th>
-            <th>Valor</th>
-            <th>Data</th>
-          </tr>
-        </thead>
-        <tbody id="table-body">
-          <!-- Dados preenchidos dinamicamente -->
-        </tbody>
-      </table>
-    </div>
-    <p id="result-count" class="result-count">Exibindo 0 resultado(s).</p>
   </div>
-  
+
+  <div class="search-container" id="search-container">
+    <input
+      id="search-input"
+      type="text"
+      placeholder="Pesquisar..."
+      class="search-input"
+    />
+    <button class="search-button" id="botao-pesquisar">Pesquisar</button>
+  </div>
+
+  <h3 id="despesas-title" class="subtitulo">
+    Gastos com <span id="secao-selecionada">Compras</span>
+  </h3>
+
+  <!-- Contêiner de despesas -->
+  <div id="despesas-container" style="display: none">
+    <div id="despesas-tabela-container"></div>
+  </div>
+
+  <!-- Contêiner de compras -->
+  <div id="compras-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Empresa</th>
+          <th>CNPJ</th>
+          <th>Objeto</th>
+          <th>Valor</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <!-- Dados preenchidos dinamicamente -->
+      </tbody>
+    </table>
+  </div>
+  <p id="result-count" class="result-count">Exibindo 0 resultado(s).</p>
+
   <script>
       const gastosCompras = {{ compras|safe }};
       const despesasPorOrgao = {{ despesas_por_orgao|tojson }};
@@ -120,4 +118,5 @@
       console.error('Erro ao importar tables.js:', error);
     }
   </script>
-{% endblock %}
+  {% endblock %}
+</div>
