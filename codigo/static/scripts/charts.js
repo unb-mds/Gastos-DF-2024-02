@@ -243,73 +243,60 @@ Object.entries(despesasPorOrgao).forEach(([orgao, dados]) => {
 
 function downloadGraficos() {
   const graficos = document.querySelectorAll('[id^="grafico-"]:not([id$="-container"])');
-  const graficosDados = Array.from(graficos)
-    .filter(grafico => grafico.getElementsByClassName('main-svg').length > 0) 
-    .map(grafico => {
-      const container = grafico.closest('.chart-container');
-      const titulo = container.querySelector('h3').textContent;
-      const graficoId = grafico.id;
-      
-      // Recuperar os dados corretos do gráfico
-      let dadosGrafico;
-      if (graficoId === 'grafico-compras') {
-        dadosGrafico = dadosGastosCompras;
-      } else {
-        // Para gráficos de despesas por órgão
-        const orgao = graficoId.replace('grafico-', '').replace(/_/g, ' ');
-        dadosGrafico = despesasPorOrgao[orgao];
-      }
-      
-      // Salvar estado original das anomalias
-      const toggleAnomaliaOriginal = mostrarAnomaliasAtivo;
-      
-      // Renderizar com anomalias
-      mostrarAnomaliasAtivo = true;
-      renderizarGrafico(graficoId, dadosGrafico);
-      const promiseImagemComAnomalias = Plotly.toImage(grafico, {format: 'png', width: 800, height: 450});
-      
-      // Renderizar sem anomalias
-      mostrarAnomaliasAtivo = false;
-      renderizarGrafico(graficoId, dadosGrafico);
-      const promiseImagemSemAnomalias = Plotly.toImage(grafico, {format: 'png', width: 800, height: 450});
-      
-      // Restaurar estado original
-      mostrarAnomaliasAtivo = toggleAnomaliaOriginal;
-      renderizarGrafico(graficoId, dadosGrafico);
-      
-      return {
-        titulo: titulo,
-        comAnomalias: {
-          promiseImagem: promiseImagemComAnomalias
-        },
-        semAnomalias: {
-          promiseImagem: promiseImagemSemAnomalias
-        }
-      };
-    });
+  const promises = [];
+  const graficosParaBaixar = [];
 
-  Promise.all([
-    ...graficosDados.map(dado => dado.comAnomalias.promiseImagem),
-    ...graficosDados.map(dado => dado.semAnomalias.promiseImagem)
-  ])
-  .then(imageUrls => {
-    const dadosCompletos = graficosDados.flatMap(dado => [
-      {
-        imagem: dado.comAnomalias.promiseImagem,
-        titulo: `${dado.titulo} (Com Anomalias)`
-      },
-      {
-        imagem: dado.semAnomalias.promiseImagem,
-        titulo: `${dado.titulo} (Sem Anomalias)`
-      }
-    ]);
+  graficos.forEach(grafico => {
+    if (!grafico.getElementsByClassName('main-svg').length) return;
+
+    const container = grafico.closest('.chart-container');
+    const titulo = container.querySelector('h3').textContent;
+    const graficoId = grafico.id;
+
+    // Recuperar os dados corretos do gráfico
+    let dadosGrafico;
+    if (graficoId === 'grafico-compras') {
+      dadosGrafico = dadosGastosCompras;
+    } else {
+      // Para gráficos de despesas por órgão
+      const orgao = graficoId.replace('grafico-', '').replace(/_/g, ' ');
+      dadosGrafico = despesasPorOrgao[orgao];
+    }
+
+    // Renderizar com anomalias
+    mostrarAnomaliasAtivo = true;
+    renderizarGrafico(graficoId, dadosGrafico);
+    const promiseImagemComAnomalias = Plotly.toImage(grafico, {format: 'png', width: 800, height: 450});
+
+    // Renderizar sem anomalias
+    mostrarAnomaliasAtivo = false;
+    renderizarGrafico(graficoId, dadosGrafico);
+    const promiseImagemSemAnomalias = Plotly.toImage(grafico, {format: 'png', width: 800, height: 450});
+
+    // Restaurar estado original
+    const estadoOriginalAnomalias = mostrarAnomaliasAtivo;
+    mostrarAnomaliasAtivo = estadoOriginalAnomalias;
+    renderizarGrafico(graficoId, dadosGrafico);
+
+    promises.push(promiseImagemComAnomalias, promiseImagemSemAnomalias);
+    graficosParaBaixar.push(
+      { titulo: `${titulo} (Com Anomalias)` },
+      { titulo: `${titulo} (Sem Anomalias)` }
+    );
+  });
+
+  Promise.all(promises)
+  .then(imagens => {
+    imagens.forEach((imagem, index) => {
+      graficosParaBaixar[index].imagem = imagem;
+    });
 
     return fetch('/baixar-graficos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ graficos: dadosCompletos })
+      body: JSON.stringify({ graficos: graficosParaBaixar })
     });
   })
   .then(response => response.blob())
