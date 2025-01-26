@@ -24,7 +24,7 @@ processador = ProcessadorDados(carregador)
 
 @app.before_request
 def adicionar_ano_contexto():
-    g.ano_atual = datetime.now().year
+    g.current_year = datetime.now().year
 
 @app.route('/')
 def pagina_inicial():
