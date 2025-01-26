@@ -28,7 +28,7 @@ O projeto está sendo desenvolvido por um grupo de seis alunos da disciplina, co
 - **[Artur Mendonça](https://github.com/ArtyMend07)** - Desenvolvedor
 - **[Gabriel da Cunha](https://github.com/Nibaacriba)** - Product Owner
 - **[Gabriel Lopes](https://github.com/BrzGab)** - Desenvolvedor
-- **[João Pedro](https://github.com/johnaopedro)** - Desenvolvedor e estruturador da maioria das issues.
+- **[João Pedro](https://github.com/johnaopedro)** - Desenvolvedor
 - **[Julia Gabriela](https://github.com/JuliaGabP)** - Scrum Master
 - **[Lucas Mendonça](https://github.com/lucasarruda9)** - Desenvolvedor
 
