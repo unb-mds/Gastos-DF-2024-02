@@ -1,2 +1,6 @@
+codigo/venv
+codigo/myenv
 site
-codigo/project/venv
+codigo/utils/__pycache__
+utils/__pycache__
+__pycache__

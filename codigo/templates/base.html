@@ -4,55 +4,93 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Gastos Públicos DF{% endblock %}</title>
-    <link rel="stylesheet" href="static/css/style.css"/> 
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <style>
+      /* Estilos adicionais para o dropdown e gráficos */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdown-content a {
+        display: block;
+      }
+      .dropdown-content p {
+        margin: 5px 10px;
+        color: #0056b3;
+        font-weight: bold;
+      }
+      .dropdown-btn {
+        font-size: 16px;
+      }
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+      /* Estilos para os gráficos */
+      .content {
+        padding: 20px;
+      }
+    </style>
+    {% block head %}{% endblock %}
   </head>
   <body>
     <header>
-      <nav id="header-container"> 
-        <div id="logo-container"> 
+      <nav id="header-container">
+        <div id="logo-container">
           <img
-            src="static/images/logo.png"
+            src="{{ url_for('static', filename='images/logo.png') }}"
             alt="Logo"
-            id="header-logo" /> 
+            id="header-logo"
+          />
           <h1>Monitoramento De Gastos Públicos - DF</h1>
         </div>
         <div class="header-buttons">
           <!-- Botões de navegação, com classe 'active' para a página atual -->
           {% if request.path == '/' %}
-            <a class="btn-header active">Início</a>
-            <a href="/charts" class="btn-header">Análise de Gráficos</a>
-          {% elif request.path == '/charts' or request.path == '/tables' %}
-            <a href="/" class="btn-header">Início</a>
-            <a class="btn-header active">
-              {% if request.path == '/charts' %}
-                Análise de Gráficos
-              {% elif request.path == '/tables' %}
-                Análise de Gastos
-              {% endif %}
-            </a>
+          <a href="{{ url_for('pagina_inicial') }}" class="btn-header active">Início</a>
+          <a href="{{ url_for('pagina_graficos') }}" class="btn-header">Análise de Gastos</a>
+          {% elif request.path == '/graficos' or request.path == '/tabelas' %}
+          <a href="{{ url_for('pagina_inicial') }}" class="btn-header">Início</a>
+          <a
+            href="{% if request.path == '/graficos' %}{{ url_for('pagina_graficos') }}{% elif request.path == '/tabelas' %}{{ url_for('pagina_tabelas') }}{% endif %}"
+            class="btn-header active"
+          >
+            Análise de Gastos
+          </a>
           {% endif %}
         </div>
       </nav>
     </header>
-
     <!-- Conteúdo da página -->
     <main>
-      {% block content %}
-        <!-- Outros conteúdos -->
+      {%if request.path != '/' %}
+      <div id="barra-navegacao" style="margin-top: -38px">
+        <a
+          href="{{ url_for('pagina_graficos') }}"
+          class="nav-link {{ 'active' if request.path == '/graficos' else '' }}"
+          >Gráficos</a
+        >
+        <a
+          href="{{ url_for('pagina_tabelas') }}"
+          class="nav-link {{ 'active' if request.path == '/tabelas' else '' }}"
+          >Tabelas</a
+        >
+      </div>
+      {% endif %} {% block content %}
+      <!-- Outros conteúdos -->
       {% endblock %}
     </main>
-
     <!-- Rodapé global, presente em todas as páginas -->
     <footer>
-      <div id="footer-container"> 
+      <div id="footer-container">
         <img
           src="{{ url_for('static', filename='images/footer-logo.png') }}"
           alt="Logo do rodapé"
-          id="footer-logo" /> 
-        <p>
-          © 2024 Monitoramento de Gastos Públicos - Todos os direitos
-          reservados.
-        </p>
+          id="footer-logo"
+        />
+        <p>© {{ g.current_year }} Monitoramento de Gastos Públicos.</p>
       </div>
     </footer>
   </body>
