@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "faa93bb8-d7bc-410f-be96-38d80be4a587",
+		"name": "API de dados Querido Diário",
+		"description": "# Guia para Monitoramento de Gastos Públicos - API do Querido Diário\n\nEsta coleção tem como objetivo guiá-lo nos métodos de interação com a API do _Querido Diário_, proporcionando o acesso a dados sobre o monitoramento de gastos públicos. A API oferece recursos para consultar diversas informações relevantes para a transparência e controle das despesas governamentais.\n\n## Funcionalidades da API\n\nA API do _Querido Diário_ disponibiliza diversos endpoints para acessar informações sobre:\n\n- **Gazettes**: Buscar conteúdo nas gazetas.  \n    Endpoint: `GET /gazettes`\n    \n- **Gazettes por Tema**: Buscar conteúdo nas gazetas associadas a um tema específico.  \n    Endpoint: `GET /gazettes/by_theme/{theme}`\n    \n- **Temas Disponíveis**: Obter todos os temas disponíveis.  \n    Endpoint: `GET /gazettes/by_theme/themes/`\n    \n- **Subtemas de um Tema**: Obter todos os subtemas de um tema.  \n    Endpoint: `GET /gazettes/by_theme/subthemes/{theme}`\n    \n- **Entidades de um Tema**: Obter todas as entidades associadas a um tema.  \n    Endpoint: `GET /gazettes/by_theme/entities/{theme}`\n    \n- **Cidades**: Buscar cidades pelo nome.  \n    Endpoint: `GET /cities`\n    \n- **Cidade por ID**: Obter informações de uma cidade a partir do seu ID no IBGE.  \n    Endpoint: `GET /cities/{territory_id}`\n    \n- **Sugestões**: Enviar uma sugestão para o portal.  \n    Endpoint: `POST /suggestions`\n    \n- **Informações de Empresa**: Obter informações de uma empresa a partir do número de CNPJ.  \n    Endpoint: `GET /company/info/{cnpj}`\n    \n- **Parceiros da Empresa**: Obter informações sobre os parceiros de uma empresa a partir do número de CNPJ.  \n    Endpoint: `GET /company/partners/{cnpj}`\n    \n- **Dados Agregados por Estado**: Obter arquivos de dados agregados por código de estado e, opcionalmente, por ID de território.  \n    Endpoint: `GET /aggregates/{state_code}`\n    \n## Definição de Variáveis\n\nAs variáveis são uma parte importante do processo de configuração e automação das requisições API. Elas permitem parametrizar valores dinâmicos, como URLs e tokens, para facilitar a reutilização e reduzir redundâncias.\n\n### Principais Variáveis\n\nAs variáveis principais podem ser definidas e acessadas da seguinte forma:\n\n1. Acesse a aba **Variables** dentro da coleção “API do Querido Diário”.\n    \n2. As variáveis são definidas com dois valores:\n    \n    - **Valor Inicial (Initial Value)**: O valor padrão da variável quando ela é criada. Exemplo: `https://queridodiario.ok.org.br/api/docs#/`.\n        \n    - **Valor Atual (Current Value)**: O valor da variável em uso durante a execução das requisições. Ele pode ser alterado conforme o andamento das requisições (por exemplo, quando a API retorna um valor que deve ser usado em requisições subsequentes). Exemplo: `https://queridodiario.ok.org.br/api/docs#/`.\n        \n\nA flexibilidade no uso de variáveis permite criar fluxos dinâmicos e reutilizáveis, ajudando na manutenção da consistência e eficiência das requisições.\n\n## Relacionados\n\nPara mais informações sobre o uso de variáveis e outras funcionalidades do Postman, consulte a documentação oficial [aqui](https://docs.queridodiario.ok.org.br/pt-br/latest/utilizando/api-publica.html).\n\n---",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39754264",
+		"_collection_link": "https://squad-13-8316.postman.co/workspace/bfee63cd-26ac-4cd1-9818-fbb316aa9fcf/collection/39754264-faa93bb8-d7bc-410f-be96-38d80be4a587?action=share&source=collection_link&creator=39754264"
+	},
+	"item": [
+		{
+			"name": "Compras",
+			"item": [
+				{
+					"name": "Compras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}{{gazettes}}?territory_ids=5300108&published_since=2024-01-01&querystring=despesas&excerpt_size=500&number_of_excerpts=1&size=500&sort_by=relevance",
+							"host": [
+								"{{base}}{{gazettes}}"
+							],
+							"query": [
+								{
+									"key": "territory_ids",
+									"value": "5300108",
+									"description": "ID IBGE do Estado"
+								},
+								{
+									"key": "published_since",
+									"value": "2024-01-01",
+									"description": "Desde..."
+								},
+								{
+									"key": "querystring",
+									"value": "despesas",
+									"description": "Palavra Chave //Suporta \"OR\""
+								},
+								{
+									"key": "excerpt_size",
+									"value": "500",
+									"description": "Tamanho do Resumo do site."
+								},
+								{
+									"key": "number_of_excerpts",
+									"value": "1",
+									"description": "Qt de resumos"
+								},
+								{
+									"key": "size",
+									"value": "500",
+									"description": "Qt max de artigos printados"
+								},
+								{
+									"key": "sort_by",
+									"value": "relevance",
+									"description": "Ordenacao"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "# 🚀 Comece aqui\n\nEssa pasta trata a respeito das rotas relacionadas com o compras. Caso tenha alguma dúvida em relação ao próprio endpoint, como erros, `status code`, etc, basta acessar a [documentação](https://docs.queridodiario.ok.org.br/pt-br/latest/utilizando/api-publica.html) da api do querido diario, e navegar até o endpoint.\n\n## 🔖 Como usar a rota do compras\n\nRota para ver as despesas do governo com as compras podemos ver dados gerais, como por exemplo o valores, cnpj, objeto, empresa, etc.\n\nEsta rota utiliza a seguinte url:\n\n> [https://queridodiario.ok.org.br/api/docs#/default/Search_for_content_in_gazettes_gazettes_get](https://queridodiario.ok.org.br/api/docs#/default/Search_for_content_in_gazettes_gazettes_get) \n  \n\n#### **Passo 1: identificar parâmetros**\n\nAntes de enviar requisições para este endpoint, é preciso identificar quais `query parameters` serão utilizados. Nessa rota, é possível fornecer os seguintes parâmetros:\n\n- `territory_ids`\n    \n- `published_since`\n    \n- `querystring`\n    \n- `excerpt_size`\n    \n- `number_of_excerpts`\n    \n- `pre_tags`\n    \n- `post_tags`\n    \n- `size`\n    \n- `sort_by`\n    \n\nSendo os seguintes `query parameters` **Obrigatórios**:\n\n- `territory_ids`\n    \n- `sort_by`\n    \n\n#### **Passo 2: Enviar requisição**\n\nApós identificar os `query parameters` necessários para fazer a requisição, basta clicar em `send`. Se você selecionou os parâmetros da forma correta, deverá receber uma resposta com o seguinte template:\n\n``` json\n{\n    \"total_gazettes\": 358,\n    \"gazettes\": [\n        {\n            \"territory_id\": \"5300108\",\n            \"date\": \"2024-02-01\",\n            \"scraped_at\": \"2024-02-01T23:16:43.018710\",\n            \"url\": \"https://querido-diario.nyc3.cdn.digitaloceanspaces.com/5300108/2024-02-01/7d6669df4cdd4c1ecdb61c0d06a8e62e484c6aad.pdf\",\n            \"territory_name\": \"Brasília\",\n            \"state_code\": \"DF\",\n            \"excerpts\": [\n                \"SECRETARIA DE ESTADO DE GOVERNO\\n\\nSECRETARIA EXECUTIVA DAS CIDADES\\nADMINISTRAÇÃO REGIONAL DO PLANO PILOTO\\n\\n \\n\\nORDEM DE SERVIÇO Nº 17, DE 22 DE JANEIRO DE 2024\\n\\nO ADMINISTRADOR REGIONAL DO PLANO PILOTO DO DISTRITO FEDERAL, no\\n\\nuso da competência que lhe é atribuída pelo Artigo 42, do Decreto nº 38.094, de 28 de\\n\\nmarço de 2017, combinado com Decreto nº 39.690, de 28 de fevereiro de 2019, resolve:\\n\\nArt. 1º Em cumprimento ao disposto no caput do Artigo 7º, do Decreto nº 39.690, de\\n\\n28/02/2019, comunicar\"\n            ],\n            \"is_extra_edition\": false,\n            \"txt_url\": \"https://querido-diario.nyc3.cdn.digitaloceanspaces.com/5300108/2024-02-01/7d6669df4cdd4c1ecdb61c0d06a8e62e484c6aad.txt\"\n        },\n}\n ```"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base",
+			"value": "https://queridodiario.ok.org.br/api/",
+			"type": "string"
+		},
+		{
+			"key": "gazettes",
+			"value": "gazettes",
+			"type": "string"
+		}
+	]
+}

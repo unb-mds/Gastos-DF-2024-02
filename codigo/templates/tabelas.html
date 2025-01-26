@@ -5,7 +5,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-  
+
   <!-- Seção de Filtragem por Mês -->
   <div class="filters-container">
     <div class="filter-group">
@@ -46,7 +46,7 @@
   </div>
 
   <div class="dropdown">
-    <button onclick="downloadTabelas()" class="dropdown-btn">
+    <button onclick="baixarTabelas()" class="dropdown-btn">
       Baixar Tabelas (PDF)
     </button>
     <button class="dropdown-btn" id="dropdownButton">Selecionar Gasto</button>
@@ -103,20 +103,20 @@
     </table>
   </div>
   <p id="result-count" class="result-count">Exibindo 0 resultado(s).</p>
-</div>
 
-<script>
-    const gastosCompras = {{ compras|safe }};
-    const despesasPorOrgao = {{ despesas_por_orgao|tojson }};
-  try {
-    const script = document.createElement('script');
-    script.src = "{{ url_for('static', filename='scripts/tables.js') }}";
-    script.onerror = function() {
-      console.error('Erro ao carregar o arquivo tables.js');
-    };
-    document.body.appendChild(script);
-  } catch (error) {
-    console.error('Erro ao importar tables.js:', error);
-  }
-</script>
-{% endblock %}
+  <script>
+      const gastosCompras = {{ compras|safe }};
+      const despesasPorOrgao = {{ despesas_por_orgao|tojson }};
+    try {
+      const script = document.createElement('script');
+      script.src = "{{ url_for('static', filename='scripts/tables.js') }}";
+      script.onerror = function() {
+        console.error('Erro ao carregar o arquivo tables.js');
+      };
+      document.body.appendChild(script);
+    } catch (error) {
+      console.error('Erro ao importar tables.js:', error);
+    }
+  </script>
+  {% endblock %}
+</div>

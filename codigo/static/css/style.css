@@ -227,6 +227,13 @@ ol li {
 }
 
 /* Dropdown */
+
+.dropdown-content p {
+  margin: 5px 10px;
+  color: #0056b3;
+  font-weight: bold;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -238,7 +245,7 @@ ol li {
   color: white;
   border: none;
   padding: 0.4rem 0.6rem;
-  font-size: 0.75rem;
+  font-size: 1rem;
   border-radius: 0.25rem;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -271,6 +278,7 @@ ol li {
   display: block;
   transition: background-color 0.3s ease;
   font-size: 0.75rem;
+  display: block;
 }
 
 .dropdown-content a:hover {
@@ -468,6 +476,14 @@ footer p {
 }
 
 @media (max-width: 480px) {
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
   #header-container {
     display: flex;
     flex-wrap: nowrap;

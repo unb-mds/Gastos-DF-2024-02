@@ -428,5 +428,65 @@
         "empenhado": "8.870.562,62",
         "liquidado": "62.300,55",
         "pago": "62.300,55"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Empresa Brasil de Comunicação",
+        "codigoOrgao": "20415",
+        "orgaoSuperior": "Presidência da República",
+        "codigoOrgaoSuperior": "20000",
+        "empenhado": "514.663.114,87",
+        "liquidado": "3.842.243,56",
+        "pago": "3.728.954,23"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Presidência da República",
+        "codigoOrgao": "20101",
+        "orgaoSuperior": "Presidência da República",
+        "codigoOrgaoSuperior": "20000",
+        "empenhado": "393.675.658,22",
+        "liquidado": "2.371.277,30",
+        "pago": "2.119.046,24"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Gabinete da Vice-Presidência da República",
+        "codigoOrgao": "60000",
+        "orgaoSuperior": "Presidência da República",
+        "codigoOrgaoSuperior": "20000",
+        "empenhado": "8.893.244,32",
+        "liquidado": "111.706,31",
+        "pago": "62.300,55"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Empresa Brasil de Comunicação",
+        "codigoOrgao": "20415",
+        "orgaoSuperior": "Presidência da República",
+        "codigoOrgaoSuperior": "20000",
+        "empenhado": "514.817.543,01",
+        "liquidado": "3.845.801,70",
+        "pago": "3.733.785,85"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Presidência da República",
+        "codigoOrgao": "20101",
+        "orgaoSuperior": "Presidência da República",
+        "codigoOrgaoSuperior": "20000",
+        "empenhado": "1.039.123.841,39",
+        "liquidado": "2.782.766,12",
+        "pago": "2.283.133,91"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Gabinete da Vice-Presidência da República",
+        "codigoOrgao": "60000",
+        "orgaoSuperior": "Presidência da República",
+        "codigoOrgaoSuperior": "20000",
+        "empenhado": "8.893.244,32",
+        "liquidado": "111.795,71",
+        "pago": "111.795,71"
     }
 ]
