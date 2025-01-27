@@ -103,3 +103,11 @@
     - Renderização de tabelas e filtros;
 - Incluir uma área de informações sobre os valores médios gastos, possuindo alertas caso os dados do dia estejam fora do comum - Artur Mendonça Arruda; João Pedro Costa; Gabriel Lopes de Amorim; 
 - Criação de um guia de uso - João Pedro Costa; Lucas Mendonça Arruda;
+
+## SPRINT 11
+- Documentação das atas de reunião - Artur Mendonça Arruda;
+- Criação das issues da semana - João Pedro Costa;
+- Documentação das funções na sprint - Julia Gabriela Cunha Paulino;
+- Criar documentação sobre a Sprint 10 - Gabriel Lopes de Amorim; Lucas Mendonça Arruda;
+- Revisão do protótipo de alta fidelidade - Lucas Mendonça Arruda; Gabriel da Cunha Barbaceli;
+- Incluir acessibilidade para deficientes visuais - Artur Mendonça Arruda; João Pedro Costa; Julia Gabriela Cunha Paulino; 
