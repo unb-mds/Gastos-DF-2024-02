@@ -9,3 +9,5 @@ matplotlib
 flake8
 autopep8
 autoflake
+pytest==7.1.2
+pytest-flask==1.2.0

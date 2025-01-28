@@ -1,0 +1,20 @@
+{
+  "name": "squad13",
+  "version": "1.0.0",
+  "description": "> Projeto desenvolvido para a disciplina **Métodos de Desenvolvimento de Software**.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test:python": "pytest",
+    "test:js": "jest",
+    "test": "npm run test:python && npm run test:js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "29.7.0"
+  }
+}
