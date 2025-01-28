@@ -808,5 +808,65 @@
         "empenhado": "1.410.690,49",
         "liquidado": "41.780,52",
         "pago": "41.624,69"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério da Saúde - Unidades com vínculo direto",
+        "codigoOrgao": "36000",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "30.317.952.749,53",
+        "liquidado": "9.070.281.890,92",
+        "pago": "8.255.482.994,63"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Hospital Nossa Senhora da Conceição S.A.",
+        "codigoOrgao": "36210",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "206.691.463,69",
+        "liquidado": "26.735.233,71",
+        "pago": "15.163.566,22"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundação Oswaldo Cruz",
+        "codigoOrgao": "36201",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "2.385.255.038,70",
+        "liquidado": "105.747.933,14",
+        "pago": "7.054.607,02"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Agência Nacional de Vigilância Sanitária",
+        "codigoOrgao": "36212",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "5.612.642,86",
+        "liquidado": "1.032.688,53",
+        "pago": "1.000.780,11"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundação Nacional de Saúde",
+        "codigoOrgao": "36211",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "1.536.909.650,01",
+        "liquidado": "59.165.565,58",
+        "pago": "256.539,30"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Agência Nacional de Saúde Suplementar",
+        "codigoOrgao": "36213",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "1.430.884,88",
+        "liquidado": "41.780,52",
+        "pago": "41.624,69"
     }
 ]
