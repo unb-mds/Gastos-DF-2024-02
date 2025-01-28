@@ -23,7 +23,7 @@ const calcularMedias = (dados) => {
   if (!valores || valores.length === 0) return null;
   
   const media = valores.reduce((a, b) => a + b, 0) / valores.length;
-  const limiteSuperior = media * 1.2; // 20% acima da média
+  const limiteSuperior = media * 1.4; // 40% acima da média
   
   const alertas = valores.map((valor, index) => {
     return valor > limiteSuperior ? {
