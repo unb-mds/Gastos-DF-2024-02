@@ -220,7 +220,7 @@ function renderizarGrafico(tagId, dados) {
     textoExplicativo.className = 'texto-explicativo';
     container.insertBefore(textoExplicativo, container.firstChild);
   }
-  textoExplicativo.innerHTML = 'Clique em "Mostrar Anomalias" para destacar gastos que excedem 20% da média do período.';
+  textoExplicativo.innerHTML = 'Clique em "Mostrar Anomalias" para destacar gastos que excedem 40% da média do período.';
 
   window.addEventListener("resize", () => {
     atualizarECelular();
