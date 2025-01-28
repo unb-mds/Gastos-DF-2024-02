@@ -286,31 +286,28 @@ ol li {
 }
 
 /* Filters and Search */
-.filters-container {
-  margin-bottom: 1.25rem;
+.filter-container {
+  margin-top: 1.25rem;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 0.625rem;
   max-width: 25rem;
 }
 
-.filter-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.filter-group label {
+.filter-container label {
   font-size: 0.875rem;
   margin-bottom: 0.25rem;
   color: #333;
 }
 
-.filter-group select {
+.filter-container select {
   padding: 0.5rem;
   font-size: 0.875rem;
   border: 0.0625rem solid #ccc;
   border-radius: 0.3125rem;
   width: 100%;
+  max-width: 20rem;
 }
 
 .search-container {
@@ -318,7 +315,8 @@ ol li {
   display: flex;
   gap: 0.625rem;
   flex-wrap: wrap;
-  max-width: 18.75rem;
+  max-width: 20rem;
+  width: 100%;
 }
 
 .search-input {

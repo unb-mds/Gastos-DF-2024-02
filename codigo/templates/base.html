@@ -29,36 +29,21 @@
         </div>
         <div class="header-buttons">
           <!-- Botões de navegação, com classe 'active' para a página atual -->
-          {% if request.path == '/' %}
-          <a href="{{ url_for('pagina_inicial') }}" class="btn-header active"
+          <a
+            href="{{ url_for('pagina_inicial') }}"
+            class="btn-header {{'active' if request.path == '/' else '' }}"
             >Início</a
           >
-          <a href="{{ url_for('about') }}" class="btn-header">Guia de Uso</a>
-          <a href="{{ url_for('pagina_graficos') }}" class="btn-header"
-            >Análise de Gastos</a
-          >
-          {% elif request.path == '/about' %}
-          <a href="{{ url_for('pagina_inicial') }}" class="btn-header"
-            >Início</a
-          >
-          <a href="{{ url_for('about') }}" class="btn-header active"
+          <a
+            href="{{ url_for('about') }}"
+            class="btn-header {{ 'active' if request.path == '/about' else '' }}"
             >Guia de Uso</a
           >
-          <a href="{{ url_for('pagina_graficos') }}" class="btn-header"
+          <a
+            href="{{ url_for('pagina_graficos') }}"
+            class="btn-header {{ 'active' if request.path == '/graficos' or request.path == '/tabelas' else '' }}"
             >Análise de Gastos</a
           >
-          {% elif request.path == '/graficos' or request.path == '/tabelas' %}
-          <a href="{{ url_for('pagina_inicial') }}" class="btn-header"
-            >Início</a
-          >
-          <a href="{{ url_for('about') }}" class="btn-header">Guia de Uso</a>
-          <a
-            href="{% if request.path == '/graficos' %}{{ url_for('pagina_graficos') }}{% elif request.path == '/tabelas' %}{{ url_for('pagina_tabelas') }}{% endif %}"
-            class="btn-header active"
-          >
-            Análise de Gastos
-          </a>
-          {% endif %}
         </div>
       </nav>
     </header>
