@@ -103,3 +103,17 @@
     - Renderização de tabelas e filtros;
 - Incluir uma área de informações sobre os valores médios gastos, possuindo alertas caso os dados do dia estejam fora do comum - Artur Mendonça Arruda; João Pedro Costa; Gabriel Lopes de Amorim; 
 - Criação de um guia de uso - João Pedro Costa; Lucas Mendonça Arruda;
+
+## SPRINT 11
+- Documentação das atas de reunião - Julia Gabriela Cunha Paulino;
+- Criação das issues da semana - João Pedro Costa;
+- Documentação das funções na sprint - Julia Gabriela Cunha Paulino;
+- Criar documentação sobre a Sprint 10 - Gabriel Lopes de Amorim; Julia Gabriela Cunha Paulino;
+- Revisão do protótipo de alta fidelidade - Lucas Mendonça Arruda; Gabriel da Cunha Barbaceli;
+- Inserir dados do bolsa família e imóveis - Artur Mendonça Arruda; João Pedro Costa;
+- Configurar deploy automático - João Pedro Costa;
+- Atualizar estilo dos downloads das tabelas - Julia Gabriela Cunha Paulino;
+- Automação do GitHub - Gabriel da Cunha Barbaceli; 
+- Realização de testes:
+    - Python: Gabriel Lopes de Amorim; Artur Mendonça Arruda;
+    - JavaScript: Gabriel da Cunha Barbaceli; Lucas Mendonça Arruda;
