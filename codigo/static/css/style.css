@@ -248,7 +248,9 @@ ol li {
   font-size: 1rem;
   border-radius: 0.25rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .dropdown-btn:hover {
@@ -569,7 +571,7 @@ footer p {
 .botao-anomalia {
   margin: 10px 0;
   padding: 8px 15px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
@@ -589,8 +591,8 @@ footer p {
 
 @media (max-width: 768px) {
   .botao-anomalia {
-    font-size: 12px; 
-    padding: 6px 12px; 
+    font-size: 12px;
+    padding: 6px 12px;
   }
 }
 
@@ -604,6 +606,6 @@ footer p {
 
 @media (max-width: 768px) {
   .texto-explicativo {
-    font-size: 12px; 
+    font-size: 12px;
   }
 }

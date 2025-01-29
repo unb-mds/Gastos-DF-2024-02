@@ -20,7 +20,8 @@ const obterBarraDePesquisa = () => document.getElementById("search-input");
 
 const obterFiltroSelect = () => document.getElementById("filter-select");
 
-const obterValorPadraoDoFiltro = () => document.getElementById("valor-padrao");
+const obterValorPadraoDoFiltro = () =>
+  document.getElementById("valor-padrao");
 
 function exibirQuantidadeResultados(dados, quantidadeDeResultados) {
   if (dados.length === 0) {
@@ -265,14 +266,14 @@ function baixarTabelas() {
   }
 
   const cabecalhos = Array.from(tabelaAtiva.querySelectorAll("thead th")).map(
-    (th) => th.innerText.trim()
+    (th) => th.innerText.trim(),
   );
   const linhas = Array.from(tabelaAtiva.querySelectorAll("tbody tr")).map(
     (tr) => {
       return Array.from(tr.querySelectorAll("td")).map((td) =>
-        td.innerText.trim()
+        td.innerText.trim(),
       );
-    }
+    },
   );
 
   const tabelaData = { cabecalhos, linhas };
