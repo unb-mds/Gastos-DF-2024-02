@@ -1,6 +1,14 @@
 let eCelular = window.innerWidth <= 768;
 let mostrarAnomaliasAtivo = false;
 
+//função usada para testes unitários
+function obterECelular() {
+  return eCelular;
+}
+//função usada para testes unitários
+function obterMostrarAnomaliasAtivo() {
+  return mostrarAnomaliasAtivo;
+}
 const atualizarECelular = () => {
   eCelular = window.innerWidth <= 768;
 };
@@ -191,16 +199,19 @@ const montarLayoutDoGrafico = (tagId, dados, mostrarAnomalias) => {
   };
 };
 
-function renderizarGrafico(tagId, dados) {
+function renderizarGrafico(tagId, dados, eTesteUnitario) {
   const eGraficoCompras = tagId === "grafico-compras";
   if (
     !dados ||
+    Object.keys(dados).length === 0 ||
     !dados.labels ||
     (eGraficoCompras ? !dados.pago : !dados.empenhado) ||
     dados.labels.length === 0
   ) {
+    const texto = "Não há dados para exibir no momento.";
     document.getElementById(tagId).innerHTML =
-      `<p style="text-align: center; color: #555;">Não há dados para exibir no momento.</p>`;
+      `<p style="text-align: center; color: #555;">${texto}</p>`;
+    if (eTesteUnitario) return texto;
     return;
   }
 
@@ -251,13 +262,15 @@ function toggleAnomalia(tagId, dados) {
   mostrarAnomaliasAtivo = !mostrarAnomaliasAtivo;
   renderizarGrafico(tagId, dados);
 }
+// Graficos.js
+if (typeof dadosGastosCompras !== "undefined")
+  renderizarGrafico("grafico-compras", dadosGastosCompras);
 
-renderizarGrafico("grafico-compras", dadosGastosCompras);
-
-Object.entries(despesasPorOrgao).forEach(([orgao, dados]) => {
-  const divId = `grafico-${orgao.replace(/\s/g, "_")}`;
-  renderizarGrafico(divId, dados);
-});
+if (typeof despesasPorOrgao !== "undefined")
+  Object.entries(despesasPorOrgao).forEach(([orgao, dados]) => {
+    const divId = `grafico-${orgao.replace(/\s/g, "_")}`;
+    renderizarGrafico(divId, dados);
+  });
 
 function downloadGraficos() {
   const graficos = document.querySelectorAll(
@@ -346,7 +359,11 @@ function downloadGraficos() {
 
 function downloadGraficoIndividual(graficoId) {
   const grafico = document.getElementById(graficoId);
-  if (!grafico || !grafico.getElementsByClassName("main-svg").length) {
+  if (
+    !grafico ||
+    !(grafico instanceof HTMLElement) ||
+    !grafico.getElementsByClassName("main-svg").length
+  ) {
     console.error("Gráfico não encontrado ou inválido");
     return;
   }
@@ -424,3 +441,20 @@ function downloadGraficoIndividual(graficoId) {
       alert("Erro ao baixar o gráfico. Por favor, tente novamente.");
     });
 }
+
+//exports para execução de testes
+module.exports = {
+  calcularMedias,
+  estruturarDadosDoGrafico,
+  montarLayoutDoGrafico,
+  toggleAnomalia,
+  renderizarGrafico,
+  downloadGraficos,
+  obterMostrarAnomaliasAtivo,
+  atualizarECelular,
+  fonte,
+  fonteLegenda,
+  obterECelular,
+  downloadGraficos,
+  downloadGraficoIndividual,
+};
