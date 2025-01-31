@@ -9,25 +9,6 @@
       href="{{ url_for('static', filename='css/style.css') }}"
     />
     <style>
-      /* Estilos adicionais para o dropdown e gráficos */
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-      .dropdown-content a {
-        display: block;
-      }
-      .dropdown-content p {
-        margin: 5px 10px;
-        color: #0056b3;
-        font-weight: bold;
-      }
-      .dropdown-btn {
-        font-size: 16px;
-      }
-      .dropdown-content a:hover {
-        background-color: #ddd;
-      }
       /* Estilos para os gráficos */
       .content {
         padding: 20px;
@@ -48,24 +29,27 @@
         </div>
         <div class="header-buttons">
           <!-- Botões de navegação, com classe 'active' para a página atual -->
-          {% if request.path == '/' %}
-          <a href="{{ url_for('pagina_inicial') }}" class="btn-header active">Início</a>
-          <a href="{{ url_for('pagina_graficos') }}" class="btn-header">Análise de Gastos</a>
-          {% elif request.path == '/graficos' or request.path == '/tabelas' %}
-          <a href="{{ url_for('pagina_inicial') }}" class="btn-header">Início</a>
           <a
-            href="{% if request.path == '/graficos' %}{{ url_for('pagina_graficos') }}{% elif request.path == '/tabelas' %}{{ url_for('pagina_tabelas') }}{% endif %}"
-            class="btn-header active"
+            href="{{ url_for('pagina_inicial') }}"
+            class="btn-header {{'active' if request.path == '/' else '' }}"
+            >Início</a
           >
-            Análise de Gastos
-          </a>
-          {% endif %}
+          <a
+            href="{{ url_for('about') }}"
+            class="btn-header {{ 'active' if request.path == '/about' else '' }}"
+            >Guia de Uso</a
+          >
+          <a
+            href="{{ url_for('pagina_graficos') }}"
+            class="btn-header {{ 'active' if request.path == '/graficos' or request.path == '/tabelas' else '' }}"
+            >Análise de Gastos</a
+          >
         </div>
       </nav>
     </header>
     <!-- Conteúdo da página -->
     <main>
-      {%if request.path != '/' %}
+      {%if request.path != '/' and request.path != '/about' %}
       <div id="barra-navegacao" style="margin-top: -38px">
         <a
           href="{{ url_for('pagina_graficos') }}"

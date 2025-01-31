@@ -6,3 +6,6 @@ requests
 reportlab
 fpdf
 matplotlib
+flake8
+autopep8
+autoflake

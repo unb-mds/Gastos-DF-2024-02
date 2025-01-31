@@ -1,22 +1,27 @@
 {% extends 'base.html' %} {% block title %}Análise de Gastos{% endblock %} {%
-  block content %}
-  
-  <!-- Conteúdo principal -->
-  <div class="content">
-    <h2 style="text-align: center">Monitoramento de Gastos Públicos - DF</h2>
-    
-   <!-- Adicionar botão de download -->
-   <div style="text-align: center; margin-bottom: 20px;">
+block content %}
+
+<!-- Conteúdo principal -->
+<div class="content">
+  <h2 style="text-align: center">Monitoramento de Gastos Públicos - DF</h2>
+
+  <!-- Adicionar botão de download -->
+  <div style="text-align: center; margin-bottom: 20px">
     <button onclick="downloadGraficos()" class="dropdown-btn">
       Baixar Gráficos (PDF)
     </button>
   </div>
-  
+
   <!-- Div para gráfico de compras -->
   <div id="grafico-compras-container" class="chart-container">
-    <div style="text-align: center;">
-      <h3 style="display: inline-block; margin-right: 10px;">Gastos com Compras</h3>
-      <button onclick="downloadGraficoIndividual('grafico-compras')" class="dropdown-btn">
+    <div style="text-align: center">
+      <h3 style="display: inline-block; margin-right: 10px">
+        Gastos com Compras
+      </h3>
+      <button
+        onclick="downloadGraficoIndividual('grafico-compras')"
+        class="dropdown-btn"
+      >
         Baixar Gráfico
       </button>
     </div>
@@ -28,19 +33,24 @@
       despesas com aquisições governamentais.
     </p>
   </div>
-  
+
   <!-- Divs para gráficos de despesas por órgão -->
   {% for orgao, dados in despesas_por_orgao.items() %}
   <div
     id="grafico-{{ orgao|replace(' ', '_') }}-container"
     class="chart-container"
-  > 
-  <div style="text-align: center;">
-    <h3 style="display: inline-block; margin-right: 10px;">Despesas - {{ orgao.split(' ', 1)[1] }}</h3>
-    <button onclick="downloadGraficoIndividual('grafico-{{ orgao|replace(' ', '_') }}')" class="dropdown-btn">
-      Baixar Gráfico
-    </button>
-  </div>
+  >
+    <div style="text-align: center">
+      <h3 style="display: inline-block; margin-right: 10px">
+        Despesas - {{ orgao.split(' ', 1)[1] }}
+      </h3>
+      <button
+        onclick="downloadGraficoIndividual('grafico-{{ orgao|replace(' ', '_') }}')"
+        class="dropdown-btn"
+      >
+        Baixar Gráfico
+      </button>
+    </div>
     <div
       id="grafico-{{ orgao|replace(' ', '_') }}"
       style="width: 100%; height: 400px"
@@ -99,23 +109,23 @@
     </p>
   </div>
   {% endfor %}
-  </div>
-  
-  <!-- Scripts para os gráficos -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script>
-    const dadosGastosCompras = {{ compras | tojson | safe }};
-    const despesasPorOrgao = {{ despesas_por_orgao | tojson | safe }};
-  
-    try {
-      const script = document.createElement('script');
-      script.src = "{{ url_for('static', filename='scripts/charts.js') }}";
-      script.onerror = function() {
-        console.error('Erro ao carregar o arquivo charts.js');
-      };
-      document.body.appendChild(script);
-    } catch (error) {
-      console.error('Erro ao importar charts.js:', error);
-    }
-  </script>
-  {% endblock %}
+</div>
+
+<!-- Scripts para os gráficos -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+  const dadosGastosCompras = {{ compras | tojson | safe }};
+  const despesasPorOrgao = {{ despesas_por_orgao | tojson | safe }};
+
+  try {
+    const script = document.createElement('script');
+    script.src = "{{ url_for('static', filename='scripts/graficos.js') }}";
+    script.onerror = function() {
+      console.error('Erro ao carregar o arquivo graficos.js');
+    };
+    document.body.appendChild(script);
+  } catch (error) {
+    console.error('Erro ao importar graficos.js:', error);
+  }
+</script>
+{% endblock %}

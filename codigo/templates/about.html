@@ -1,0 +1,124 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="content" style="display: flex; flex-direction: column; justify-content: center">
+  <h1 id="titulo-principal">
+    Guia de Uso
+  </h1>
+
+  <section class="description-container">
+    <h2>Páginas do Website</h2>
+
+    <!-- Página "Início" -->
+    <h3>1. Página "Início"</h3>
+    <p>
+      A página "Início" proporciona uma visão geral do projeto, apresentando informações sobre seu objetivo, as tecnologias empregadas e os membros da equipe envolvida. Ela funciona como uma introdução ao site e à sua proposta de promover a transparência nos gastos públicos do Distrito Federal.
+    </p>
+
+    <!-- Página "Análise de Gastos" -->
+    <h3>2. Página "Análise de Gastos"</h3>
+    <p>
+      A página "Análise de Gastos" apresenta uma análise detalhada dos recursos financeiros alocados pelo Governo do Distrito Federal em diversas áreas, como saúde, educação e segurança. Os dados são exibidos de forma clara por meio de gráficos e tabelas.
+    </p>
+
+    <h4>2.1 Gráficos Interativos</h4>
+    <p>
+      Os gráficos ilustram a distribuição dos gastos em diferentes áreas. Para um entendimento mais aprofundado:
+    </p>
+    <ul>
+      <li>Ao posicionar o cursor sobre qualquer parte do gráfico, serão exibidos detalhes adicionais, como o ano e o valor, facilitando a compreensão das informações apresentadas.</li>
+    </ul>
+    <p>
+      Abaixo, é apresentada uma imagem exemplificando os detalhes do gráfico de "Gastos com Compras" no mês de abril de 2024.
+    </p>
+    <div style="text-align: center;">
+      <img src="./static/images/Interacao1.png" alt="Exemplo de gráfico de gastos públicos" style="max-width: 100%; height: auto;"/>
+    </div>
+
+    <h4>Baixar os Dados</h4>
+    <p>
+      Caso deseje armazenar as informações para consulta futura, é possível realizar o download dos gráficos e tabelas em formato PDF. Abaixo, apresentamos um exemplo de como efetuar o download:
+    </p>
+    <ul>
+      <li>Exemplo de Download dos Gráficos:</li>
+      <div style="text-align: center;">
+        <img src="./static/images/Exemplo1.png" alt="Ícone de download" style="max-width: 100%; height: auto;"/>
+      </div>
+      <div style="margin-top: 20px; font-family: Arial, sans-serif; font-size: 16px;">
+        <ol style="color: #333;">
+          <li>
+            <span style="font-weight: bold; font-style: italic; color: #333;">A primeira seta</span> na imagem indica a opção para o download geral dos gráficos, permitindo a obtenção de todos os gráficos simultaneamente.
+          </li>
+          <li>
+            <span style="font-weight: bold; font-style: italic; color: #333;">A segunda seta</span> representa a opção de download individual, permitindo que cada gráfico seja baixado separadamente.
+          </li>
+        </ol>
+      </div>
+    </ul>
+
+    <h4>2.2 Tabelas</h4>
+    <p>
+      Na seção de tabelas, é possível selecionar o tipo de gasto a ser analisado por meio do botão <strong>"Selecionar Gasto"</strong>. As opções disponíveis são:
+    </p>
+    <div style="text-align: center;">
+      <img src="./static/images/tabela1.JPG" alt="Escolha de gastos" style="max-width: 100%; height: auto;"/>
+    </div>
+    <ul>
+      <li>
+        <strong>Compras:</strong> Esta seção é exibida automaticamente ao acessar a área de tabelas. Nela, é possível selecionar o mês desejado para consultar os dados correspondentes. As tabelas de compras apresentam informações detalhadas, como:
+        <ul>
+          <li>Empresa</li>
+          <li>CNPJ</li>
+          <li>Ano</li>
+          <li>Valor</li>
+          <li>Objeto</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Despesas:</strong> Esta opção está subdividida em várias subseções, como Ministério da Saúde, Ministério do Trabalho e outras áreas relevantes. O usuário pode selecionar o ano de interesse e explorar as informações de cada subseção. As tabelas de despesas incluem dados como:
+        <ul>
+          <li>Ano</li>
+          <li>Órgão</li>
+          <li>Código do Órgão</li>
+          <li>Empenhado</li>
+          <li>Líquido</li>
+          <li>Pago</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Filtragem de Dados</h4>
+    <p>
+      A pesquisa pode ser realizada de maneira simples, conforme os seguintes passos:
+    </p>
+    <div style="text-align: center;">
+      <img src="./static/images/tabela2.JPG" alt="Escolha de gastos" style="max-width: 100%; height: auto;"/>
+    </div>
+    <ol>
+      <li>Na seção de <strong>compras</strong>, selecione o <strong>mês</strong> desejado.</li>
+      <li>Na seção de <strong>despesas</strong>, selecione o <strong>ano</strong> desejado.</li>
+      <li>Informe o critério de pesquisa na caixa apropriada e clique no botão <strong>"Pesquisar"</strong> para filtrar os dados.</li>
+    </ol>
+    <p>
+      Os resultados serão exibidos com base nos filtros aplicados, mostrando a quantidade de registros encontrados ao final da tabela.
+    </p>
+
+    <h4>Baixar PDF</h4>
+    <p>
+      Para realizar o download dos dados em formato PDF, siga os passos abaixo:
+    </p>
+    <ol>
+      <li>Escolha o tipo de gasto. <span style="font-weight: bold; font-style: italic; color: #333;">(opcional)</span></li>
+      <li>Selecione o período desejado. <span style="font-weight: bold; font-style: italic; color: #333;">(opcional)</span></li>
+      <li>Aplique os filtros conforme necessário. <span style="font-weight: bold; font-style: italic; color: #333;">(opcional)</span></li>
+      <li>Clique no botão <strong>"Baixar Tabelas (PDF)"</strong> para salvar os dados em seu dispositivo.</li>
+    </ol>
+    <p>
+      Esta funcionalidade permite visualizar e armazenar exatamente os dados desejados, com opções de detalhamento claramente organizadas, conforme ilustrado na imagem abaixo.
+    </p>
+    <div style="text-align: center;">
+      <img src="./static/images/tabela3.JPG" alt="Escolha de gastos" style="max-width: 100%; height: auto;"/>
+    </div>
+
+  </section>
+</div>
+{% endblock %}
