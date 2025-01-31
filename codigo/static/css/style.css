@@ -261,10 +261,33 @@ ol li {
   position: absolute;
   background-color: #f9f9f9;
   min-width: 8rem;
+  max-height: 300px; /* Altura máxima do dropdown */
+  overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 0.25rem;
   padding: 0.3rem 0;
+  scrollbar-width: thin; /* Para Firefox */
+  scrollbar-color: #0056b3 #f9f9f9; /* Para Firefox */
+}
+
+/* Estilização da barra de rolagem para navegadores WebKit (Chrome, Safari, etc) */
+.dropdown-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-content::-webkit-scrollbar-track {
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+  background: #0056b3;
+  border-radius: 4px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb:hover {
+  background: #003d82;
 }
 
 .dropdown-content.show {

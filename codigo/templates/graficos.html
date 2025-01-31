@@ -34,10 +34,30 @@ block content %}
     </p>
   </div>
 
+  <!-- Div para gráfico de Bolsa Familia -->
+  <div id="grafico-bolsaFamilia-container" class="chart-container">
+    <div style="text-align: center">
+      <h3 style="display: inline-block; margin-right: 10px">
+        Bolsa Família
+      </h3>
+      <button
+        onclick="downloadGraficoIndividual('grafico-bolsaFamilia')"
+        class="dropdown-btn"
+      >
+        Baixar Gráfico
+      </button>
+    </div>
+    <div id="grafico-bolsaFamilia" style="width: 100%; height: 400px"></div>
+    <p class="chart-description">
+      Este gráfico apresenta a evolução mensal dos pagamentos do Bolsa Família no
+      Distrito Federal, mostrando os valores repassados aos beneficiários. Os dados são
+      atualizados mensalmente e permitem acompanhar o investimento social no programa.
+    </p>
+  </div>
   <!-- Divs para gráficos de despesas por órgão -->
   {% for orgao, dados in despesas_por_orgao.items() %}
   <div
-    id="grafico-{{ orgao|replace(' ', '_') }}-container"
+    id="grafico-{{ orgao|replace(' ', '_') }}-container" 
     class="chart-container"
   >
     <div style="text-align: center">
@@ -109,6 +129,29 @@ block content %}
     </p>
   </div>
   {% endfor %}
+
+  <!-- Adicionar Div para Gráficos de Renúncias -->
+  {% for tipo, dados in renuncias_por_tipo.items() %}
+    <div id="grafico-renuncia-{{ tipo|replace(' ', '_') }}-container" class="chart-container">
+      <div style="text-align: center">
+        <h3 style="display: inline-block; margin-right: 10px">
+          Renúncias - {{ tipo.replace('_', ' ') }}
+        </h3>
+        <button
+          onclick="downloadGraficoIndividual('grafico-renuncia-{{ tipo|replace(' ', '_') }}')"
+          class="dropdown-btn"
+        >
+          Baixar Gráfico
+        </button>
+      </div>
+      <div id="grafico-renuncia-{{ tipo|replace(' ', '_') }}" style="width: 100%; height: 400px"></div>
+      <p class="chart-description">
+        Este gráfico apresenta a evolução anual das renúncias fiscais do tipo {{ tipo.replace('_', ' ') }} no Distrito Federal, mostrando os valores renunciados ao longo dos anos.
+      </p>
+    </div>
+  {% endfor %}
+  </div>
+
 </div>
 
 <!-- Scripts para os gráficos -->
@@ -116,7 +159,8 @@ block content %}
 <script>
   const dadosGastosCompras = {{ compras | tojson | safe }};
   const despesasPorOrgao = {{ despesas_por_orgao | tojson | safe }};
-
+  const bolsaFamilia = {{ bolsa_familia|tojson | safe }};
+  const renunciasPorTipo = {{ renuncias_por_tipo | tojson | safe }};
   try {
     const script = document.createElement('script');
     script.src = "{{ url_for('static', filename='scripts/graficos.js') }}";

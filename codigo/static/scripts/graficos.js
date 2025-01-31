@@ -18,7 +18,8 @@ const fonteLegenda = () => ({
 
 const calcularMedias = (dados) => {
   const eGraficoCompras = dados.pago !== undefined;
-  const valores = eGraficoCompras ? dados.pago : dados.empenhado;
+  const eGraficoRenuncia = dados.valor_renunciado !== undefined;
+  const valores = eGraficoCompras ? dados.pago : (eGraficoRenuncia ? dados.valor_renunciado : dados.empenhado);
   
   if (!valores || valores.length === 0) return null;
   
@@ -38,27 +39,28 @@ const calcularMedias = (dados) => {
 
 const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
   const eGraficoCompras = tagId === "grafico-compras";
+  const eGraficoRenuncia = tagId.startsWith("grafico-renuncia-");
   const mediasEAlertas = calcularMedias(dados);
 
   const dadosBase = [
-    {
-      x: dados.labels,
-      y: eGraficoCompras ? dados.pago : dados.empenhado,
-      type: "bar",
-      name: eGraficoCompras ? "Compras" : "Empenhado",
-      marker: { 
-        color: "#1f77b4" // Sempre azul para o gráfico base
-      },
-      hovertemplate:
-        `<b>Valor ${eGraficoCompras ? "Pago" : "Empenhado"}</b><br>` +
-        "Ano: %{x}<br>" +
-        "Valor: R$ %{y:,.2f}<br>" +
-        `<i>${
-          eGraficoCompras
-            ? "Representa o pagamento efetivo realizado ao credor pelo serviço/produto"
-            : "Representa o primeiro estágio da despesa, quando há reserva do valor para um fim específico"
-        }</i><extra></extra>`
-    }
+      {
+          x: dados.labels,
+          y: eGraficoCompras ? dados.pago : (eGraficoRenuncia ? dados.valor_renunciado : dados.empenhado),
+          type: "bar",
+          name: eGraficoCompras ? "Compras" : (eGraficoRenuncia ? "Renúncia" : "Empenhado"),
+          marker: { 
+              color: "#1f77b4" // Sempre azul para o gráfico base
+          },
+          hovertemplate:
+              `<b>Valor ${eGraficoCompras ? "Pago" : (eGraficoRenuncia ? "Renunciado" : "Empenhado")}</b><br>` +
+              "Ano: %{x}<br>" +
+              "Valor: R$ %{y:,.2f}<br>" +
+              `<i>${
+                  eGraficoCompras
+                      ? "Representa o pagamento efetivo realizado ao credor pelo serviço/produto"
+                      : "Representa o primeiro estágio da despesa, quando há reserva do valor para um fim específico"
+              }</i><extra></extra>`
+      }
   ];
 
   // Adiciona linha de média apenas se mostrarAnomalias for true
@@ -151,6 +153,9 @@ const montarLayoutDoGrafico = (tagId, dados, mostrarAnomalias) => {
       },
       automargin: true,
       tickfont: fonteLegenda(),
+      // ALTEREI AQUI PQ OS ANOS ESTAVAM VINDO COM VALOR DECIMAL "2020,5"
+      tickmode: 'array',
+      tickvals: dados.labels.map(label => Math.round(label)),
     },
     yaxis: {
       title: {
@@ -184,49 +189,67 @@ const montarLayoutDoGrafico = (tagId, dados, mostrarAnomalias) => {
 };
 
 function renderizarGrafico(tagId, dados) {
-  const eGraficoCompras = tagId === "grafico-compras";
-  if (
-    !dados ||
-    !dados.labels ||
-    (eGraficoCompras ? !dados.pago : !dados.empenhado) ||
-    dados.labels.length === 0
-  ) {
-    document.getElementById(
-      tagId
-    ).innerHTML = `<p style="text-align: center; color: #555;">Não há dados para exibir no momento.</p>`;
-    return;
+  const graficoDiv = document.getElementById(tagId);
+  const container = document.getElementById(`${tagId}-container`);
+  
+    // Verifica se os dados são válidos
+  const dadosValidos = dados && 
+      dados.labels && 
+      dados.labels.length > 0 && 
+      ((dados.pago && dados.pago.length > 0) || 
+       (dados.valor_pago && dados.valor_pago.length > 0) ||
+       (dados.empenhado && dados.empenhado.length > 0)||
+       (dados.labels && dados.valor_renunciado.length > 0));
+
+  if (!dadosValidos) {
+      // Remove o botão de anomalia e texto explicativo existentes
+      const botaoExistente = container.querySelector('.botao-anomalia');
+      const textoExistente = container.querySelector('.texto-explicativo');
+      if (botaoExistente) botaoExistente.remove();
+      if (textoExistente) textoExistente.remove();
+
+      graficoDiv.innerHTML = `<p style="text-align: center; color: #555; padding: 20px;">Não há dados para exibir no momento.</p>`;
+      return;
   }
 
-  const dadosDoGrafico = estruturarDadosDoGrafico(tagId, dados, mostrarAnomaliasAtivo);
+  let dadosGrafico;
+  if (tagId === "grafico-bolsaFamilia") {
+      dadosGrafico = estruturarDadosDoGrafico(tagId, {
+          labels: dados.labels,
+          empenhado: dados.valor_pago  // Usando valor_pago apenas como empenhado
+      }, mostrarAnomaliasAtivo);
+    } else {
+        dadosGrafico = estruturarDadosDoGrafico(tagId, dados, mostrarAnomaliasAtivo);
+    }
+
   const layout = montarLayoutDoGrafico(tagId, dados, mostrarAnomaliasAtivo);
 
-  Plotly.newPlot(tagId, dadosDoGrafico, layout, { displayModeBar: false });
-  
-  // Adiciona botão para mostrar/ocultar anomalias
-  const container = document.getElementById(`${tagId}-container`);
+  Plotly.newPlot(tagId, dadosGrafico, layout, { displayModeBar: false });
+
+    // Adiciona botão para mostrar/ocultar anomalias
   let botaoAnomalia = container.querySelector('.botao-anomalia');
   if (!botaoAnomalia) {
-    botaoAnomalia = document.createElement('button');
-    botaoAnomalia.className = 'botao-anomalia';
-    container.insertBefore(botaoAnomalia, container.firstChild);
+      botaoAnomalia = document.createElement('button');
+      botaoAnomalia.className = 'botao-anomalia';
+      container.insertBefore(botaoAnomalia, container.firstChild);
   }
   botaoAnomalia.innerText = mostrarAnomaliasAtivo ? 'Ocultar Anomalias' : 'Mostrar Anomalias';
   botaoAnomalia.onclick = () => toggleAnomalia(tagId, dados);
 
-  // Adiciona texto explicativo para todos os gráficos
+    // Adiciona texto explicativo
   let textoExplicativo = container.querySelector('.texto-explicativo');
   if (!textoExplicativo) {
-    textoExplicativo = document.createElement('p');
-    textoExplicativo.className = 'texto-explicativo';
-    container.insertBefore(textoExplicativo, container.firstChild);
+      textoExplicativo = document.createElement('p');
+      textoExplicativo.className = 'texto-explicativo';
+      container.insertBefore(textoExplicativo, container.firstChild);
   }
   textoExplicativo.innerHTML = 'Clique em "Mostrar Anomalias" para destacar gastos que excedem 40% da média do período.';
 
   window.addEventListener("resize", () => {
     atualizarECelular();
     const updatedLayout = montarLayoutDoGrafico(tagId, dados, mostrarAnomaliasAtivo);
-    Plotly.react(tagId, dadosDoGrafico, updatedLayout);
-  });
+    Plotly.react(tagId, dadosGrafico, updatedLayout);
+});
 }
 
 function toggleAnomalia(tagId, dados) {
@@ -235,32 +258,40 @@ function toggleAnomalia(tagId, dados) {
 }
 
 renderizarGrafico("grafico-compras", dadosGastosCompras);
+renderizarGrafico("grafico-bolsaFamilia", bolsaFamilia);
 
 Object.entries(despesasPorOrgao).forEach(([orgao, dados]) => {
-  const divId = `grafico-${orgao.replace(/\s/g, "_")}`;
-  renderizarGrafico(divId, dados);
+    const divId = `grafico-${orgao.replace(/\s/g, "_")}`;
+    renderizarGrafico(divId, dados);
 });
 
-function downloadGraficos() {
-  const graficos = document.querySelectorAll('[id^="grafico-"]:not([id$="-container"])');
-  const promises = [];
-  const graficosParaBaixar = [];
-
-  graficos.forEach(grafico => {
-    if (!grafico.getElementsByClassName('main-svg').length) return;
+Object.entries(renunciasPorTipo).forEach(([tipo, dados]) => {
+  const divId = `grafico-renuncia-${tipo.replace(/\s/g, "_")}`;
+  renderizarGrafico(divId, dados);
+});
+function downloadGraficoIndividual(graficoId) {
+    const grafico = document.getElementById(graficoId);
+    if (!grafico || !grafico.getElementsByClassName('main-svg').length) {
+        console.error('Gráfico não encontrado ou inválido');
+        return;
+    }
 
     const container = grafico.closest('.chart-container');
     const titulo = container.querySelector('h3').textContent;
-    const graficoId = grafico.id;
 
     // Recuperar os dados corretos do gráfico
     let dadosGrafico;
     if (graficoId === 'grafico-compras') {
-      dadosGrafico = dadosGastosCompras;
+        dadosGrafico = dadosGastosCompras;
+    } else if (graficoId === 'grafico-bolsaFamilia') {
+        dadosGrafico = bolsaFamilia;
+    } else if (graficoId.startsWith('grafico-renuncia-')) {
+        const tipoRenuncia = graficoId.replace('grafico-renuncia-', '');
+        dadosGrafico = renunciasPorTipo[tipoRenuncia];
     } else {
-      // Para gráficos de despesas por órgão
-      const orgao = graficoId.replace('grafico-', '').replace(/_/g, ' ');
-      dadosGrafico = despesasPorOrgao[orgao];
+        // Para gráficos de despesas por órgão
+        const orgao = graficoId.replace('grafico-', '').replace(/_/g, ' ');
+        dadosGrafico = despesasPorOrgao[orgao];
     }
 
     // Renderizar com anomalias
@@ -274,117 +305,122 @@ function downloadGraficos() {
     const promiseImagemSemAnomalias = Plotly.toImage(grafico, {format: 'png', width: 800, height: 450});
 
     // Restaurar estado original
-    const estadoOriginalAnomalias = mostrarAnomaliasAtivo;
-    mostrarAnomaliasAtivo = estadoOriginalAnomalias;
+    mostrarAnomaliasAtivo = false;
     renderizarGrafico(graficoId, dadosGrafico);
 
-    promises.push(promiseImagemComAnomalias, promiseImagemSemAnomalias);
-    graficosParaBaixar.push(
-      { titulo: `${titulo} (Com Anomalias)` },
-      { titulo: `${titulo} (Sem Anomalias)` }
-    );
-  });
-
-  Promise.all(promises)
-  .then(imagens => {
-    imagens.forEach((imagem, index) => {
-      graficosParaBaixar[index].imagem = imagem;
+    Promise.all([promiseImagemComAnomalias, promiseImagemSemAnomalias])
+    .then(([imagemComAnomalias, imagemSemAnomalias]) => {
+        return fetch('/baixar-graficos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                graficos: [
+                    {
+                        titulo: `${titulo} (Com Anomalias)`,
+                        imagem: imagemComAnomalias
+                    },
+                    {
+                        titulo: `${titulo} (Sem Anomalias)`,
+                        imagem: imagemSemAnomalias
+                    }
+                ]
+            })
+        });
+    })
+    .then(response => response.blob())
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `grafico_${graficoId.toLowerCase()}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove();
+    })
+    .catch(error => {
+        console.error('Erro no download do gráfico:', error);
+        alert('Erro ao baixar o gráfico. Por favor, tente novamente.');
     });
-
-    return fetch('/baixar-graficos', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ graficos: graficosParaBaixar })
-    });
-  })
-  .then(response => response.blob())
-  .then(blob => {
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'graficos_gastos_df.pdf';
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
-  })
-  .catch(error => {
-    console.error('Erro no download dos gráficos:', error);
-    alert('Erro ao baixar os gráficos. Por favor, tente novamente.');
-  });
 }
 
-function downloadGraficoIndividual(graficoId) {
-  const grafico = document.getElementById(graficoId);
-  if (!grafico || !grafico.getElementsByClassName('main-svg').length) {
-    console.error('Gráfico não encontrado ou inválido');
-    return;
-  }
+function downloadGraficos() {
+    const graficos = document.querySelectorAll('[id^="grafico-"]:not([id$="-container"])');
+    const promises = [];
+    const graficosParaBaixar = [];
 
-  const container = grafico.closest('.chart-container');
-  const titulo = container.querySelector('h3').textContent;
+    graficos.forEach(grafico => {
+        if (!grafico.getElementsByClassName('main-svg').length) return;
 
-  // Recuperar os dados corretos do gráfico
-  let dadosGrafico;
-  if (graficoId === 'grafico-compras') {
-    dadosGrafico = dadosGastosCompras;
-  } else {
-    // Para gráficos de despesas por órgão
-    const orgao = graficoId.replace('grafico-', '').replace(/_/g, ' ');
-    dadosGrafico = despesasPorOrgao[orgao];
-  }
+        const container = grafico.closest('.chart-container');
+        const titulo = container.querySelector('h3').textContent;
+        const graficoId = grafico.id;
 
-  // Renderizar com anomalias
-  mostrarAnomaliasAtivo = true;
-  renderizarGrafico(graficoId, dadosGrafico);
-  const promiseImagemComAnomalias = Plotly.toImage(grafico, {format: 'png', width: 800, height: 450});
+        // Recuperar os dados corretos do gráfico
+        let dadosGrafico;
+        if (graficoId === 'grafico-compras') {
+            dadosGrafico = dadosGastosCompras;
+        } else if (graficoId === 'grafico-bolsaFamilia') {
+            dadosGrafico = bolsaFamilia;
+        } else if (graficoId.startsWith('grafico-renuncia-')) {
+            const tipoRenuncia = graficoId.replace('grafico-renuncia-', '');
+            dadosGrafico = renunciasPorTipo[tipoRenuncia];
+        } else {
+            // Para gráficos de despesas por órgão
+            const orgao = graficoId.replace('grafico-', '').replace(/_/g, ' ');
+            dadosGrafico = despesasPorOrgao[orgao];
+        }
 
-  // Renderizar sem anomalias
-  mostrarAnomaliasAtivo = false;
-  renderizarGrafico(graficoId, dadosGrafico);
-  const promiseImagemSemAnomalias = Plotly.toImage(grafico, {format: 'png', width: 800, height: 450});
+        // Renderizar com anomalias
+        mostrarAnomaliasAtivo = true;
+        renderizarGrafico(graficoId, dadosGrafico);
+        const promiseImagemComAnomalias = Plotly.toImage(grafico, {format: 'png', width: 800, height: 450});
 
-  // Restaurar estado original
-  const estadoOriginalAnomalias = mostrarAnomaliasAtivo;
-  mostrarAnomaliasAtivo = estadoOriginalAnomalias;
-  renderizarGrafico(graficoId, dadosGrafico);
+        // Renderizar sem anomalias
+        mostrarAnomaliasAtivo = false;
+        renderizarGrafico(graficoId, dadosGrafico);
+        const promiseImagemSemAnomalias = Plotly.toImage(grafico, {format: 'png', width: 800, height: 450});
 
-  Promise.all([promiseImagemComAnomalias, promiseImagemSemAnomalias])
-  .then(([imagemComAnomalias, imagemSemAnomalias]) => {
-    return fetch('/baixar-graficos', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        graficos: [
-          {
-            titulo: `${titulo} (Com Anomalias)`,
-            imagem: imagemComAnomalias
-          },
-          {
-            titulo: `${titulo} (Sem Anomalias)`,
-            imagem: imagemSemAnomalias
-          }
-        ]
-      })
+        // Restaurar estado original
+        mostrarAnomaliasAtivo = false;
+        renderizarGrafico(graficoId, dadosGrafico);
+
+        promises.push(promiseImagemComAnomalias, promiseImagemSemAnomalias);
+        graficosParaBaixar.push(
+            { titulo: `${titulo} (Com Anomalias)` },
+            { titulo: `${titulo} (Sem Anomalias)` }
+        );
     });
-  })
-  .then(response => response.blob())
-  .then(blob => {
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `grafico_${graficoId.toLowerCase()}.pdf`;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
-  })
-  .catch(error => {
-    console.error('Erro no download do gráfico:', error);
-    alert('Erro ao baixar o gráfico. Por favor, tente novamente.');
-  });
+
+    Promise.all(promises)
+    .then(imagens => {
+        imagens.forEach((imagem, index) => {
+            graficosParaBaixar[index].imagem = imagem;
+        });
+
+        return fetch('/baixar-graficos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ graficos: graficosParaBaixar })
+        });
+    })
+    .then(response => response.blob())
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'graficos_gastos_df.pdf';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove();
+    })
+    .catch(error => {
+        console.error('Erro no download dos gráficos:', error);
+        alert('Erro ao baixar os gráficos. Por favor, tente novamente.');
+    });
 }

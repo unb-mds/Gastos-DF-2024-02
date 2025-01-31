@@ -14,6 +14,131 @@ class ProcessadorDados:
     def __init__(self, carregador: CarregadorDados = None):
         self.carregador = carregador or CarregadorDados()
 
+    def processar_dados_bolsa_familia(self) -> Dict[str, List]:
+        dados_bolsa_familia = self.carregador.carregar_dados_bolsa_familia()
+        pagamentos_mensais = {}
+        traducao_meses = traduzir_meses()
+
+        for item in dados_bolsa_familia:
+            mes_ano = datetime.strptime(item["dataReferencia"], "%Y-%m-%d").strftime("%B/%Y")
+            mes_traduzido = f"{traducao_meses[mes_ano.split('/')[0]]}/{mes_ano.split('/')[1]}"
+            total_pago = item["valor"]
+            if total_pago > 0:
+                pagamentos_mensais[mes_traduzido] = pagamentos_mensais.get(mes_traduzido, 0) + total_pago
+        meses_ordenados = ordenar_meses_cronologicamente(list(pagamentos_mensais.keys()))
+        pagos = [pagamentos_mensais[mes] for mes in meses_ordenados]
+
+        return {"labels": meses_ordenados, "valor_pago": pagos}
+
+    def processar_dados_beneficiados(self) -> Dict[str, List]:
+        dados_bolsa_familia = self.carregador.carregar_dados_bolsa_familia()
+        beneficiados_mensais = {}
+        traducao_meses = traduzir_meses()
+
+        for item in dados_bolsa_familia:
+            mes_ano = datetime.strptime(item["dataReferencia"], "%Y-%m-%d").strftime("%B/%Y")
+            mes_traduzido = f"{traducao_meses[mes_ano.split('/')[0]]}/{mes_ano.split('/')[1]}"
+
+            quantidade_beneficiados = item["quantidadeBeneficiados"]
+
+            if quantidade_beneficiados > 0:
+                beneficiados_mensais[mes_traduzido] = beneficiados_mensais.get(mes_traduzido, 0) + quantidade_beneficiados
+
+        meses_ordenados = ordenar_meses_cronologicamente(list(beneficiados_mensais.keys()))
+        beneficiados = [beneficiados_mensais[mes] for mes in meses_ordenados]
+
+        return {"labels": meses_ordenados, "beneficiados": beneficiados}
+
+    def processar_tabela_bolsa_familia(self) -> List[Dict]:
+        dados_bolsa_familia = self.carregador.carregar_dados_bolsa_familia()
+        tabela_bolsa_familia = []
+
+        for item in dados_bolsa_familia:
+            data_referencia = datetime.strptime(item["dataReferencia"], "%Y-%m-%d")
+            data_formatada = data_referencia.strftime("%m/%d/%Y")
+            
+            tabela_bolsa_familia.append(
+                {
+                    "id": item["id"],
+                    "dataReferencia": data_formatada,
+                    "tipo": item["tipo"]["descricao"],
+                    "valor": f"R$ {item['valor']:,.2f}",
+                    "quantidadeBeneficiados": f"{item['quantidadeBeneficiados']:,}"
+                }
+            )
+
+        return sorted(tabela_bolsa_familia, key=lambda x: datetime.strptime(x["dataReferencia"], "%m/%d/%Y"), reverse=True)
+
+    def processar_dados_renuncias(self) -> Dict[str, List]:
+        dados_renuncia = self.carregador.carregar_dados_renuncia()
+        renuncias_anuais = {}
+
+        for item in dados_renuncia:
+            ano = item["ano"]
+            valor_renunciado = item["valorRenunciado"]
+            renuncias_anuais[ano] = renuncias_anuais.get(ano, 0) + valor_renunciado
+
+        anos_ordenados = sorted(renuncias_anuais.keys())
+        renuncias_formatadas = {
+            "labels": [str(ano) for ano in anos_ordenados],
+            "valor_renunciado": [renuncias_anuais[ano] for ano in anos_ordenados],
+        }
+
+        return renuncias_formatadas
+
+    def processar_tabela_renuncias(self) -> Dict[str, List[Dict]]:
+        """
+        Processa os dados de renúncias fiscais para exibição em tabela.
+        Retorna um dicionário onde cada chave é um tipo de renúncia e o valor é uma lista de renúncias.
+        """
+        renuncias_por_tipo = {}
+        arquivos = self.carregador.listar_arquivos_renuncias()
+
+        for arquivo in arquivos:
+            dados = self.carregador.carregar_dados_renuncia(arquivo)
+            
+            descricao_beneficio_fiscal = dados[0].get("descricaoBeneficioFiscal", "Desconhecido")
+            renuncias_processadas = []
+            for renuncia in dados:
+                renuncia_processada = {
+                    'ano': renuncia['ano'],
+                    'valorRenunciado': renuncia['valorRenunciado'],
+                    'tipoRenuncia': renuncia['tipoRenuncia'],
+                    'cnpj': renuncia['cnpj'],
+                    'razaoSocial': renuncia['razaoSocial'],
+                    'uf': renuncia['uf'],
+                    'municipio': renuncia['municipio']
+                }
+                renuncias_processadas.append(renuncia_processada)
+            
+            renuncias_por_tipo[descricao_beneficio_fiscal] = renuncias_processadas
+        
+        return renuncias_por_tipo
+
+    def processar_dados_renuncia(self) -> Dict[str, Dict[str, List]]:
+        renuncia_por_tipo = {}
+        arquivos = self.carregador.listar_arquivos_renuncias()
+
+        for arquivo in arquivos:
+            dados = self.carregador.carregar_dados_renuncia(arquivo)
+            descricao_beneficio_fiscal = dados[0].get("descricaoBeneficioFiscal", "Desconhecido")
+
+            renuncia_anuais = {}
+            anos = sorted({item["ano"] for item in dados})
+
+            for ano in anos:
+                valor_renunciado = sum(
+                    item["valorRenunciado"] for item in dados if item["ano"] == ano
+                )
+                renuncia_anuais[ano] = valor_renunciado
+
+            renuncia_por_tipo[descricao_beneficio_fiscal] = {
+                "labels": [str(ano) for ano in anos],
+                "valor_renunciado": [renuncia_anuais[ano] for ano in anos],
+            }
+
+        return renuncia_por_tipo
+
     def processar_dados_compras(self) -> Dict[str, List]:
         dados_compras = self.carregador.carregar_dados_compras()
         gastos_mensais = {}

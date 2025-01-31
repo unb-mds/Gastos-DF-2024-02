@@ -23,15 +23,18 @@
     </button>
     <button class="dropdown-btn" id="dropdownButton">Selecionar Gasto</button>
     <div class="dropdown-content" id="dropdownContent">
-      <a href="#" onclick=" secaoAtual = 'compras'; mostrarTabela();"
-        >Gastos com Compras</a
-      >
+      <a href="#" onclick="secaoAtual = 'compras'; mostrarTabela();">Gastos com Compras</a>
       {% for orgao, _ in despesas_por_orgao.items() %}
-      <a
-        href="#"
-        onclick="secaoAtual = 'despesas'; mostrarDespesasPorOrgao('{{ orgao }}');"
-      >
+      <a href="#" onclick="secaoAtual = 'despesas'; mostrarDespesasPorOrgao('{{ orgao }}');">
         {{ orgao.split(' ', 1)[1] }}
+      </a>
+      {% endfor %}
+      <a href="#" onclick="secaoAtual = 'bolsaFamilia'; mostrarTabelaBolsaFamilia();">
+        Bolsa Família
+      </a>
+      {% for tipo, dados in renuncias.items() %}
+      <a href="#" onclick="secaoAtual = 'renuncia_{{ tipo }}'; mostrarTabelaRenuncia('{{ tipo }}');">
+        Renúncias - {{ tipo }}
       </a>
       {% endfor %}
     </div>
@@ -60,6 +63,9 @@
       const gastosCompras = {{ compras|safe }};
       const despesasPorOrgao = {{ despesas_por_orgao|tojson }};
       const anos = {{ anos_unicos|tojson }};
+      const bolsaFamilia = {{ bolsa_familia|tojson }};
+      const renuncias = {{ renuncias|tojson }};
+      let renunciasAtuais = [];
     try {
       const script = document.createElement('script');
       script.src = "{{ url_for('static', filename='scripts/tabelas.js') }}";
@@ -69,6 +75,18 @@
       document.body.appendChild(script);
     } catch (error) {
       console.error('Erro ao importar tables.js:', error);
+    }
+
+    function mostrarTabelaRenuncia(tipo) {
+      renunciasAtuais = renuncias[tipo];
+      const secaoTitulo = document.getElementById("secao-selecionada");
+      secaoTitulo.textContent = `Renúncias - ${tipo}`;
+      
+      const filtroSelecionado = obterFiltroSelect();
+      desmontarOpcoesFiltro(filtroSelecionado);
+      montarOpcoesFiltroAno(filtroSelecionado);
+      
+      renderizarTabela(renunciasAtuais);
     }
   </script>
 </div>
