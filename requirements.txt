@@ -11,3 +11,5 @@ autopep8
 autoflake
 pytest==7.1.2
 pytest-flask==1.2.0
+werkzeug==2.2.2
+
