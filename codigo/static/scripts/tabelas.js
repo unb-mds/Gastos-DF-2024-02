@@ -259,7 +259,7 @@ function inicializarEventListeners() {
 
 // Remover as chamadas diretas dos event listeners
 // e substituir por uma verificação se estamos em ambiente de teste
-if (typeof process === 'undefined') {
+if (typeof process === "undefined") {
   // Estamos no navegador
   inicializarEventListeners();
   mostrarTabela();
@@ -327,5 +327,5 @@ module.exports = {
   PesquisarTabelaDespesas,
   AtivarDropdown,
   baixarTabelas,
-  inicializarEventListeners 
+  inicializarEventListeners,
 };
