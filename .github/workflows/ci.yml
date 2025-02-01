@@ -37,7 +37,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pre-commit
-          
+
       - name: Remove core.hooksPath if set
         run: git config --unset-all core.hooksPath
 
@@ -64,10 +64,6 @@ jobs:
       - name: Install dependencies (Node.js)
         run: npm install
 
-      - name: Run unit tests for JavaScript
-        run: npm test
-
-      # Rodando testes unitários de Python (usando pytest)
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -78,5 +74,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run unit tests for Python
-        run: pytest
+      - name: Run unit tests for JavaScript and Python
+        run: npm test

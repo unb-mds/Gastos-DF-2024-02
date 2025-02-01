@@ -236,26 +236,34 @@ window.onclick = function (event) {
   }
 };
 
-document
-  .getElementById("dropdownButton")
-  .addEventListener("click", function (event) {
-    event.stopPropagation();
-    AtivarDropdown();
+function inicializarEventListeners() {
+  document
+    .getElementById("dropdownButton")
+    ?.addEventListener("click", function (event) {
+      event.stopPropagation();
+      AtivarDropdown();
+    });
+
+  obterFiltroSelect()?.addEventListener("change", function () {
+    if (secaoAtual === "compras") PesquisarTabelaCompras();
+    else PesquisarTabelaDespesas();
   });
 
-obterFiltroSelect().addEventListener("change", function () {
-  if (secaoAtual === "compras") PesquisarTabelaCompras();
-  else PesquisarTabelaDespesas();
-});
+  document
+    .getElementById("botao-pesquisar")
+    ?.addEventListener("click", function () {
+      if (secaoAtual === "despesas") PesquisarTabelaDespesas();
+      else PesquisarTabelaCompras();
+    });
+}
 
-document
-  .getElementById("botao-pesquisar")
-  .addEventListener("click", function () {
-    if (secaoAtual === "despesas") PesquisarTabelaDespesas();
-    else PesquisarTabelaCompras();
-  });
-
-mostrarTabela();
+// Remover as chamadas diretas dos event listeners
+// e substituir por uma verificação se estamos em ambiente de teste
+if (typeof process === "undefined") {
+  // Estamos no navegador
+  inicializarEventListeners();
+  mostrarTabela();
+}
 
 function baixarTabelas() {
   const tabelaAtiva = document.querySelector("#table-container table");
@@ -306,3 +314,18 @@ function baixarTabelas() {
       alert("Erro ao fazer o download da tabela.");
     });
 }
+
+module.exports = {
+  exibirQuantidadeResultados,
+  renderizarTabela,
+  montarValorPadraoDoFiltro,
+  montarOpcoesFiltro,
+  desmontarOpcoesFiltro,
+  mostrarTabela,
+  mostrarDespesasPorOrgao,
+  PesquisarTabelaCompras,
+  PesquisarTabelaDespesas,
+  AtivarDropdown,
+  baixarTabelas,
+  inicializarEventListeners,
+};
