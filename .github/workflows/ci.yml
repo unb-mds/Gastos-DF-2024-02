@@ -37,7 +37,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pre-commit
-          pre-commit install
+          
+      - name: Remove core.hooksPath if set
+        run: git config --unset-all core.hooksPath
+
+      - name: Install pre-commit hooks
+        run: pre-commit install
 
       - name: Run Flake8 for Python
         run: pre-commit run --all-files
