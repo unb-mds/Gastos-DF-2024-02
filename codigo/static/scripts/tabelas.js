@@ -263,7 +263,10 @@ function baixarTabelas() {
     alert("Nenhuma tabela disponível para download.");
     return;
   }
-
+  // Obtém o título dinâmico com base na seção ou no contexto atual
+  const secaoTitulo = document.getElementById("secao-selecionada").textContent.trim();
+  const tituloPDF = `Gastos - ${secaoTitulo}`;
+  
   const cabecalhos = Array.from(tabelaAtiva.querySelectorAll("thead th")).map(
     (th) => th.innerText.trim()
   );
@@ -294,7 +297,7 @@ function baixarTabelas() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${secaoAtual}_filtrada.pdf`;
+      a.download = `${tituloPDF}.pdf`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
