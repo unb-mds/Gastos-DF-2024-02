@@ -103,7 +103,7 @@ Os dados de gastos públicos do DF foram coletados a partir de bases de dados of
 
 ## 🌐 Acesso ao Site
 
-O projeto será hospedado no GitHub Pages e pode ser acessado pelo link: [Gastos Públicos do Distrito Federal](http://monitoramentogastospublicos202402.up.railway.app).
+O projeto será hospedado no GitHub Pages e pode ser acessado pelo link: [Gastos Públicos do Distrito Federal](https://gastosdf.up.railway.app).
 
 ## 🔨 Ferramentas
 
