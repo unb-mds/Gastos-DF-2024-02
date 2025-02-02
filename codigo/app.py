@@ -141,11 +141,7 @@ def baixarTabelas():
         estilos = getSampleStyleSheet()
         estilo_titulo = estilos["Title"]
         estilo_normal = estilos["BodyText"]
-        elementos.append(
-            Paragraph(
-                "Monitoramento de Gastos Públicos - Tabelas", estilo_titulo
-            )
-        )
+        elementos.append(Paragraph(titulo_dinamico, estilo_titulo))
         elementos.append(Spacer(1, 12))
         largura_pagina, _ = landscape(A4)
         largura_utilizavel = largura_pagina - doc.leftMargin - doc.rightMargin
@@ -191,12 +187,13 @@ def baixarTabelas():
 
         doc.build(elementos)
         buffer.seek(0)
-
+        nome_arquivo = f"{titulo_dinamico.replace(' ', '_')}.pdf"
+        
         return send_file(
             buffer,
             mimetype="application/pdf",
             as_attachment=True,
-            download_name="tabelas_gastos_publicos.pdf",
+            download_name=nome_arquivo,
         )
 
     except Exception as e:
