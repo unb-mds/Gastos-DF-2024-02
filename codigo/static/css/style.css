@@ -484,9 +484,13 @@ footer p {
     gap: 0.4rem;
   }
 
+  header {
+    height: fit-content;
+  }
+
   #header-container {
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
     justify-content: space-between;
 
     text-align: center;
