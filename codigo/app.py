@@ -117,7 +117,6 @@ def baixar_graficos():
         return {"erro": f"Erro ao gerar PDF: {str(e)}"}, 500
 
 
-
 @app.route("/baixar-tabelas", methods=["POST"])
 def baixarTabelas():
     try:
@@ -128,7 +127,9 @@ def baixarTabelas():
         tabelas = dados["tabelas"]
 
         # Título dinâmico recebido do frontend
-        titulo_dinamico = tabelas[0].get("titulo", "Monitoramento de Gastos Públicos")
+        titulo_dinamico = tabelas[0].get(
+            "titulo", "Monitoramento de Gastos Públicos"
+        )
 
         buffer = BytesIO()
 

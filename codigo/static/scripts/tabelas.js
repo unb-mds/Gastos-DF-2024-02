@@ -20,7 +20,8 @@ const obterBarraDePesquisa = () => document.getElementById("search-input");
 
 const obterFiltroSelect = () => document.getElementById("filter-select");
 
-const obterValorPadraoDoFiltro = () => document.getElementById("valor-padrao");
+const obterValorPadraoDoFiltro = () =>
+  document.getElementById("valor-padrao");
 
 function exibirQuantidadeResultados(dados, quantidadeDeResultados) {
   if (dados.length === 0) {
@@ -235,27 +236,34 @@ window.onclick = function (event) {
   }
 };
 
-document
-  .getElementById("dropdownButton")
-  .addEventListener("click", function (event) {
-    event.stopPropagation();
-    AtivarDropdown();
+function inicializarEventListeners() {
+  document
+    .getElementById("dropdownButton")
+    ?.addEventListener("click", function (event) {
+      event.stopPropagation();
+      AtivarDropdown();
+    });
+
+  obterFiltroSelect()?.addEventListener("change", function () {
+    if (secaoAtual === "compras") PesquisarTabelaCompras();
+    else PesquisarTabelaDespesas();
   });
 
-obterFiltroSelect().addEventListener("change", function () {
-  if (secaoAtual === "compras") PesquisarTabelaCompras();
-  else PesquisarTabelaDespesas();
-});
+  document
+    .getElementById("botao-pesquisar")
+    ?.addEventListener("click", function () {
+      if (secaoAtual === "despesas") PesquisarTabelaDespesas();
+      else PesquisarTabelaCompras();
+    });
+}
 
-document
-  .getElementById("botao-pesquisar")
-  .addEventListener("click", function () {
-    if (secaoAtual === "despesas") PesquisarTabelaDespesas();
-    else PesquisarTabelaCompras();
-  });
-
-mostrarTabela();
-
+// Remover as chamadas diretas dos event listeners
+// e substituir por uma verificação se estamos em ambiente de teste
+if (typeof process === "undefined") {
+  // Estamos no navegador
+  inicializarEventListeners();
+  mostrarTabela();
+}
 
 function baixarTabelas() {
   const tabelaAtiva = document.querySelector("#table-container table");
@@ -266,19 +274,21 @@ function baixarTabelas() {
   }
 
   // Obtém o título dinâmico com base na seção ou no contexto atual
-  const secaoTitulo = document.getElementById("secao-selecionada").textContent.trim();
+  const secaoTitulo = document
+    .getElementById("secao-selecionada")
+    .textContent.trim();
   const tituloPDF = `Gastos - ${secaoTitulo}`;
 
   // Extrai os dados da tabela
   const cabecalhos = Array.from(tabelaAtiva.querySelectorAll("thead th")).map(
-    (th) => th.innerText.trim()
+    (th) => th.innerText.trim(),
   );
   const linhas = Array.from(tabelaAtiva.querySelectorAll("tbody tr")).map(
     (tr) => {
       return Array.from(tr.querySelectorAll("td")).map((td) =>
-        td.innerText.trim()
+        td.innerText.trim(),
       );
-    }
+    },
   );
 
   // Prepara os dados da tabela e o título para envio ao backend
@@ -313,3 +323,18 @@ function baixarTabelas() {
       alert("Erro ao fazer o download da tabela.");
     });
 }
+
+module.exports = {
+  exibirQuantidadeResultados,
+  renderizarTabela,
+  montarValorPadraoDoFiltro,
+  montarOpcoesFiltro,
+  desmontarOpcoesFiltro,
+  mostrarTabela,
+  mostrarDespesasPorOrgao,
+  PesquisarTabelaCompras,
+  PesquisarTabelaDespesas,
+  AtivarDropdown,
+  baixarTabelas,
+  inicializarEventListeners,
+};

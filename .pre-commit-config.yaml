@@ -20,9 +20,16 @@ repos:
     rev: 1.8.2
     hooks:
       - id: bandit
-        args: ["--skip=B201,B113"] # Pule checks problemáticos
+        args: ["--skip=B201,B113,B101"] # Pule checks problemáticos
   - repo: https://github.com/myint/autoflake
     rev: v2.3.1
     hooks:
       - id: autoflake
         args: ["--remove-all-unused-imports", "--recursive", "--in-place"]
+  - repo: local
+    hooks:
+      - id: run-tests
+        name: "Run Python and JS tests"
+        entry: ./scripts/run-tests.sh
+        language: script
+        files: ^codigo/tests/.*
