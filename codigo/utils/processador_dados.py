@@ -21,16 +21,15 @@ class ProcessadorDados:
 
         for item in dados_bolsa_familia:
             mes_ano = datetime.strptime(
-                item["dataReferencia"], "%Y-%m-%d"
-            ).strftime("%B/%Y")
-            mes_traduzido = f"{traducao_meses[mes_ano.split('/')[0]]}/{mes_ano.split('/')[1]}"
+                item["dataReferencia"], "%Y-%m-%d")
+            mes_traduzido = f"{traducao_meses[mes_ano.strftime('%B')]}"
             total_pago = item["valor"]
             if total_pago > 0:
-                pagamentos_mensais[mes_traduzido] = (
-                    pagamentos_mensais.get(mes_traduzido, 0) + total_pago
-                )
-        meses_ordenados = ordenar_meses_cronologicamente(
-            list(pagamentos_mensais.keys())
+                if mes_traduzido in pagamentos_mensais:
+                    pagamentos_mensais[mes_traduzido] += total_pago
+                else:
+                    pagamentos_mensais[mes_traduzido] = total_pago
+        meses_ordenados = sorted(pagamentos_mensais.keys(), key=lambda x: list(traducao_meses.values()).index(x)
         )
         pagos = [pagamentos_mensais[mes] for mes in meses_ordenados]
 

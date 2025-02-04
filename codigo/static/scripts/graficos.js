@@ -60,7 +60,9 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
 
   const dadosBase = [
     {
-      x: dados.labels,
+      x: (eGraficoCompras || tagId.startsWith("grafico-bolsaFamilia"))
+        ? dados.labels.map((label) => label.split("/")[0])
+        : dados.labels,
       y: eGraficoCompras
         ? dados.pago
         : eGraficoRenuncia
@@ -90,7 +92,9 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
   // Adiciona linha de média apenas se mostrarAnomalias for true
   if (mostrarAnomalias && mediasEAlertas) {
     dadosBase.push({
-      x: dados.labels,
+      x: (eGraficoCompras || tagId.startsWith("grafico-bolsaFamilia"))
+        ? dados.labels.map((label) => label.split("/")[0])
+        : dados.labels,
       y: Array(dados.labels.length).fill(mediasEAlertas.media),
       type: "scatter",
       mode: "lines",
@@ -124,7 +128,9 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
     }
     if (dados.pago) {
       dadosBase.push({
-        x: dados.labels,
+        x: (eGraficoCompras || tagId.startsWith("grafico-bolsaFamilia"))
+        ? dados.labels.map((label) => label.split("/")[0])
+        : dados.labels,
         y: dados.pago,
         type: "bar",
         name: "Pago",
@@ -171,11 +177,15 @@ const montarLayoutDoGrafico = (tagId, dados, mostrarAnomalias) => {
       });
     });
   }
-
+  let xaxisTitle = "Ano";
+  let tickvals = dados.labels.map((label) => label.split("/")[0]); // Padrão para 'Ano'
+  if (tagId === "grafico-compras" || tagId.startsWith("grafico-bolsaFamilia")) {
+    xaxisTitle = "Meses (Totais)";
+  }
   return {
     xaxis: {
       title: {
-        text: "Ano",
+        text: xaxisTitle,
         standoff: 20,
         font: fonte(),
       },
@@ -183,7 +193,7 @@ const montarLayoutDoGrafico = (tagId, dados, mostrarAnomalias) => {
       tickfont: fonteLegenda(),
       // ALTEREI AQUI PQ OS ANOS ESTAVAM VINDO COM VALOR DECIMAL "2020,5"
       tickmode: "array",
-      tickvals: dados.labels.map((label) => Math.round(label)),
+      tickvals: tickvals,
     },
     yaxis: {
       title: {
