@@ -19,8 +19,10 @@ const meses = [
 const obterBarraDePesquisa = () => document.getElementById("search-input");
 
 const obterFiltroSelect = () => document.getElementById("filter-select");
+const obterTipoDeFiltro = () => document.getElementById("filter-type");
 
-const obterValorPadraoDoFiltro = () => document.getElementById("valor-padrao");
+const obterValorPadraoDoFiltro = () =>
+  document.getElementById("valor-padrao");
 
 function exibirQuantidadeResultados(dados, quantidadeDeResultados) {
   if (dados.length === 0) {
@@ -53,7 +55,7 @@ function renderizarTabela(dados) {
           <th>Data</th>
         </tr>`
           : secaoAtual === "despesas"
-          ? `
+            ? `
         <tr>
           <th>Ano</th>
           <th>Órgão</th>
@@ -62,15 +64,15 @@ function renderizarTabela(dados) {
           <th>Liquidado</th>
           <th>Pago</th>
         </tr>`
-          : secaoAtual === "bolsaFamilia"
-          ? `
+            : secaoAtual === "bolsaFamilia"
+              ? `
         <tr>
           <th>Data de Referência</th>
           <th>Tipo</th>
           <th>Valor</th>
           <th>Quantidade de Beneficiados</th>
         </tr>`
-          : `
+              : `
         <tr>
           <th>Ano</th>
           <th>Valor Renunciado</th>
@@ -85,35 +87,53 @@ function renderizarTabela(dados) {
     <tbody>
       ${
         secaoAtual === "compras"
-          ? dados.map((item) => `<tr>
+          ? dados
+              .map(
+                (item) => `<tr>
               <td>${item.empresa}</td>
               <td>${item.cnpj}</td>
               <td>${item.objeto}</td>
               <td>R$ ${item.valor.toFixed(2)}</td>
               <td>${item.data}</td>
-            </tr>`).join("")
+            </tr>`,
+              )
+              .join("")
           : secaoAtual === "despesas"
-          ? dados.map((item) => `<tr>
+            ? dados
+                .map(
+                  (item) => `<tr>
               <td>${item.ano}</td>
               <td>${item.orgao}</td>
               <td>${item.codigoOrgao}</td>
               <td>R$ ${item.empenhado.toFixed(2)}</td>
               <td>R$ ${item.liquidado.toFixed(2)}</td>
               <td>R$ ${item.pago.toFixed(2)}</td>
-            </tr>`).join("")
-          : secaoAtual === "bolsaFamilia"
-          ? dados.map((item) => {
-              const dataReferencia = new Date(item.dataReferencia);
-              const dia = dataReferencia.getDate().toString().padStart(2, '0'); // Adiciona o zero à esquerda se necessário
-              const mes = (dataReferencia.getMonth() + 1).toString().padStart(2, '0'); // Mes é 0-11, então somamos 1
-              const ano = dataReferencia.getFullYear();
-            return `<tr>
+            </tr>`,
+                )
+                .join("")
+            : secaoAtual === "bolsaFamilia"
+              ? dados
+                  .map((item) => {
+                    const dataReferencia = new Date(item.dataReferencia);
+                    const dia = dataReferencia
+                      .getDate()
+                      .toString()
+                      .padStart(2, "0"); // Adiciona o zero à esquerda se necessário
+                    const mes = (dataReferencia.getMonth() + 1)
+                      .toString()
+                      .padStart(2, "0"); // Mes é 0-11, então somamos 1
+                    const ano = dataReferencia.getFullYear();
+                    return `<tr>
               <td>${dia}/${mes}/${ano}</td>
               <td>${item.tipo}</td>
               <td>${item.valor}</td>
               <td>${item.quantidadeBeneficiados}</td>
-            </tr>`;}).join("")
-          : dados.map((item) => `<tr>
+            </tr>`;
+                  })
+                  .join("")
+              : dados
+                  .map(
+                    (item) => `<tr>
               <td>${item.ano}</td>
               <td>R$ ${item.valorRenunciado.toFixed(2)}</td>
               <td>${item.tipoRenuncia}</td>
@@ -121,7 +141,9 @@ function renderizarTabela(dados) {
               <td>${item.razaoSocial}</td>
               <td>${item.uf}</td>
               <td>${item.municipio}</td>
-            </tr>`).join("")
+            </tr>`,
+                  )
+                  .join("")
       }
     </tbody>
   </table>
@@ -129,7 +151,6 @@ function renderizarTabela(dados) {
 
   tbody.innerHTML = tabelaHtml;
 }
-
 
 function montarValorPadraoDoFiltro(valor) {
   const valorPadrao = obterValorPadraoDoFiltro();
@@ -149,11 +170,15 @@ function montarOpcoesFiltro(opcoes, filtroSelect) {
 
 function montarOpcoesFiltroMes(filtroSelect) {
   montarValorPadraoDoFiltro("Meses");
+  const tipoDeFiltro = obterTipoDeFiltro();
+
+  if (tipoDeFiltro) tipoDeFiltro.textContent = "Meses";
 
   if (secaoAtual === "bolsaFamilia") {
     // Cria um Set para armazenar meses que têm dados
+
     const mesesComDados = new Set();
-    bolsaFamilia.forEach(item => {
+    bolsaFamilia.forEach((item) => {
       const data = new Date(item.dataReferencia);
       const mesNumero = data.getMonth(); // 0-11
       mesesComDados.add(mesNumero);
@@ -161,17 +186,17 @@ function montarOpcoesFiltroMes(filtroSelect) {
 
     // Cria opções para todos os meses
     meses.forEach((mes, index) => {
-      const mesNumero = (index + 1).toString().padStart(2, '0');
+      const mesNumero = (index + 1).toString().padStart(2, "0");
       const opcaoElement = document.createElement("option");
       opcaoElement.value = mesNumero;
       opcaoElement.textContent = mes;
-      
+
       // Se o mês não tem dados, adiciona um indicador visual
       if (!mesesComDados.has(index)) {
         opcaoElement.textContent += " (Sem dados)";
         opcaoElement.style.color = "#999";
       }
-      
+
       filtroSelect.appendChild(opcaoElement);
     });
   } else {
@@ -182,6 +207,8 @@ function montarOpcoesFiltroMes(filtroSelect) {
 
 function montarOpcoesFiltroAno(filtroSelect) {
   montarValorPadraoDoFiltro("Anos");
+  const tipoDeFiltro = obterTipoDeFiltro();
+  tipoDeFiltro.textContent = "Anos";
 
   montarOpcoesFiltro(anos, filtroSelect);
 }
@@ -219,7 +246,7 @@ function mostrarTabela() {
   } else if (secaoAtual === "despesas") {
     desmontarOpcoesFiltro(filtroSelecionado);
     montarOpcoesFiltroAno(filtroSelecionado);
-    
+
     secaoTitulo.textContent = "Despesas";
     renderizarTabela(despesasAtuais);
   } else if (secaoAtual === "bolsaFamilia") {
@@ -268,7 +295,9 @@ function PesquisarTabelaBolsaFamilia() {
 
   const dadosFiltrados = bolsaFamilia.filter((item) => {
     const dataReferencia = new Date(item.dataReferencia);
-    const mesNumero = (dataReferencia.getMonth() + 1).toString().padStart(2, '0');
+    const mesNumero = (dataReferencia.getMonth() + 1)
+      .toString()
+      .padStart(2, "0");
 
     const correspondeAPesquisa =
       pesquisa === "" ||
@@ -365,79 +394,109 @@ window.onclick = function (event) {
   }
 };
 
-document
-  .getElementById("dropdownButton")
-  .addEventListener("click", function (event) {
-    event.stopPropagation();
-    AtivarDropdown();
-  });
+function inicializarEventListeners() {
+  document
+    .getElementById("dropdownButton")
+    ?.addEventListener("click", function (event) {
+      event.stopPropagation();
+      AtivarDropdown();
+    });
 
-obterFiltroSelect().addEventListener("change", function () {
-  if (secaoAtual === "compras") PesquisarTabelaCompras();
-  else if (secaoAtual === "despesas") PesquisarTabelaDespesas();
-  else if (secaoAtual === "bolsaFamilia") PesquisarTabelaBolsaFamilia();
-  else if (secaoAtual.startsWith("renuncia_")) PesquisarTabelaRenuncias();
-});
-
-document
-  .getElementById("botao-pesquisar")
-  .addEventListener("click", function () {
-    if (secaoAtual === "despesas") PesquisarTabelaDespesas();
-    else if (secaoAtual === "compras") PesquisarTabelaCompras();
+  obterFiltroSelect().addEventListener("change", function () {
+    if (secaoAtual === "compras") PesquisarTabelaCompras();
+    else if (secaoAtual === "despesas") PesquisarTabelaDespesas();
     else if (secaoAtual === "bolsaFamilia") PesquisarTabelaBolsaFamilia();
     else if (secaoAtual.startsWith("renuncia_")) PesquisarTabelaRenuncias();
   });
 
-mostrarTabela();
-
-function baixarTabelas() {
-    const tabela = document.querySelector(".data-table");
-    if (!tabela) {
-        alert("Nenhuma tabela disponível para download.");
-        return;
-    }
-
-    const cabecalhos = Array.from(tabela.querySelectorAll("thead th")).map(
-        (th) => th.innerText.trim()
-    );
-
-    const linhas = Array.from(tabela.querySelectorAll("tbody tr")).map((tr) => {
-        return Array.from(tr.querySelectorAll("td")).map((td) => td.innerText.trim());
-    });
-
-    fetch("/baixar-tabelas", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            tabelas: [
-                {
-                    cabecalhos: cabecalhos,
-                    linhas: linhas,
-                    titulo: `Tabela de ${document.getElementById("secao-selecionada").textContent}`
-                }
-            ]
-        }),
-    })
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error("Erro ao gerar o PDF");
-        }
-        return response.blob();
-    })
-    .then((blob) => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `tabela_${secaoAtual.toLowerCase()}.pdf`;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        a.remove();
-    })
-    .catch((error) => {
-        console.error(error);
-        alert("Erro ao fazer o download da tabela.");
+  document
+    .getElementById("botao-pesquisar")
+    .addEventListener("click", function () {
+      if (secaoAtual === "despesas") PesquisarTabelaDespesas();
+      else if (secaoAtual === "compras") PesquisarTabelaCompras();
+      else if (secaoAtual === "bolsaFamilia") PesquisarTabelaBolsaFamilia();
+      else if (secaoAtual.startsWith("renuncia_")) PesquisarTabelaRenuncias();
     });
 }
+
+// Remover as chamadas diretas dos event listeners
+// e substituir por uma verificação se estamos em ambiente de teste
+if (typeof process === "undefined") {
+  // Estamos no navegador
+  inicializarEventListeners();
+  mostrarTabela();
+}
+
+function baixarTabelas() {
+  const tabelaAtiva = document.querySelector("#table-container table");
+
+  if (!tabelaAtiva) {
+    alert("Nenhuma tabela disponível para download.");
+    return;
+  }
+
+  // Obtém o título dinâmico com base na seção ou no contexto atual
+  const secaoTitulo = document
+    .getElementById("secao-selecionada")
+    .textContent.trim();
+  const tituloPDF = `Gastos - ${secaoTitulo}`;
+
+  // Extrai os dados da tabela
+  const cabecalhos = Array.from(tabelaAtiva.querySelectorAll("thead th")).map(
+    (th) => th.innerText.trim(),
+  );
+  const linhas = Array.from(tabelaAtiva.querySelectorAll("tbody tr")).map(
+    (tr) => {
+      return Array.from(tr.querySelectorAll("td")).map((td) =>
+        td.innerText.trim(),
+      );
+    },
+  );
+
+  // Prepara os dados da tabela e o título para envio ao backend
+  const tabelaData = { cabecalhos, linhas, titulo: tituloPDF };
+
+  fetch("/baixar-tabelas", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ tabelas: [tabelaData] }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erro ao gerar o PDF");
+      }
+      return response.blob();
+    })
+    .then((blob) => {
+      // Usa o título dinâmico no nome do arquivo baixado
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${tituloPDF}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove();
+    })
+    .catch((error) => {
+      console.error(error);
+      alert("Erro ao fazer o download da tabela.");
+    });
+}
+
+module.exports = {
+  exibirQuantidadeResultados,
+  renderizarTabela,
+  montarValorPadraoDoFiltro,
+  montarOpcoesFiltro,
+  desmontarOpcoesFiltro,
+  mostrarTabela,
+  mostrarDespesasPorOrgao,
+  PesquisarTabelaCompras,
+  PesquisarTabelaDespesas,
+  AtivarDropdown,
+  baixarTabelas,
+  inicializarEventListeners,
+};

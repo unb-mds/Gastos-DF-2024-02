@@ -4,7 +4,7 @@ from typing import Dict, List, Union
 
 
 class CarregadorDados:
-    def __init__(self, diretorio_dados: str = "../actions/json"):
+    def __init__(self, diretorio_dados: str = "./actions/json"):
         self.diretorio_dados = pathlib.Path(diretorio_dados)
 
     def carregar_json(self, nome_arquivo: str) -> Union[Dict, List]:
@@ -21,7 +21,7 @@ class CarregadorDados:
 
     def listar_arquivos_renuncias(self) -> List[str]:
         return [f.name for f in self.diretorio_dados.glob("renuncias_*.json")]
-    
+
     def carregar_dados_compras(self) -> Dict:
         return self.carregar_json("compras.json")
 

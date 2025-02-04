@@ -27,19 +27,17 @@ block content %}
     </div>
     <div id="grafico-compras" style="width: 100%; height: 400px"></div>
     <p class="chart-description">
-      Este gráfico apresenta a evolução anual dos gastos com compras públicas no
-      Distrito Federal, mostrando os valores empenhados (azul). Os dados são
-      atualizados periodicamente e permitem acompanhar o ciclo completo das
-      despesas com aquisições governamentais.
+      Este gráfico apresenta a evolução anual dos gastos com compras públicas
+      no Distrito Federal, mostrando os valores empenhados (azul). Os dados
+      são atualizados periodicamente e permitem acompanhar o ciclo completo
+      das despesas com aquisições governamentais.
     </p>
   </div>
 
   <!-- Div para gráfico de Bolsa Familia -->
   <div id="grafico-bolsaFamilia-container" class="chart-container">
     <div style="text-align: center">
-      <h3 style="display: inline-block; margin-right: 10px">
-        Bolsa Família
-      </h3>
+      <h3 style="display: inline-block; margin-right: 10px">Bolsa Família</h3>
       <button
         onclick="downloadGraficoIndividual('grafico-bolsaFamilia')"
         class="dropdown-btn"
@@ -49,15 +47,16 @@ block content %}
     </div>
     <div id="grafico-bolsaFamilia" style="width: 100%; height: 400px"></div>
     <p class="chart-description">
-      Este gráfico apresenta a evolução mensal dos pagamentos do Bolsa Família no
-      Distrito Federal, mostrando os valores repassados aos beneficiários. Os dados são
-      atualizados mensalmente e permitem acompanhar o investimento social no programa.
+      Este gráfico apresenta a evolução mensal dos pagamentos do Bolsa Família
+      no Distrito Federal, mostrando os valores repassados aos beneficiários.
+      Os dados são atualizados mensalmente e permitem acompanhar o
+      investimento social no programa.
     </p>
   </div>
   <!-- Divs para gráficos de despesas por órgão -->
   {% for orgao, dados in despesas_por_orgao.items() %}
   <div
-    id="grafico-{{ orgao|replace(' ', '_') }}-container" 
+    id="grafico-{{ orgao|replace(' ', '_') }}-container"
     class="chart-container"
   >
     <div style="text-align: center">
@@ -76,82 +75,89 @@ block content %}
       style="width: 100%; height: 400px"
     ></div>
     <p class="chart-description">
-      {% set nome_orgao = orgao.split(' ', 1)[1] %} {% if 'Justiça' in orgao %}
-      Este gráfico apresenta a evolução anual das despesas do {{ nome_orgao }}
-      no Distrito Federal, abrangendo investimentos em segurança pública,
+      {% set nome_orgao = orgao.split(' ', 1)[1] %} {% if 'Justiça' in orgao
+      %} Este gráfico apresenta a evolução anual das despesas do {{ nome_orgao
+      }} no Distrito Federal, abrangendo investimentos em segurança pública,
       sistema penitenciário, políticas antidrogas e proteção ao consumidor. Os
-      valores empenhados (azul), liquidados (laranja) e pagos (verde) demonstram
-      a execução orçamentária nas ações de justiça e segurança pública. {% elif
-      'Trabalho' in orgao %} Este gráfico detalha a evolução anual das despesas
-      do {{ nome_orgao }} no Distrito Federal, incluindo investimentos em
-      políticas de emprego, fiscalização trabalhista e programas de qualificação
-      profissional. Os valores empenhados (azul), liquidados (laranja) e pagos
-      (verde) refletem os recursos destinados às políticas de trabalho e renda.
-      {% elif 'Defesa' in orgao %} Este gráfico mostra a evolução anual das
-      despesas do {{ nome_orgao }} no Distrito Federal, contemplando gastos com
-      as Forças Armadas, projetos estratégicos de defesa e proteção das
-      fronteiras. Os valores empenhados (azul), liquidados (laranja) e pagos
-      (verde) indicam os investimentos na defesa nacional. {% elif 'Presidência'
-      in orgao %} Este gráfico apresenta a evolução anual das despesas da {{
-      nome_orgao }} no Distrito Federal, incluindo gastos com a administração
-      presidencial, órgãos essenciais e programas estratégicos do governo. Os
-      valores empenhados (azul), liquidados (laranja) e pagos (verde) mostram a
-      execução orçamentária da administração federal superior. {% elif
-      'Agricultura' in orgao %} Este gráfico detalha a evolução anual das
-      despesas do {{ nome_orgao }} no Distrito Federal, abrangendo investimentos
-      em desenvolvimento rural, segurança alimentar e fomento agropecuário. Os
-      valores empenhados (azul), liquidados (laranja) e pagos (verde) demonstram
-      os recursos aplicados no setor agrícola. {% elif 'Esporte' in orgao %}
-      Este gráfico ilustra a evolução anual das despesas do {{ nome_orgao }} no
-      Distrito Federal, contemplando investimentos em infraestrutura esportiva,
-      programas de incentivo ao esporte e apoio ao atleta. Os valores empenhados
-      (azul), liquidados (laranja) e pagos (verde) refletem o compromisso com o
-      desenvolvimento esportivo. {% elif 'Relações Exteriores' in orgao %} Este
-      gráfico apresenta a evolução anual das despesas do {{ nome_orgao }} no
-      Distrito Federal, incluindo gastos com representações diplomáticas,
-      cooperação internacional e promoção comercial. Os valores empenhados
-      (azul), liquidados (laranja) e pagos (verde) mostram os investimentos na
-      política externa brasileira. {% elif 'Integração' in orgao %} Este gráfico
-      detalha a evolução anual das despesas do {{ nome_orgao }} no Distrito
-      Federal, abrangendo investimentos em desenvolvimento regional, obras
-      contra as secas e defesa civil. Os valores empenhados (azul), liquidados
-      (laranja) e pagos (verde) demonstram os recursos destinados à integração
-      nacional. {% elif 'Saúde' in orgao %} Este gráfico mostra a evolução anual
-      das despesas do {{ nome_orgao }} no Distrito Federal, contemplando
-      investimentos no SUS, programas de saúde pública e vigilância sanitária.
-      Os valores empenhados (azul), liquidados (laranja) e pagos (verde)
-      refletem os recursos aplicados na saúde da população. {% else %} Este
-      gráfico apresenta a evolução anual das despesas da {{ nome_orgao }} no
-      Distrito Federal, detalhando os valores empenhados (azul), liquidados
-      (laranja) e pagos (verde). Os dados são atualizados periodicamente e
-      permitem acompanhar o ciclo orçamentário completo desta unidade
-      administrativa. {% endif %}
+      valores empenhados (azul), liquidados (laranja) e pagos (verde)
+      demonstram a execução orçamentária nas ações de justiça e segurança
+      pública. {% elif 'Trabalho' in orgao %} Este gráfico detalha a evolução
+      anual das despesas do {{ nome_orgao }} no Distrito Federal, incluindo
+      investimentos em políticas de emprego, fiscalização trabalhista e
+      programas de qualificação profissional. Os valores empenhados (azul),
+      liquidados (laranja) e pagos (verde) refletem os recursos destinados às
+      políticas de trabalho e renda. {% elif 'Defesa' in orgao %} Este gráfico
+      mostra a evolução anual das despesas do {{ nome_orgao }} no Distrito
+      Federal, contemplando gastos com as Forças Armadas, projetos
+      estratégicos de defesa e proteção das fronteiras. Os valores empenhados
+      (azul), liquidados (laranja) e pagos (verde) indicam os investimentos na
+      defesa nacional. {% elif 'Presidência' in orgao %} Este gráfico
+      apresenta a evolução anual das despesas da {{ nome_orgao }} no Distrito
+      Federal, incluindo gastos com a administração presidencial, órgãos
+      essenciais e programas estratégicos do governo. Os valores empenhados
+      (azul), liquidados (laranja) e pagos (verde) mostram a execução
+      orçamentária da administração federal superior. {% elif 'Agricultura' in
+      orgao %} Este gráfico detalha a evolução anual das despesas do {{
+      nome_orgao }} no Distrito Federal, abrangendo investimentos em
+      desenvolvimento rural, segurança alimentar e fomento agropecuário. Os
+      valores empenhados (azul), liquidados (laranja) e pagos (verde)
+      demonstram os recursos aplicados no setor agrícola. {% elif 'Esporte' in
+      orgao %} Este gráfico ilustra a evolução anual das despesas do {{
+      nome_orgao }} no Distrito Federal, contemplando investimentos em
+      infraestrutura esportiva, programas de incentivo ao esporte e apoio ao
+      atleta. Os valores empenhados (azul), liquidados (laranja) e pagos
+      (verde) refletem o compromisso com o desenvolvimento esportivo. {% elif
+      'Relações Exteriores' in orgao %} Este gráfico apresenta a evolução
+      anual das despesas do {{ nome_orgao }} no Distrito Federal, incluindo
+      gastos com representações diplomáticas, cooperação internacional e
+      promoção comercial. Os valores empenhados (azul), liquidados (laranja) e
+      pagos (verde) mostram os investimentos na política externa brasileira.
+      {% elif 'Integração' in orgao %} Este gráfico detalha a evolução anual
+      das despesas do {{ nome_orgao }} no Distrito Federal, abrangendo
+      investimentos em desenvolvimento regional, obras contra as secas e
+      defesa civil. Os valores empenhados (azul), liquidados (laranja) e pagos
+      (verde) demonstram os recursos destinados à integração nacional. {% elif
+      'Saúde' in orgao %} Este gráfico mostra a evolução anual das despesas do
+      {{ nome_orgao }} no Distrito Federal, contemplando investimentos no SUS,
+      programas de saúde pública e vigilância sanitária. Os valores empenhados
+      (azul), liquidados (laranja) e pagos (verde) refletem os recursos
+      aplicados na saúde da população. {% else %} Este gráfico apresenta a
+      evolução anual das despesas da {{ nome_orgao }} no Distrito Federal,
+      detalhando os valores empenhados (azul), liquidados (laranja) e pagos
+      (verde). Os dados são atualizados periodicamente e permitem acompanhar o
+      ciclo orçamentário completo desta unidade administrativa. {% endif %}
     </p>
   </div>
   {% endfor %}
 
   <!-- Adicionar Div para Gráficos de Renúncias -->
   {% for tipo, dados in renuncias_por_tipo.items() %}
-    <div id="grafico-renuncia-{{ tipo|replace(' ', '_') }}-container" class="chart-container">
-      <div style="text-align: center">
-        <h3 style="display: inline-block; margin-right: 10px">
-          Renúncias - {{ tipo.replace('_', ' ') }}
-        </h3>
-        <button
-          onclick="downloadGraficoIndividual('grafico-renuncia-{{ tipo|replace(' ', '_') }}')"
-          class="dropdown-btn"
-        >
-          Baixar Gráfico
-        </button>
-      </div>
-      <div id="grafico-renuncia-{{ tipo|replace(' ', '_') }}" style="width: 100%; height: 400px"></div>
-      <p class="chart-description">
-        Este gráfico apresenta a evolução anual das renúncias fiscais do tipo {{ tipo.replace('_', ' ') }} no Distrito Federal, mostrando os valores renunciados ao longo dos anos.
-      </p>
+  <div
+    id="grafico-renuncia-{{ tipo|replace(' ', '_') }}-container"
+    class="chart-container"
+  >
+    <div style="text-align: center">
+      <h3 style="display: inline-block; margin-right: 10px">
+        Renúncias - {{ tipo.replace('_', ' ') }}
+      </h3>
+      <button
+        onclick="downloadGraficoIndividual('grafico-renuncia-{{ tipo|replace(' ', '_') }}')"
+        class="dropdown-btn"
+      >
+        Baixar Gráfico
+      </button>
     </div>
-  {% endfor %}
+    <div
+      id="grafico-renuncia-{{ tipo|replace(' ', '_') }}"
+      style="width: 100%; height: 400px"
+    ></div>
+    <p class="chart-description">
+      Este gráfico apresenta a evolução anual das renúncias fiscais do tipo {{
+      tipo.replace('_', ' ') }} no Distrito Federal, mostrando os valores
+      renunciados ao longo dos anos.
+    </p>
   </div>
-
+  {% endfor %}
 </div>
 
 <!-- Scripts para os gráficos -->

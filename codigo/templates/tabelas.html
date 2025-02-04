@@ -9,7 +9,7 @@
   <!-- Seção de Filtragem -->
   <div class="filter-container">
     <label for="filter-container"
-      >Filtrar por <span id="filter-type">Compras</span>:</label
+      >Filtrar por <span id="filter-type">Meses</span>:</label
     >
 
     <select id="filter-select" name="filter-select">
@@ -23,17 +23,28 @@
     </button>
     <button class="dropdown-btn" id="dropdownButton">Selecionar Gasto</button>
     <div class="dropdown-content" id="dropdownContent">
-      <a href="#" onclick="secaoAtual = 'compras'; mostrarTabela();">Gastos com Compras</a>
+      <a href="#" onclick="secaoAtual = 'compras'; mostrarTabela();"
+        >Gastos com Compras</a
+      >
       {% for orgao, _ in despesas_por_orgao.items() %}
-      <a href="#" onclick="secaoAtual = 'despesas'; mostrarDespesasPorOrgao('{{ orgao }}');">
+      <a
+        href="#"
+        onclick="secaoAtual = 'despesas'; mostrarDespesasPorOrgao('{{ orgao }}');"
+      >
         {{ orgao.split(' ', 1)[1] }}
       </a>
       {% endfor %}
-      <a href="#" onclick="secaoAtual = 'bolsaFamilia'; mostrarTabelaBolsaFamilia();">
+      <a
+        href="#"
+        onclick="secaoAtual = 'bolsaFamilia'; mostrarTabelaBolsaFamilia();"
+      >
         Bolsa Família
       </a>
       {% for tipo, dados in renuncias.items() %}
-      <a href="#" onclick="secaoAtual = 'renuncia_{{ tipo }}'; mostrarTabelaRenuncia('{{ tipo }}');">
+      <a
+        href="#"
+        onclick="secaoAtual = 'renuncia_{{ tipo }}'; mostrarTabelaRenuncia('{{ tipo }}');"
+      >
         Renúncias - {{ tipo }}
       </a>
       {% endfor %}
@@ -81,11 +92,11 @@
       renunciasAtuais = renuncias[tipo];
       const secaoTitulo = document.getElementById("secao-selecionada");
       secaoTitulo.textContent = `Renúncias - ${tipo}`;
-      
+
       const filtroSelecionado = obterFiltroSelect();
       desmontarOpcoesFiltro(filtroSelecionado);
       montarOpcoesFiltroAno(filtroSelecionado);
-      
+
       renderizarTabela(renunciasAtuais);
     }
   </script>

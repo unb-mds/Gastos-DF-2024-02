@@ -3,8 +3,8 @@ repo_url: https://github.com/unb-mds/Gastos-DF-2024-02
 
 extra_css:
   - style/style.css
-nav: 
-  - Home: 
+nav:
+  - Home:
     - Sobre: index.md
     - Como navegar: navegar/navegar.md
   - Arquitetura : arquitetura/arquitetura.md
@@ -48,10 +48,10 @@ nav:
     - Sprint 8: sprints/sprint8.md
     - Sprint 9: sprints/sprint9.md
     - Sprint 10: sprints/sprint10.md
-  - Scrum: 
+  - Scrum:
     - Parte 1: scrum/scrum.md
     - Parte 2: scrum/scrum_pt2.md
-  - Matriz de Competências: 
+  - Matriz de Competências:
     - Formulario: matriz_de_competencias/formulario.md
     - Resultados: matriz_de_competencias/resultados.md
   - Padrão de Qualidade: git_e_github/git_github_guidelines.md
@@ -66,15 +66,17 @@ nav:
       - v0.2.0: prototipo-alta-fidelidade/v0.2.0/v0.2.0.md
   - Stories: user_story/user_story.md
   - Estudos:
-    - Releases: 
+    - Releases:
       - Notes: estudos/releases/notes.md
       - Tags: estudos/releases/tags.md
       - Versionamento: estudos/releases/Versionamento.md
     - Ambiente Virtual: estudos/Ambiente Virtual.md
     - Mkdocs: estudos/Instrucoes.md
     - Scrum: estudos/Scrum.md
-    - XP (eXtreme Programming): estudos/XP(eXtreme Programming).md
-theme: 
+    - XP (eXtreme Programming):
+      - Estudo: estudos/XP(eXtreme Programming).md
+      - Metodologia: xp/xp.md
+theme:
   logo: style/logo.png
   name: material
   font:
@@ -83,7 +85,7 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - content.code.copy
-  palette: 
+  palette:
     - scheme: light
       primary: custom
       toggle:

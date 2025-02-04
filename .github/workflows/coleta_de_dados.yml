@@ -1,9 +1,6 @@
 name: Roda API e Salva Json
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
