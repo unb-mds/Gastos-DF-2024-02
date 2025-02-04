@@ -125,6 +125,12 @@ def baixarTabelas():
             return {"erro": "Nenhuma tabela fornecida"}, 400
 
         tabelas = dados["tabelas"]
+
+        # Título dinâmico recebido do frontend
+        titulo_dinamico = tabelas[0].get(
+            "titulo", "Monitoramento de Gastos Públicos"
+        )
+
         buffer = BytesIO()
 
         doc = SimpleDocTemplate(
@@ -141,12 +147,11 @@ def baixarTabelas():
         estilos = getSampleStyleSheet()
         estilo_titulo = estilos["Title"]
         estilo_normal = estilos["BodyText"]
-        elementos.append(
-            Paragraph(
-                "Monitoramento de Gastos Públicos - Tabelas", estilo_titulo
-            )
-        )
+
+        # Adiciona o título dinâmico no topo do PDF
+        elementos.append(Paragraph(titulo_dinamico, estilo_titulo))
         elementos.append(Spacer(1, 12))
+
         largura_pagina, _ = landscape(A4)
         largura_utilizavel = largura_pagina - doc.leftMargin - doc.rightMargin
 
@@ -156,11 +161,15 @@ def baixarTabelas():
 
             cabecalhos = tabela["cabecalhos"]
             linhas = tabela["linhas"]
+
+            # Adiciona uma subtabela indicando qual tabela está sendo gerada
             elementos.append(Paragraph(f"Tabela {indice}", estilo_normal))
             elementos.append(Spacer(1, 6))
+
             num_colunas = len(cabecalhos)
             largura_coluna = largura_utilizavel / num_colunas
             larguras_colunas = [largura_coluna] * num_colunas
+
             dados = [
                 [Paragraph(str(celula), estilo_normal) for celula in linha]
                 for linha in ([cabecalhos] + linhas)
@@ -192,11 +201,14 @@ def baixarTabelas():
         doc.build(elementos)
         buffer.seek(0)
 
+        # Define o nome do arquivo usando o título dinâmico
+        nome_arquivo = f"{titulo_dinamico.replace(' ', '_')}.pdf"
+
         return send_file(
             buffer,
             mimetype="application/pdf",
             as_attachment=True,
-            download_name="tabelas_gastos_publicos.pdf",
+            download_name=nome_arquivo,
         )
 
     except Exception as e:

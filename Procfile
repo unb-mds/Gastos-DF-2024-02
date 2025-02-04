@@ -1,1 +1,1 @@
-web: gunicorn codigo.app:app
+web: PYTHONPATH=./codigo gunicorn codigo.app:app

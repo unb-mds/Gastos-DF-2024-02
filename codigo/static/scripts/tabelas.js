@@ -273,6 +273,13 @@ function baixarTabelas() {
     return;
   }
 
+  // Obtém o título dinâmico com base na seção ou no contexto atual
+  const secaoTitulo = document
+    .getElementById("secao-selecionada")
+    .textContent.trim();
+  const tituloPDF = `Gastos - ${secaoTitulo}`;
+
+  // Extrai os dados da tabela
   const cabecalhos = Array.from(tabelaAtiva.querySelectorAll("thead th")).map(
     (th) => th.innerText.trim(),
   );
@@ -284,7 +291,8 @@ function baixarTabelas() {
     },
   );
 
-  const tabelaData = { cabecalhos, linhas };
+  // Prepara os dados da tabela e o título para envio ao backend
+  const tabelaData = { cabecalhos, linhas, titulo: tituloPDF };
 
   fetch("/baixar-tabelas", {
     method: "POST",
@@ -300,10 +308,11 @@ function baixarTabelas() {
       return response.blob();
     })
     .then((blob) => {
+      // Usa o título dinâmico no nome do arquivo baixado
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${secaoAtual}_filtrada.pdf`;
+      a.download = `${tituloPDF}.pdf`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
