@@ -3,6 +3,8 @@ from typing import Dict, List
 
 
 def converter_valor_monetario(valor: str) -> float:
+    if not valor:
+        return 0.0
     return float(valor.replace("R$", "").replace(".", "").replace(",", "."))
 
 
