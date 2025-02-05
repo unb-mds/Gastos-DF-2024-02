@@ -40,15 +40,18 @@ const calcularMedias = (dados) => {
 
   const alertas = valores
     .map((valor, index) => {
-      return valor > limiteSuperior
-        ? {
-            ano: dados.labels[index],
-            valor,
-            variacao: ((valor - media) / media) * 100,
-          }
-        : null;
+      // Só retorna um alerta se o valor estiver acima do limite superior
+      if (valor > limiteSuperior) {
+        const label = dados.labels[index];
+        return {
+          ano: label.split('/')[0], // Para gráficos mensais, pega só o mês
+          valor: valor,
+          variacao: ((valor - media) / media) * 100,
+        };
+      }
+      return null;
     })
-    .filter((a) => a);
+    .filter(Boolean); // Remove os nulls do array
 
   return { media, alertas };
 };
@@ -75,7 +78,7 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
           ? "Renúncia"
           : "Empenhado",
       marker: {
-        color: "#1f77b4", // Sempre azul para o gráfico base
+        color: "#1f77b4",
       },
       hovertemplate:
         `<b>Valor ${eGraficoCompras ? "Pago" : eGraficoRenuncia ? "Renunciado" : "Empenhado"}</b><br>` +
@@ -86,10 +89,11 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
             ? "Representa o pagamento efetivo realizado ao credor pelo serviço/produto"
             : "Representa o primeiro estágio da despesa, quando há reserva do valor para um fim específico"
         }</i><extra></extra>`,
+      showlegend: true
     },
   ];
 
-  // Adiciona linha de média apenas se mostrarAnomalias for true
+  // Adiciona linha de média e anotações apenas se mostrarAnomalias for true
   if (mostrarAnomalias && mediasEAlertas) {
     dadosBase.push({
       x: (eGraficoCompras || tagId.startsWith("grafico-bolsaFamilia"))
@@ -117,31 +121,31 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
         type: "bar",
         name: "Liquidado",
         marker: {
-          color: "#ff7f0e", // Sempre laranja
+          color: "#ff7f0e",
         },
         hovertemplate:
           "<b>Valor Liquidado</b><br>" +
           "Ano: %{x}<br>" +
           "Valor: R$ %{y:,.2f}<br>" +
           "<i>Indica que o serviço/produto foi entregue e verificado</i><extra></extra>",
+        showlegend: true
       });
     }
     if (dados.pago) {
       dadosBase.push({
-        x: (eGraficoCompras || tagId.startsWith("grafico-bolsaFamilia"))
-        ? dados.labels.map((label) => label.split("/")[0])
-        : dados.labels,
+        x: dados.labels,
         y: dados.pago,
         type: "bar",
         name: "Pago",
         marker: {
-          color: "#2ca02c", // Sempre verde
+          color: "#2ca02c",
         },
         hovertemplate:
           "<b>Valor Pago</b><br>" +
           "Ano: %{x}<br>" +
           "Valor: R$ %{y:,.2f}<br>" +
           "<i>Representa o pagamento efetivo realizado</i><extra></extra>",
+        showlegend: true
       });
     }
   }
@@ -154,12 +158,8 @@ const montarLayoutDoGrafico = (tagId, dados, mostrarAnomalias) => {
   const mediasEAlertas = calcularMedias(dados);
 
   const annotations = [];
-  if (
-    mostrarAnomalias &&
-    mediasEAlertas &&
-    mediasEAlertas.alertas.length > 0
-  ) {
-    mediasEAlertas.alertas.forEach((alerta) => {
+  if (mostrarAnomalias && mediasEAlertas && mediasEAlertas.alertas.length > 0) {
+    mediasEAlertas.alertas.forEach((alerta, index) => {
       annotations.push({
         x: alerta.ano,
         y: alerta.valor,
@@ -173,7 +173,8 @@ const montarLayoutDoGrafico = (tagId, dados, mostrarAnomalias) => {
           size: eCelular ? 10 : 12,
           color: "#ff4444",
         },
-        ay: -40,
+        ay: -40 - (index * 25),
+        ax: 0
       });
     });
   }
