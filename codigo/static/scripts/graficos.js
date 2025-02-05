@@ -44,9 +44,7 @@ const calcularMedias = (dados) => {
       if (valor > limiteSuperior) {
         const label = dados.labels[index];
         return {
-          ano: dados.labels.map((label) =>
-            typeof label === "string" ? label.split("/")[0] : label,
-          ), // Para gráficos mensais, pega só o mês
+          ano: label.split("/")[0], // Para gráficos mensais, pega só o mês
           valor: valor,
           variacao: ((valor - media) / media) * 100,
         };
@@ -67,9 +65,7 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
     {
       x:
         eGraficoCompras || tagId.startsWith("grafico-bolsaFamilia")
-          ? dados.labels.map((label) =>
-              typeof label === "string" ? label.split("/")[0] : label,
-            )
+          ? dados.labels.map((label) => label.split("/")[0])
           : dados.labels,
       y: eGraficoCompras
         ? dados.pago
@@ -103,9 +99,7 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
     dadosBase.push({
       x:
         eGraficoCompras || tagId.startsWith("grafico-bolsaFamilia")
-          ? dados.labels.map((label) =>
-              typeof label === "string" ? label.split("/")[0] : label,
-            )
+          ? dados.labels.map((label) => label.split("/")[0])
           : dados.labels,
       y: Array(dados.labels.length).fill(mediasEAlertas.media),
       type: "scatter",
@@ -191,9 +185,7 @@ const montarLayoutDoGrafico = (tagId, dados, mostrarAnomalias) => {
     });
   }
   let xaxisTitle = "Ano";
-  let tickvals = dados.labels.map((label) =>
-    typeof label === "string" ? label.split("/")[0] : label,
-  ); // Padrão para 'Ano'
+  let tickvals = dados.labels.map((label) => label.split("/")[0]); // Padrão para 'Ano'
   if (
     tagId === "grafico-compras" ||
     tagId.startsWith("grafico-bolsaFamilia")
