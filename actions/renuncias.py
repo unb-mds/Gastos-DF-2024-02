@@ -85,6 +85,6 @@ while True:
                         )
         pagina += 1  # Avançar para a próxima página
     else:
-        pagina -=1
+        pagina -= 1
         break
 atualizar_ultima_pagina(pagina)

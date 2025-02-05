@@ -20,8 +20,7 @@ class ProcessadorDados:
         traducao_meses = traduzir_meses()
 
         for item in dados_bolsa_familia:
-            mes_ano = datetime.strptime(
-                item["dataReferencia"], "%Y-%m-%d")
+            mes_ano = datetime.strptime(item["dataReferencia"], "%Y-%m-%d")
             mes_traduzido = f"{traducao_meses[mes_ano.strftime('%B')]}"
             total_pago = item["valor"]
             if total_pago > 0:
@@ -29,7 +28,9 @@ class ProcessadorDados:
                     pagamentos_mensais[mes_traduzido] += total_pago
                 else:
                     pagamentos_mensais[mes_traduzido] = total_pago
-        meses_ordenados = sorted(pagamentos_mensais.keys(), key=lambda x: list(traducao_meses.values()).index(x)
+        meses_ordenados = sorted(
+            pagamentos_mensais.keys(),
+            key=lambda x: list(traducao_meses.values()).index(x),
         )
         pagos = [pagamentos_mensais[mes] for mes in meses_ordenados]
 

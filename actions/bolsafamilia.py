@@ -48,7 +48,11 @@ def salvar_dados():
     else:
         data = excluir_municipio(data)
         for item in data:
-            if not any(existing_item.get("dataReferencia") == item.get("dataReferencia") for existing_item in all_data):
+            if not any(
+                existing_item.get("dataReferencia")
+                == item.get("dataReferencia")
+                for existing_item in all_data
+            ):
                 all_data.append(item)
     with open(output_file, "w", encoding="utf-8") as file:
         json.dump(all_data, file, ensure_ascii=False, indent=4)

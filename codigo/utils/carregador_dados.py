@@ -11,7 +11,7 @@ class CarregadorDados:
             self.diretorio_dados = diretorio_base / "actions" / "json"
         else:
             self.diretorio_dados = pathlib.Path(diretorio_dados)
-        
+
         if not self.diretorio_dados.exists():
             print(f"AVISO: Diretório não encontrado: {self.diretorio_dados}")
             print(f"Diretório atual: {pathlib.Path.cwd()}")

@@ -44,7 +44,9 @@ const calcularMedias = (dados) => {
       if (valor > limiteSuperior) {
         const label = dados.labels[index];
         return {
-          ano: label.split('/')[0], // Para gráficos mensais, pega só o mês
+          ano: dados.labels.map((label) =>
+            typeof label === "string" ? label.split("/")[0] : label,
+          ), // Para gráficos mensais, pega só o mês
           valor: valor,
           variacao: ((valor - media) / media) * 100,
         };
@@ -63,9 +65,12 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
 
   const dadosBase = [
     {
-      x: (eGraficoCompras || tagId.startsWith("grafico-bolsaFamilia"))
-        ? dados.labels.map((label) => label.split("/")[0])
-        : dados.labels,
+      x:
+        eGraficoCompras || tagId.startsWith("grafico-bolsaFamilia")
+          ? dados.labels.map((label) =>
+              typeof label === "string" ? label.split("/")[0] : label,
+            )
+          : dados.labels,
       y: eGraficoCompras
         ? dados.pago
         : eGraficoRenuncia
@@ -89,16 +94,19 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
             ? "Representa o pagamento efetivo realizado ao credor pelo serviço/produto"
             : "Representa o primeiro estágio da despesa, quando há reserva do valor para um fim específico"
         }</i><extra></extra>`,
-      showlegend: true
+      showlegend: true,
     },
   ];
 
   // Adiciona linha de média e anotações apenas se mostrarAnomalias for true
   if (mostrarAnomalias && mediasEAlertas) {
     dadosBase.push({
-      x: (eGraficoCompras || tagId.startsWith("grafico-bolsaFamilia"))
-        ? dados.labels.map((label) => label.split("/")[0])
-        : dados.labels,
+      x:
+        eGraficoCompras || tagId.startsWith("grafico-bolsaFamilia")
+          ? dados.labels.map((label) =>
+              typeof label === "string" ? label.split("/")[0] : label,
+            )
+          : dados.labels,
       y: Array(dados.labels.length).fill(mediasEAlertas.media),
       type: "scatter",
       mode: "lines",
@@ -128,7 +136,7 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
           "Ano: %{x}<br>" +
           "Valor: R$ %{y:,.2f}<br>" +
           "<i>Indica que o serviço/produto foi entregue e verificado</i><extra></extra>",
-        showlegend: true
+        showlegend: true,
       });
     }
     if (dados.pago) {
@@ -145,7 +153,7 @@ const estruturarDadosDoGrafico = (tagId, dados, mostrarAnomalias) => {
           "Ano: %{x}<br>" +
           "Valor: R$ %{y:,.2f}<br>" +
           "<i>Representa o pagamento efetivo realizado</i><extra></extra>",
-        showlegend: true
+        showlegend: true,
       });
     }
   }
@@ -158,7 +166,11 @@ const montarLayoutDoGrafico = (tagId, dados, mostrarAnomalias) => {
   const mediasEAlertas = calcularMedias(dados);
 
   const annotations = [];
-  if (mostrarAnomalias && mediasEAlertas && mediasEAlertas.alertas.length > 0) {
+  if (
+    mostrarAnomalias &&
+    mediasEAlertas &&
+    mediasEAlertas.alertas.length > 0
+  ) {
     mediasEAlertas.alertas.forEach((alerta, index) => {
       annotations.push({
         x: alerta.ano,
@@ -173,14 +185,19 @@ const montarLayoutDoGrafico = (tagId, dados, mostrarAnomalias) => {
           size: eCelular ? 10 : 12,
           color: "#ff4444",
         },
-        ay: -40 - (index * 25),
-        ax: 0
+        ay: -40 - index * 25,
+        ax: 0,
       });
     });
   }
   let xaxisTitle = "Ano";
-  let tickvals = dados.labels.map((label) => label.split("/")[0]); // Padrão para 'Ano'
-  if (tagId === "grafico-compras" || tagId.startsWith("grafico-bolsaFamilia")) {
+  let tickvals = dados.labels.map((label) =>
+    typeof label === "string" ? label.split("/")[0] : label,
+  ); // Padrão para 'Ano'
+  if (
+    tagId === "grafico-compras" ||
+    tagId.startsWith("grafico-bolsaFamilia")
+  ) {
     xaxisTitle = "Meses (Totais)";
   }
   return {
