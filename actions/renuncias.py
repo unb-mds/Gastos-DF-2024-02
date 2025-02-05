@@ -27,7 +27,7 @@ def sanitize_filename(nome):
 # Função para ler o número da última página processada (do arquivo de controle)
 def capturar_ultima_pagina():
     caminho_do_arquivo_pagina = os.path.join(
-        script_dir, "pagina_atual.txt"
+        script_dir, "json", "pagina_atual.txt"
     )  # Caminho absoluto para o arquivo de controle
     if os.path.exists(caminho_do_arquivo_pagina):
         with open(caminho_do_arquivo_pagina, "r") as f:
@@ -38,7 +38,7 @@ def capturar_ultima_pagina():
 # Função para atualizar o arquivo com a última página processada
 def atualizar_ultima_pagina(pagina):
     page_file_path = os.path.join(
-        script_dir, "pagina_atual.txt"
+        script_dir, "json", "pagina_atual.txt"
     )  # Caminho absoluto para o arquivo de controle
     with open(page_file_path, "w") as f:
         f.write(str(pagina))
@@ -83,10 +83,8 @@ while True:
                         json.dump(
                             dados_existentes, f, ensure_ascii=False, indent=4
                         )
-        # Atualizar a página para a próxima e salvar a última página com dados
-        atualizar_ultima_pagina(
-            pagina
-        )  # Salvar a última página lida com dados
-        pagina += 1
+        pagina += 1  # Avançar para a próxima página
     else:
+        pagina -=1
         break
+atualizar_ultima_pagina(pagina)
