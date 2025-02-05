@@ -420,6 +420,12 @@ ol li {
 }
 
 /* Table */
+.scrollable-table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 1.25rem;
+}
+
 .data-table {
   width: 100%;
   border-collapse: separate;
