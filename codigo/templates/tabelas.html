@@ -66,17 +66,19 @@
   </h3>
 
   <!-- Contêiner de compras -->
-  <div id="table-container"></div>
+  <div class="scrollable-table-container">
+    <div id="table-container"></div>
+  </div>
 
   <p id="result-count" class="result-count">Exibindo 0 resultado(s).</p>
 
   <script>
-      const gastosCompras = {{ compras|safe }};
-      const despesasPorOrgao = {{ despesas_por_orgao|tojson }};
-      const anos = {{ anos_unicos|tojson }};
-      const bolsaFamilia = {{ bolsa_familia|tojson }};
-      const renuncias = {{ renuncias|tojson }};
-      let renunciasAtuais = [];
+    const gastosCompras = {{ compras|safe }};
+    const despesasPorOrgao = {{ despesas_por_orgao|tojson }};
+    const anos = {{ anos_unicos|tojson }};
+    const bolsaFamilia = {{ bolsa_familia|tojson }};
+    const renuncias = {{ renuncias|tojson }};
+    let renunciasAtuais = [];
     try {
       const script = document.createElement('script');
       script.src = "{{ url_for('static', filename='scripts/tabelas.js') }}";
