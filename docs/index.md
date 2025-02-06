@@ -44,9 +44,9 @@ O repositório está organizado da seguinte maneira:
 
 Comandos básicos necessários:
 
-Primeiro, use o comando `git clone https://github.com/unb-mds/Squad13` para conseguir clonar esse repositório em sua máquina.
+Primeiro, use o comando `git clone https://github.com/unb-mds/Gastos-DF-2024-02` para conseguir clonar esse repositório em sua máquina.
 
-Depois, use o comando `cd Squad13` para acessar o diretório principal do repositório.
+Depois, use o comando `cd Gastos-DF-2024-02` para acessar o diretório principal do repositório.
 
 Caso haja atualizações e já tenha clonado o repositório na máquina, será necessário utilizar o comando `git pull` no diretório principal para atualizar o repositório local.
 
