@@ -1,4 +1,6 @@
 import base64
+import os
+import sys
 from datetime import datetime
 from io import BytesIO
 
@@ -16,6 +18,13 @@ from reportlab.platypus import (
     Table,
     TableStyle,
 )
+
+sys.path.append(
+    os.path.abspath(
+        os.path.dirname(__file__)
+    )
+)
+
 from utils.carregador_dados import CarregadorDados
 from utils.processador_dados import ProcessadorDados
 
