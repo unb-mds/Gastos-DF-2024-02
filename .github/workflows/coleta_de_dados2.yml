@@ -1,4 +1,4 @@
-name: Roda API e Salva Json
+name: Roda API e Salva Json 2
 
 on:
   workflow_dispatch:
@@ -25,8 +25,8 @@ jobs:
 
       - name: Run Python script
         run: |
-          python actions/compras.py
-          python actions/despesas_por_orgao.py
+          python actions/bolsafamilia.py
+          python actions/renuncias.py
         env:
           API_KEY: ${{ secrets.API_KEY }}  # Usa o secret API_KEY do GitHub
           API_COOKIE: ${{ secrets.API_COOKIE }}  # Referencia o secret do cookie
@@ -40,6 +40,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add actions/json/*.json  # Adiciona todos os arquivos JSON gerados na pasta 'actions/json'
+          git add actions/json/*.txt  # Adiciona todos os arquivos txt gerados na pasta 'actions/json'
           git commit -m "Add generated JSON files"
           git push origin main
         env:
