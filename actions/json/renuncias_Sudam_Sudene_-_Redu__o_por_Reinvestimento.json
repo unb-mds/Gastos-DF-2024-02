@@ -1,0 +1,22 @@
+[
+    {
+        "ano": 2023,
+        "valorRenunciado": 863004.02,
+        "tipoRenuncia": "Declarado pelo Contribuinte para Apuração do IRPJ e da CSLL",
+        "descricaoBeneficioFiscal": "Sudam/Sudene - Redução por Reinvestimento",
+        "descricaoFundamentoLegal": "Lei nº 8.167, de 1991, art. 19; Lei nº 8.191, de 1991, art. 4º; Lei nº 9.532, de 1997, art. 2º; Medida Provisória nº 2.199-14, de 2001, art. 3º; Lei nº 12.715, de 2012, art. 69; Lei nº 13.799, de 2019, art. 1º;  Decreto nº 9.682, de 2019.",
+        "tributo": "IRPJ",
+        "formaTributacao": "Isenção/redução do IRPJ com base no lucro da exploração.",
+        "cnpj": "26845173000102",
+        "razaoSocial": "EQUATORIAL TRANSMISSORA 6 SPE S.A.",
+        "nomeFantasia": "EQUATORIAL",
+        "cnaeCodigoGrupo": "000",
+        "cnaeCodigoClasse": "00000",
+        "cnaeCodigoSubClasse": "00000",
+        "cnaeNomeClasse": "Sem informação",
+        "cnaeDivisao": "00",
+        "uf": "DISTRITO FEDERAL",
+        "municipio": "BRASÍLIA",
+        "codigoIBGE": "5300108"
+    }
+]

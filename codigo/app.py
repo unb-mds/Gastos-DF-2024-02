@@ -39,8 +39,14 @@ def pagina_inicial():
 def pagina_graficos():
     compras = processador.processar_dados_compras()
     despesas_por_orgao = processador.processar_dados_despesas()
+    bolsa_familia = processador.processar_dados_bolsa_familia()
+    renuncias_por_tipo = processador.processar_dados_renuncia()
     return render_template(
-        "graficos.html", compras=compras, despesas_por_orgao=despesas_por_orgao
+        "graficos.html",
+        compras=compras,
+        despesas_por_orgao=despesas_por_orgao,
+        bolsa_familia=bolsa_familia,
+        renuncias_por_tipo=renuncias_por_tipo,
     )
 
 
@@ -48,12 +54,16 @@ def pagina_graficos():
 def pagina_tabelas():
     compras = processador.processar_dados_tabela_compras()
     dados_despesas, anos_unicos = processador.processar_dados_tabela_despesas()
+    dados_bolsa_familia = processador.processar_tabela_bolsa_familia()
+    dados_renuncias = processador.processar_tabela_renuncias()
 
     return render_template(
         "tabelas.html",
         compras=compras,
         despesas_por_orgao=dados_despesas,
         anos_unicos=anos_unicos,
+        bolsa_familia=dados_bolsa_familia,
+        renuncias=dados_renuncias,
     )
 
 

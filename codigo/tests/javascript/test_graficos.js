@@ -132,7 +132,7 @@ describe("calcularMedias", () => {
 
 describe("estruturarDadosDoGrafico", () => {
   it("deve estruturar os dados corretamente para o gráfico de compras", () => {
-    const dados = { labels: [2021, 2022], pago: [100, 200] };
+    const dados = { labels: ["2021", "2022"], pago: [100, 200] };
     const resultado = estruturarDadosDoGrafico(
       "grafico-compras",
       dados,
@@ -143,7 +143,7 @@ describe("estruturarDadosDoGrafico", () => {
   });
 
   it("deve adicionar a linha de média quando mostrarAnomalias for true", () => {
-    const dados = { labels: [2021, 2022], pago: [100, 200] };
+    const dados = { labels: ["2021", "2022"], pago: [100, 200] };
     const resultado = estruturarDadosDoGrafico(
       "grafico-compras",
       dados,
@@ -167,14 +167,14 @@ describe("estruturarDadosDoGrafico", () => {
 
 describe("montarLayoutDoGrafico", () => {
   it("deve configurar corretamente o layout do gráfico", () => {
-    const dados = { labels: [2021, 2022], pago: [100, 200] };
+    const dados = { labels: ["2021", "2022"], pago: [100, 200] };
     const layout = montarLayoutDoGrafico("grafico-compras", dados, false);
-    expect(layout.xaxis.title.text).toBe("Ano");
+    expect(layout.xaxis.title.text).toBe("Meses (Totais)");
     expect(layout.yaxis.title.text).toBe("Valor (R$)");
   });
 
   it("deve adicionar anotações se houver alertas de anomalias", () => {
-    const dados = { labels: [2021, 2022], pago: [100, 300] };
+    const dados = { labels: ["2021", "2022"], pago: [100, 300] };
     const layout = montarLayoutDoGrafico("grafico-compras", dados, true);
     expect(layout.annotations).toHaveLength(1);
   });
@@ -194,17 +194,17 @@ describe("toggleAnomalia", () => {
   });
 
   it("deve alternar o estado de mostrarAnomaliasAtivo", () => {
-    expect(obterMostrarAnomaliasAtivo()).toBe(false);
+    expect(obterMostrarAnomaliasAtivo(tagId)).toBe(undefined);
 
     toggleAnomalia(tagId, dados);
 
-    expect(obterMostrarAnomaliasAtivo()).toBe(true);
+    expect(obterMostrarAnomaliasAtivo(tagId)).toBe(true);
 
     // Chama novamente para verificar a alternância
     toggleAnomalia(tagId, dados);
 
     // Após a segunda chamada, o valor de mostrarAnomaliasAtivo deve ser false novamente
-    expect(obterMostrarAnomaliasAtivo()).toBe(false);
+    expect(obterMostrarAnomaliasAtivo(tagId)).toBe(false);
   });
 });
 
@@ -233,15 +233,15 @@ describe("renderizarGrafico", () => {
       "grafico-compras",
       expect.arrayContaining([
         expect.objectContaining({
-          x: expect.arrayContaining(["2019", "2020", "2021"]),
-          y: expect.arrayContaining([100, 150, 120]),
+          x: expect.arrayContaining(["2020", "2021", "2022"]),
+          y: expect.arrayContaining([100, 200, 300]),
           name: "Compras",
         }),
       ]),
       expect.objectContaining({
         xaxis: expect.objectContaining({
           title: expect.objectContaining({
-            text: "Ano",
+            text: "Meses (Totais)",
           }),
         }),
         yaxis: expect.objectContaining({

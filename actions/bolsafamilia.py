@@ -33,15 +33,11 @@ def salvar_dados():
     output_file = os.path.join(jsons_dir, "bolsafamilia.json")
     mes_ano = datetime.now().strftime("%Y%m")
     all_data = []
-    seen = set()
     if os.path.exists(output_file):
         with open(output_file, "r", encoding="utf-8") as file:
             try:
                 all_data = json.load(file)
                 print(f"Dados carregados de {output_file}")
-                for item in all_data:
-                    if "codigoIBGE" in item:
-                        seen.add(item["codigoIBGE"])
             except json.JSONDecodeError:
                 print(
                     f"Erro ao ler o arquivo {output_file}, iniciando com dados vazios."
@@ -52,7 +48,11 @@ def salvar_dados():
     else:
         data = excluir_municipio(data)
         for item in data:
-            if "codigoIBGE" in item and item["codigoIBGE"] not in seen:
+            if not any(
+                existing_item.get("dataReferencia")
+                == item.get("dataReferencia")
+                for existing_item in all_data
+            ):
                 all_data.append(item)
     with open(output_file, "w", encoding="utf-8") as file:
         json.dump(all_data, file, ensure_ascii=False, indent=4)
