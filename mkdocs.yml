@@ -5,77 +5,77 @@ extra_css:
   - style/style.css
 nav:
   - Home:
-    - Sobre: index.md
-    - Como navegar: navegar/navegar.md
-  - Arquitetura : arquitetura/arquitetura.md
+      - Sobre: index.md
+      - Como navegar: navegar/navegar.md
+  - Arquitetura: arquitetura/arquitetura.md
   - Atas:
-    - Reuniões Semanais:
-      - 04/11/24: atas/atas_reunioes_semanais/ata_04_11_24.md
-      - 12/11/24: atas/atas_reunioes_semanais/ata_12_11_24.md
-      - 17/11/24: atas/atas_reunioes_semanais/ata_17_11_24.md
-      - 25/11/24: atas/atas_reunioes_semanais/ata_25_11_24.md
-      - 02/12/24: atas/atas_reunioes_semanais/ata_02_12_24.md
-      - 06/01/25: atas/atas_reunioes_semanais/ata_06_01_25.md
-      - 13/01/25: atas/atas_reunioes_semanais/ata_13_01_25.md
-      - 27/01/25: atas/atas_reunioes_semanais/ata_27_01_25.md
-    - Reuniões:
-      - 31/10/24: atas/ata_31_10_24.md
-      - 02/11/24:
-        - R1: atas/ata_02_11_24.md
-        - R2: atas/ata2_02_11_24.md
-      - 08/11/24: atas/ata_08_11_24.md
-      - 14/11/24: atas/ata_14_11_24.md
-      - 15/11/24: atas/ata_15_11_24.md
-      - 21/11/24: atas/ata_21_11_24.md
-      - 27/11/24: atas/ata_27_11_24.md
-      - 29/11/24: atas/ata_29_11_24.md
-      - 19/12/24: atas/ata_19_12_24.md
-      - 27/12/24: atas/ata_27_12_24.md
-      - 07/01/25: atas/ata_07_01_25.md
-      - 09/01/25: atas/ata_09_01_25.md
-      - 13/01/25: atas/ata_13_01_25.md
-      - 16/01/25: atas/ata_16_01_25.md
+      - Reuniões Semanais:
+          - 04/11/24: atas/atas_reunioes_semanais/ata_04_11_24.md
+          - 12/11/24: atas/atas_reunioes_semanais/ata_12_11_24.md
+          - 17/11/24: atas/atas_reunioes_semanais/ata_17_11_24.md
+          - 25/11/24: atas/atas_reunioes_semanais/ata_25_11_24.md
+          - 02/12/24: atas/atas_reunioes_semanais/ata_02_12_24.md
+          - 06/01/25: atas/atas_reunioes_semanais/ata_06_01_25.md
+          - 13/01/25: atas/atas_reunioes_semanais/ata_13_01_25.md
+          - 27/01/25: atas/atas_reunioes_semanais/ata_27_01_25.md
+      - Reuniões:
+          - 31/10/24: atas/ata_31_10_24.md
+          - 02/11/24:
+              - R1: atas/ata_02_11_24.md
+              - R2: atas/ata2_02_11_24.md
+          - 08/11/24: atas/ata_08_11_24.md
+          - 14/11/24: atas/ata_14_11_24.md
+          - 15/11/24: atas/ata_15_11_24.md
+          - 21/11/24: atas/ata_21_11_24.md
+          - 27/11/24: atas/ata_27_11_24.md
+          - 29/11/24: atas/ata_29_11_24.md
+          - 19/12/24: atas/ata_19_12_24.md
+          - 27/12/24: atas/ata_27_12_24.md
+          - 07/01/25: atas/ata_07_01_25.md
+          - 09/01/25: atas/ata_09_01_25.md
+          - 13/01/25: atas/ata_13_01_25.md
+          - 16/01/25: atas/ata_16_01_25.md
   - Sprints:
-    - Introdução: sprints/organizacao.md
-    - Sprint 0: sprints/sprint0.md
-    - Sprint 1: sprints/sprint1.md
-    - Sprint 2: sprints/sprint2.md
-    - Sprint 3: sprints/sprint3.md
-    - Sprint 4: sprints/sprint4.md
-    - Sprint 5: sprints/sprint5.md
-    - Sprint 6: sprints/sprint6.md
-    - Sprint 7: sprints/sprint7.md
-    - Sprint 8: sprints/sprint8.md
-    - Sprint 9: sprints/sprint9.md
-    - Sprint 10: sprints/sprint10.md
+      - Introdução: sprints/organizacao.md
+      - Sprint 0: sprints/sprint0.md
+      - Sprint 1: sprints/sprint1.md
+      - Sprint 2: sprints/sprint2.md
+      - Sprint 3: sprints/sprint3.md
+      - Sprint 4: sprints/sprint4.md
+      - Sprint 5: sprints/sprint5.md
+      - Sprint 6: sprints/sprint6.md
+      - Sprint 7: sprints/sprint7.md
+      - Sprint 8: sprints/sprint8.md
+      - Sprint 9: sprints/sprint9.md
+      - Sprint 10: sprints/sprint10.md
   - Scrum:
-    - Parte 1: scrum/scrum.md
-    - Parte 2: scrum/scrum_pt2.md
+      - Parte 1: scrum/scrum.md
+      - Parte 2: scrum/scrum_pt2.md
   - Matriz de Competências:
-    - Formulario: matriz_de_competencias/formulario.md
-    - Resultados: matriz_de_competencias/resultados.md
+      - Formulario: matriz_de_competencias/formulario.md
+      - Resultados: matriz_de_competencias/resultados.md
   - Padrão de Qualidade: git_e_github/git_github_guidelines.md
   - Requisitos: requisitos/requisitos_iniciais.md
   - Backlog: backlog/backlog.md
   - Protótipo:
-    - Baixa Fidelidade:
-      - v0.1.0: prototipo-baixa-fidelidade/v0.1.0/v0.1.0.md
-      - v0.1.1: prototipo-baixa-fidelidade/v0.1.1/v0.1.1.md
-    - Alta Fidelidade:
-      - v0.1.0: prototipo-alta-fidelidade/v0.1.0/v0.1.0.md
-      - v0.2.0: prototipo-alta-fidelidade/v0.2.0/v0.2.0.md
+      - Baixa Fidelidade:
+          - v0.1.0: prototipo-baixa-fidelidade/v0.1.0/v0.1.0.md
+          - v0.1.1: prototipo-baixa-fidelidade/v0.1.1/v0.1.1.md
+      - Alta Fidelidade:
+          - v0.1.0: prototipo-alta-fidelidade/v0.1.0/v0.1.0.md
+          - v0.2.0: prototipo-alta-fidelidade/v0.2.0/v0.2.0.md
   - Stories: user_story/user_story.md
   - Estudos:
-    - Releases:
-      - Notes: estudos/releases/notes.md
-      - Tags: estudos/releases/tags.md
-      - Versionamento: estudos/releases/Versionamento.md
-    - Ambiente Virtual: estudos/Ambiente Virtual.md
-    - Mkdocs: estudos/Instrucoes.md
-    - Scrum: estudos/Scrum.md
-    - XP (eXtreme Programming):
-      - Estudo: estudos/XP(eXtreme Programming).md
-      - Metodologia: xp/xp.md
+      - Releases:
+          - Notes: estudos/releases/notes.md
+          - Tags: estudos/releases/tags.md
+          - Versionamento: estudos/releases/Versionamento.md
+      - Ambiente Virtual: estudos/Ambiente Virtual.md
+      - Mkdocs: estudos/Instrucoes.md
+      - Scrum: estudos/Scrum.md
+      - XP (eXtreme Programming):
+          - Estudo: estudos/XP(eXtreme Programming).md
+          - Metodologia: xp/xp.md
 theme:
   logo: style/logo.png
   name: material
