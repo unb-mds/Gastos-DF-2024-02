@@ -348,5 +348,15 @@
         "empenhado": "18.000.346,00",
         "liquidado": "1.442.617,71",
         "pago": "641.689,94"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério das Relações Exteriores - Unidades com vínculo direto",
+        "codigoOrgao": "35000",
+        "orgaoSuperior": "Ministério das Relações Exteriores",
+        "codigoOrgaoSuperior": "35000",
+        "empenhado": "1.238.759.637,82",
+        "liquidado": "785.458.039,03",
+        "pago": "693.948.770,95"
     }
 ]
