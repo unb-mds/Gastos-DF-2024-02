@@ -748,5 +748,25 @@
         "empenhado": "194.858.734,91",
         "liquidado": "22.597.455,67",
         "pago": "7.966.079,30"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundo de Amparo ao Trabalhador",
+        "codigoOrgao": "38901",
+        "orgaoSuperior": "Ministério do Trabalho e Emprego",
+        "codigoOrgaoSuperior": "40000",
+        "empenhado": "20.412.179.665,40",
+        "liquidado": "20.412.065.999,01",
+        "pago": "20.412.065.222,41"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério do Trabalho e Emprego - Unidades com vínculo direto",
+        "codigoOrgao": "40000",
+        "orgaoSuperior": "Ministério do Trabalho e Emprego",
+        "codigoOrgaoSuperior": "40000",
+        "empenhado": "880.640.161,86",
+        "liquidado": "338.433.692,33",
+        "pago": "117.600.518,78"
     }
 ]
