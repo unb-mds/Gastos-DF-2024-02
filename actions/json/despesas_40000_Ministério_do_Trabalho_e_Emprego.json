@@ -798,5 +798,15 @@
         "empenhado": "195.030.038,30",
         "liquidado": "22.657.521,36",
         "pago": "14.384.113,64"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério do Trabalho e Emprego - Unidades com vínculo direto",
+        "codigoOrgao": "40000",
+        "orgaoSuperior": "Ministério do Trabalho e Emprego",
+        "codigoOrgaoSuperior": "40000",
+        "empenhado": "881.683.488,78",
+        "liquidado": "339.658.720,01",
+        "pago": "194.063.889,15"
     }
 ]
