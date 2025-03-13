@@ -648,5 +648,25 @@
         "empenhado": "7.506.285.898,01",
         "liquidado": "949.554.813,83",
         "pago": "522.527.676,33"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério da Agricultura e Pecuária - Unidades com vínculo direto",
+        "codigoOrgao": "22000",
+        "orgaoSuperior": "Ministério da Agricultura e Pecuária",
+        "codigoOrgaoSuperior": "22000",
+        "empenhado": "768.867.366,07",
+        "liquidado": "608.681.180,62",
+        "pago": "538.632.299,78"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Empresa Brasileira de Pesquisa Agropecuária",
+        "codigoOrgao": "22202",
+        "orgaoSuperior": "Ministério da Agricultura e Pecuária",
+        "codigoOrgaoSuperior": "22000",
+        "empenhado": "3.763.558.003,83",
+        "liquidado": "632.205.678,53",
+        "pago": "516.960.258,75"
     }
 ]
