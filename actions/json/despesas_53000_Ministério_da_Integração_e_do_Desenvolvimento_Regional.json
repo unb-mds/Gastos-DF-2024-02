@@ -2648,5 +2648,85 @@
         "empenhado": "15.721.689,36",
         "liquidado": "3.391.307,73",
         "pago": "3.109.822,08"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Departamento Nacional de Obras Contra as Secas",
+        "codigoOrgao": "22204",
+        "orgaoSuperior": "Ministério da Integração e do Desenvolvimento Regional",
+        "codigoOrgaoSuperior": "53000",
+        "empenhado": "127.234.464,98",
+        "liquidado": "104.681.240,37",
+        "pago": "103.762.843,19"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
+        "codigoOrgao": "22203",
+        "orgaoSuperior": "Ministério da Integração e do Desenvolvimento Regional",
+        "codigoOrgaoSuperior": "53000",
+        "empenhado": "794.922.269,94",
+        "liquidado": "106.195.011,60",
+        "pago": "99.402.840,05"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto",
+        "codigoOrgao": "53000",
+        "orgaoSuperior": "Ministério da Integração e do Desenvolvimento Regional",
+        "codigoOrgaoSuperior": "53000",
+        "empenhado": "179.007.392,17",
+        "liquidado": "111.054.015,90",
+        "pago": "98.484.031,67"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Agência Nacional de Águas",
+        "codigoOrgao": "44205",
+        "orgaoSuperior": "Ministério da Integração e do Desenvolvimento Regional",
+        "codigoOrgaoSuperior": "53000",
+        "empenhado": "157.476.856,26",
+        "liquidado": "30.465.960,72",
+        "pago": "26.391.686,73"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Superintendência do Desenvolvimento do Nordeste",
+        "codigoOrgao": "53203",
+        "orgaoSuperior": "Ministério da Integração e do Desenvolvimento Regional",
+        "codigoOrgaoSuperior": "53000",
+        "empenhado": "9.447.199,64",
+        "liquidado": "8.278.991,83",
+        "pago": "8.212.351,26"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Superintendência do Desenvolvimento da Amazônia",
+        "codigoOrgao": "53202",
+        "orgaoSuperior": "Ministério da Integração e do Desenvolvimento Regional",
+        "codigoOrgaoSuperior": "53000",
+        "empenhado": "19.092.789,61",
+        "liquidado": "6.310.575,90",
+        "pago": "6.278.840,99"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Superintendência de Desenvolvimento do Centro-Oeste",
+        "codigoOrgao": "53207",
+        "orgaoSuperior": "Ministério da Integração e do Desenvolvimento Regional",
+        "codigoOrgaoSuperior": "53000",
+        "empenhado": "16.052.494,31",
+        "liquidado": "3.728.821,21",
+        "pago": "3.510.655,88"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundo de Desenvolvimento do Centro-Oeste",
+        "codigoOrgao": "74919",
+        "orgaoSuperior": "Ministério da Integração e do Desenvolvimento Regional",
+        "codigoOrgaoSuperior": "53000",
+        "empenhado": "0,00",
+        "liquidado": "0,00",
+        "pago": "0,00"
     }
 ]

@@ -1278,5 +1278,45 @@
         "empenhado": "9.373.486,90",
         "liquidado": "1.510.248,55",
         "pago": "1.419.329,42"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Presidência da República",
+        "codigoOrgao": "20101",
+        "orgaoSuperior": "Presidência da República",
+        "codigoOrgaoSuperior": "20000",
+        "empenhado": "1.323.879.054,69",
+        "liquidado": "206.181.107,95",
+        "pago": "195.168.742,08"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Empresa Brasil de Comunicação",
+        "codigoOrgao": "20415",
+        "orgaoSuperior": "Presidência da República",
+        "codigoOrgaoSuperior": "20000",
+        "empenhado": "545.595.728,29",
+        "liquidado": "115.959.643,07",
+        "pago": "113.277.367,97"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundo de Imprensa Nacional",
+        "codigoOrgao": "20116",
+        "orgaoSuperior": "Presidência da República",
+        "codigoOrgaoSuperior": "20000",
+        "empenhado": "10.302.822,51",
+        "liquidado": "4.048.710,72",
+        "pago": "3.849.091,48"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Gabinete da Vice-Presidência da República",
+        "codigoOrgao": "60000",
+        "orgaoSuperior": "Presidência da República",
+        "codigoOrgaoSuperior": "20000",
+        "empenhado": "9.413.486,90",
+        "liquidado": "1.707.778,94",
+        "pago": "1.707.778,94"
     }
 ]
