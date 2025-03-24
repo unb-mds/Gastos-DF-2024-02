@@ -948,5 +948,35 @@
         "empenhado": "98.181.837,52",
         "liquidado": "15.447.942,17",
         "pago": "14.493.376,79"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundo de Amparo ao Trabalhador",
+        "codigoOrgao": "38901",
+        "orgaoSuperior": "Ministério do Trabalho e Emprego",
+        "codigoOrgaoSuperior": "40000",
+        "empenhado": "22.726.057.666,53",
+        "liquidado": "22.726.009.609,19",
+        "pago": "22.726.009.609,19"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério do Trabalho e Emprego - Unidades com vínculo direto",
+        "codigoOrgao": "40000",
+        "orgaoSuperior": "Ministério do Trabalho e Emprego",
+        "codigoOrgaoSuperior": "40000",
+        "empenhado": "484.640.066,81",
+        "liquidado": "321.060.298,61",
+        "pago": "233.655.808,30"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundação Jorge Duprat Figueiredo, de Segurança e Medicina do Trabalho",
+        "codigoOrgao": "37201",
+        "orgaoSuperior": "Ministério do Trabalho e Emprego",
+        "codigoOrgaoSuperior": "40000",
+        "empenhado": "98.191.369,59",
+        "liquidado": "15.481.887,14",
+        "pago": "14.524.781,18"
     }
 ]
