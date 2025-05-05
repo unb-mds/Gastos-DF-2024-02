@@ -1488,5 +1488,25 @@
         "empenhado": "101.362.833,27",
         "liquidado": "35.585.537,64",
         "pago": "24.703.920,15"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério do Trabalho e Emprego - Unidades com vínculo direto",
+        "codigoOrgao": "40000",
+        "orgaoSuperior": "Ministério do Trabalho e Emprego",
+        "codigoOrgaoSuperior": "40000",
+        "empenhado": "667.800.867,34",
+        "liquidado": "539.279.688,89",
+        "pago": "482.202.985,76"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundação Jorge Duprat Figueiredo, de Segurança e Medicina do Trabalho",
+        "codigoOrgao": "37201",
+        "orgaoSuperior": "Ministério do Trabalho e Emprego",
+        "codigoOrgaoSuperior": "40000",
+        "empenhado": "101.362.833,27",
+        "liquidado": "35.585.537,64",
+        "pago": "32.795.085,23"
     }
 ]
