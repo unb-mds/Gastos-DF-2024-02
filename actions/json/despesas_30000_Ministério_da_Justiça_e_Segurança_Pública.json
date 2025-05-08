@@ -4068,5 +4068,75 @@
         "empenhado": "9.709.945,41",
         "liquidado": "2.931.742,64",
         "pago": "2.778.770,78"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Polícia Federal",
+        "codigoOrgao": "30108",
+        "orgaoSuperior": "Ministério da Justiça e Segurança Pública",
+        "codigoOrgaoSuperior": "30000",
+        "empenhado": "7.263.454.467,63",
+        "liquidado": "2.815.695.709,01",
+        "pago": "2.532.075.494,30"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Polícia Rodoviária Federal",
+        "codigoOrgao": "30802",
+        "orgaoSuperior": "Ministério da Justiça e Segurança Pública",
+        "codigoOrgaoSuperior": "30000",
+        "empenhado": "6.139.799.097,37",
+        "liquidado": "1.923.388.776,30",
+        "pago": "1.897.940.540,42"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério da Justiça e Segurança Pública - Unidades com vínculo direto",
+        "codigoOrgao": "30000",
+        "orgaoSuperior": "Ministério da Justiça e Segurança Pública",
+        "codigoOrgaoSuperior": "30000",
+        "empenhado": "726.022.718,64",
+        "liquidado": "240.352.997,62",
+        "pago": "234.298.071,99"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundo Nacional de Segurança Pública",
+        "codigoOrgao": "30911",
+        "orgaoSuperior": "Ministério da Justiça e Segurança Pública",
+        "codigoOrgaoSuperior": "30000",
+        "empenhado": "1.805.857.218,68",
+        "liquidado": "139.762.037,23",
+        "pago": "138.342.569,14"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundo Penitenciário Nacional",
+        "codigoOrgao": "30907",
+        "orgaoSuperior": "Ministério da Justiça e Segurança Pública",
+        "codigoOrgaoSuperior": "30000",
+        "empenhado": "116.056.101,23",
+        "liquidado": "32.776.908,89",
+        "pago": "31.453.006,09"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Conselho Administrativo de Defesa Econômica",
+        "codigoOrgao": "30211",
+        "orgaoSuperior": "Ministério da Justiça e Segurança Pública",
+        "codigoOrgaoSuperior": "30000",
+        "empenhado": "24.732.993,15",
+        "liquidado": "13.678.820,57",
+        "pago": "12.905.698,84"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundo Nacional Antidrogas",
+        "codigoOrgao": "30912",
+        "orgaoSuperior": "Ministério da Justiça e Segurança Pública",
+        "codigoOrgaoSuperior": "30000",
+        "empenhado": "268.126,46",
+        "liquidado": "121.503,13",
+        "pago": "121.503,13"
     }
 ]
