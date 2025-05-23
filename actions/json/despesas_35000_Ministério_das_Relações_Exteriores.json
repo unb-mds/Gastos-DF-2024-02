@@ -998,5 +998,25 @@
         "empenhado": "10.149.992,75",
         "liquidado": "4.079.053,52",
         "pago": "3.923.460,57"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério das Relações Exteriores - Unidades com vínculo direto",
+        "codigoOrgao": "35000",
+        "orgaoSuperior": "Ministério das Relações Exteriores",
+        "codigoOrgaoSuperior": "35000",
+        "empenhado": "2.006.118.110,98",
+        "liquidado": "1.702.892.977,31",
+        "pago": "1.697.406.659,97"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundação Alexandre de Gusmão",
+        "codigoOrgao": "35201",
+        "orgaoSuperior": "Ministério das Relações Exteriores",
+        "codigoOrgaoSuperior": "35000",
+        "empenhado": "10.558.292,75",
+        "liquidado": "4.400.016,96",
+        "pago": "4.190.871,66"
     }
 ]
