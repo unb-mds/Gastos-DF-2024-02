@@ -1448,5 +1448,35 @@
         "empenhado": "3.870.206.242,04",
         "liquidado": "1.606.311.818,90",
         "pago": "1.485.864.392,46"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério da Agricultura e Pecuária - Unidades com vínculo direto",
+        "codigoOrgao": "22000",
+        "orgaoSuperior": "Ministério da Agricultura e Pecuária",
+        "codigoOrgaoSuperior": "22000",
+        "empenhado": "2.266.357.531,82",
+        "liquidado": "1.982.924.148,59",
+        "pago": "1.716.140.395,32"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Empresa Brasileira de Pesquisa Agropecuária",
+        "codigoOrgao": "22202",
+        "orgaoSuperior": "Ministério da Agricultura e Pecuária",
+        "codigoOrgaoSuperior": "22000",
+        "empenhado": "3.871.055.647,28",
+        "liquidado": "1.617.868.413,98",
+        "pago": "1.507.734.201,23"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundo de Defesa da Economia Cafeeira",
+        "codigoOrgao": "22905",
+        "orgaoSuperior": "Ministério da Agricultura e Pecuária",
+        "codigoOrgaoSuperior": "22000",
+        "empenhado": "123.089,54",
+        "liquidado": "108.511,00",
+        "pago": "106.163,80"
     }
 ]
