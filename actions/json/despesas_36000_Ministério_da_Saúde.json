@@ -3988,5 +3988,65 @@
         "empenhado": "260.568.379,88",
         "liquidado": "125.429.452,16",
         "pago": "110.510.809,83"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério da Saúde - Unidades com vínculo direto",
+        "codigoOrgao": "36000",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "99.231.707.705,60",
+        "liquidado": "77.778.077.939,76",
+        "pago": "75.627.541.287,93"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundação Oswaldo Cruz",
+        "codigoOrgao": "36201",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "6.609.556.059,15",
+        "liquidado": "4.035.673.592,70",
+        "pago": "3.051.666.104,09"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Hospital Nossa Senhora da Conceição S.A.",
+        "codigoOrgao": "36210",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "1.071.001.940,40",
+        "liquidado": "983.262.161,11",
+        "pago": "926.359.971,39"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundação Nacional de Saúde",
+        "codigoOrgao": "36211",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "1.676.700.579,92",
+        "liquidado": "728.623.615,96",
+        "pago": "727.304.232,48"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Agência Nacional de Vigilância Sanitária",
+        "codigoOrgao": "36212",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "399.620.733,37",
+        "liquidado": "351.724.698,17",
+        "pago": "327.859.577,22"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Agência Nacional de Saúde Suplementar",
+        "codigoOrgao": "36213",
+        "orgaoSuperior": "Ministério da Saúde",
+        "codigoOrgaoSuperior": "36000",
+        "empenhado": "260.963.028,65",
+        "liquidado": "126.919.047,73",
+        "pago": "116.668.853,09"
     }
 ]
