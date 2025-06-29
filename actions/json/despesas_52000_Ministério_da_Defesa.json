@@ -6378,5 +6378,95 @@
         "empenhado": "4.001.235,07",
         "liquidado": "2.359.407,55",
         "pago": "2.343.977,86"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Comando do Exército",
+        "codigoOrgao": "52121",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "53.349.652.775,07",
+        "liquidado": "20.268.025.655,84",
+        "pago": "20.181.044.426,48"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Comando da Marinha",
+        "codigoOrgao": "52131",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "30.912.567.704,10",
+        "liquidado": "12.422.046.484,58",
+        "pago": "12.330.412.232,01"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Comando da Aeronáutica",
+        "codigoOrgao": "52111",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "15.800.903.857,47",
+        "liquidado": "11.127.575.739,93",
+        "pago": "11.056.934.638,51"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundo do Exército",
+        "codigoOrgao": "52904",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "1.407.737.142,33",
+        "liquidado": "923.177.009,54",
+        "pago": "875.341.583,35"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Amazônia Azul Tecnologia de Defesa S.A.",
+        "codigoOrgao": "52233",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "560.928.567,83",
+        "liquidado": "255.476.899,12",
+        "pago": "239.542.998,30"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério da Defesa - Unidades com vínculo direto",
+        "codigoOrgao": "52000",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "482.842.772,45",
+        "liquidado": "231.940.976,40",
+        "pago": "226.902.976,28"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Indústria de Material Bélico do Brasil",
+        "codigoOrgao": "52221",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "305.244.075,25",
+        "liquidado": "110.404.921,66",
+        "pago": "102.742.888,59"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Caixa de Construções de Casas para o Pessoal da Marinha do Brasil",
+        "codigoOrgao": "31280",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "252.184.580,40",
+        "liquidado": "63.029.207,42",
+        "pago": "62.350.039,31"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundação Osório",
+        "codigoOrgao": "52222",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "29.705.103,12",
+        "liquidado": "12.218.168,05",
+        "pago": "12.086.999,65"
     }
 ]
