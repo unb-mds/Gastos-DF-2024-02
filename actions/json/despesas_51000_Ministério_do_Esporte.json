@@ -668,5 +668,15 @@
         "empenhado": "418.502.301,23",
         "liquidado": "120.005.496,36",
         "pago": "118.485.016,45"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Ministério do Esporte - Unidades com vínculo direto",
+        "codigoOrgao": "51000",
+        "orgaoSuperior": "Ministério do Esporte",
+        "codigoOrgaoSuperior": "51000",
+        "empenhado": "495.192.761,05",
+        "liquidado": "120.282.486,48",
+        "pago": "119.393.067,06"
     }
 ]
