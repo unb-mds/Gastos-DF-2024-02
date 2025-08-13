@@ -7638,5 +7638,25 @@
         "empenhado": "4.709.144,87",
         "liquidado": "3.329.086,51",
         "pago": "3.261.268,98"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Comando do Exército",
+        "codigoOrgao": "52121",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "54.274.226.378,66",
+        "liquidado": "30.346.974.147,44",
+        "pago": "30.250.527.032,11"
+    },
+    {
+        "ano": 2025,
+        "orgao": "Fundo do Exército",
+        "codigoOrgao": "52904",
+        "orgaoSuperior": "Ministério da Defesa",
+        "codigoOrgaoSuperior": "52000",
+        "empenhado": "1.958.910.517,02",
+        "liquidado": "1.333.497.150,13",
+        "pago": "1.277.062.040,80"
     }
 ]
